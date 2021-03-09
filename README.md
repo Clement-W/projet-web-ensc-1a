@@ -16,4 +16,8 @@ Probleme : Pour la table experiences pro, je sais pas comment on peut tout cache
 A la création d'un compte il faudra inserer autant de settings que de paramètre à visibilité modifiable (on met tout en visible par défaut puis après l'utilisateur peut modifier à sa guise)
 
 
-Je sais toujours pas comment faire pour gérer le cas de la table experiences pro... 
+Je sais toujours pas comment faire pour gérer le cas de la table experiences pro...
+
+
+
+On a trouvé comment gérer le problème de l'experience pro, on va utiliser IdeXPERIENCEpRO pour identifier les experiences pro et gerer leur visibilité. On a dissocié la table eleve et gestionnaire du compte pour pouvoir faire en sorte qu'un éleve a des experiences pro et infos persos et pas un gestionnaire. 

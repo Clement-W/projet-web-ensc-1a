@@ -20,4 +20,13 @@ Je sais toujours pas comment faire pour gérer le cas de la table experiences pr
 
 
 
-On a trouvé comment gérer le problème de l'experience pro, on va utiliser IdeXPERIENCEpRO pour identifier les experiences pro et gerer leur visibilité. On a dissocié la table eleve et gestionnaire du compte pour pouvoir faire en sorte qu'un éleve a des experiences pro et infos persos et pas un gestionnaire. 
+On a trouvé comment gérer le problème de l'experience pro, on va utiliser IdeXPERIENCEpRO pour identifier les experiences pro et gerer leur visibilité. On a dissocié la table eleve et gestionnaire du compte pour pouvoir faire en sorte qu'un éleve a des experiences pro et infos persos et pas un gestionnaire.
+
+
+Informations à se souvenir : 
+QUand quelqu'un recherche des profils, il faut vérifier que ceux-ci sont bien validés par un gestionnaire car même ceux qui sont pas validés auront un profil. Ce qu'on peut faire pour eviter que quelqu'un accède à un profil depuis l'url c'est verifier dans la variable session que le compte connecté est un gestionnaire 
+
+Pour savoir si un compte connecté est un gestionnaire ou non, il faudra faire une mtéhode qui fait un select de l'id compte avec l'username, puis ensuite on peut select dans eleve ou dans gestionnaire idCompte pour voir dans quelle table est cet id et donc savoir si c'est un élève ou un gestionnaire
+
+
+QUAND un gestionnaire refuse l'inscription d'un éleve en appuyant sur la croix, ça envoie un mail qui lui dit qu'il a été refusé puis ça le supprime de la bdd

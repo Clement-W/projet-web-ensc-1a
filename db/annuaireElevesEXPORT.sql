@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 09 mars 2021 à 11:27
+-- Généré le : mer. 10 mars 2021 à 17:38
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `Compte` (
   `IdCompte` int(11) NOT NULL,
   `NomUtilisateur` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `MotDePasse` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
+  `MotDePasse` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `AdresseMail` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `Compte`
 --
 
-INSERT INTO `Compte` (`IdCompte`, `NomUtilisateur`, `MotDePasse`) VALUES
-(1, 'username1', 'password1'),
-(2, 'username2', 'password2');
+INSERT INTO `Compte` (`IdCompte`, `NomUtilisateur`, `MotDePasse`, `AdresseMail`) VALUES
+(1, 'username1', 'password1', 'username1@ensc.fr'),
+(2, 'username2', 'password2', 'username2@ensc.fr');
 
 -- --------------------------------------------------------
 
@@ -49,6 +50,7 @@ INSERT INTO `Compte` (`IdCompte`, `NomUtilisateur`, `MotDePasse`) VALUES
 
 CREATE TABLE `Eleve` (
   `IdEleve` int(11) NOT NULL,
+  `CompteValide` tinyint(1) DEFAULT NULL,
   `IdCompte` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -56,8 +58,8 @@ CREATE TABLE `Eleve` (
 -- Déchargement des données de la table `Eleve`
 --
 
-INSERT INTO `Eleve` (`IdEleve`, `IdCompte`) VALUES
-(1, 1);
+INSERT INTO `Eleve` (`IdEleve`, `CompteValide`, `IdCompte`) VALUES
+(1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,7 @@ CREATE TABLE `ExperiencePro` (
 --
 
 INSERT INTO `ExperiencePro` (`IdExperiencePro`, `TypeExperiencePro`, `DateDebut`, `DateFin`, `TypeOrganisation`, `Lieu`, `SecteursActivites`, `DomainesCompetences`, `Description`, `Salaire`, `IdEleve`) VALUES
-(1, 'Stage', '2019-04-22', '2019-06-22', 'Laboratoire', 'Tonlence', 'Santé', 'IA', 'Stage visant à étudier et expliciter les processus d\'analyse explcites', 3942, 1),
+(1, 'Stage', '2019-04-22', '2019-06-22', 'Laboratoire', 'Tonlence', 'Santé', 'IA', 'Stage visant à étudier et expliciter les processus danalyse explcites', 3942, 1),
 (2, 'Stage', '2018-04-22', '2019-06-22', 'Entreprise', 'Bordaxe', 'Commerce', 'IHM', 'Stage visant à commercer avec le commerce', 3942, 1);
 
 -- --------------------------------------------------------
@@ -120,7 +122,6 @@ CREATE TABLE `InfosPerso` (
   `Adresse` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Ville` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CodePostal` int(11) DEFAULT NULL,
-  `AdresseMail` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `NumTelephone` int(11) DEFAULT NULL,
   `IdEleve` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -129,8 +130,8 @@ CREATE TABLE `InfosPerso` (
 -- Déchargement des données de la table `InfosPerso`
 --
 
-INSERT INTO `InfosPerso` (`IdInfosPerso`, `Nom`, `Prenom`, `Genre`, `Promotion`, `Adresse`, `Ville`, `CodePostal`, `AdresseMail`, `NumTelephone`, `IdEleve`) VALUES
-(1, 'Carena', 'Emma', 'F', 2023, '2 rue de la poisse', 'Tonlence', 30290, 'emma.mcarena@coldmail.com', 622222222, 1);
+INSERT INTO `InfosPerso` (`IdInfosPerso`, `Nom`, `Prenom`, `Genre`, `Promotion`, `Adresse`, `Ville`, `CodePostal`, `NumTelephone`, `IdEleve`) VALUES
+(1, 'Carena', 'Emma', 'F', 2023, '2 rue de la poisse', 'Tonlence', 30290, 622222222, 1);
 
 -- --------------------------------------------------------
 
@@ -157,10 +158,10 @@ INSERT INTO `Parametres` (`IdParametres`, `LibelleInformation`, `Visibilite`, `I
 (5, 'Adresse', 0, 1),
 (6, 'Ville', 1, 1),
 (7, 'CodePostal', 1, 1),
-(8, 'AdresseMail', 0, 1),
-(9, 'NumTelephone', 0, 1),
-(10, '1', 1, 1),
-(11, '2', 1, 1);
+(8, 'NumTelephone', 0, 1),
+(9, '1', 1, 1),
+(10, '2', 1, 1),
+(11, 'AdresseMail', 0, 1);
 
 --
 -- Index pour les tables déchargées

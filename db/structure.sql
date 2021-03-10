@@ -9,6 +9,7 @@ CREATE TABLE Compte(
    IdCompte INT AUTO_INCREMENT,
    NomUtilisateur VARCHAR(50),
    MotDePasse VARCHAR(50),
+   AdresseMail VARCHAR(50),
    PRIMARY KEY(IdCompte)
 );
 
@@ -22,6 +23,7 @@ CREATE TABLE Gestionnaire(
 
 CREATE TABLE Eleve(
    IdEleve INT AUTO_INCREMENT,
+   CompteValide BOOLEAN,
    IdCompte INT NOT NULL,
    PRIMARY KEY(IdEleve),
    UNIQUE(IdCompte),
@@ -46,7 +48,6 @@ CREATE TABLE InfosPerso(
    Adresse VARCHAR(50),
    Ville VARCHAR(50),
    CodePostal INT,
-   AdresseMail VARCHAR(50),
    NumTelephone INT,
    IdEleve INT NOT NULL,
    PRIMARY KEY(IdInfosPerso),

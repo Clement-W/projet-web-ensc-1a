@@ -9,21 +9,26 @@ try{
 
 if ($BDD) {
 
+
+    // On recpuere les paramètres correspondant à l'élève 1
     $id = 1;
     $querySettings = $BDD->prepare("SELECT * FROM Parametres WHERE IdEleve=?");
     $querySettings->execute(array($id));
  
+    // On récupère les informations personelles de l'élève 1
     $queryInfosPerso = $BDD->prepare("SELECT * FROM InfosPerso WHERE IdEleve=?");
     $queryInfosPerso->execute(array($id));
     $infos = $queryInfosPerso->fetch(); //fetch seul car un seul resultat
 
+    // On récupère les experiences pro de l'élève 1
     $queryExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro WHERE IdEleve=?");
     $queryExperiencePro->execute(array($id));
     $experiences = $queryExperiencePro->fetchAll();
 
-
-
-
+    // On récupère l'adresse mail de l'élève 1 :
+    $queryCompte = $BDD->prepare("SELECT AdresseMail FROM Compte,Eleve WHERE Compte.IdCompte = Eleve.IdCompte AND IdEleve=?");
+    $queryCompte->execute(array($id));
+    $adresseMail = $queryCompte->fetch()[0]; //fetch seul car un seul resultat  , et on prend l'unique valeur du tableau qui est retourné avec [0]
 
 
     while($tuple= $querySettings -> fetch()){
@@ -38,7 +43,11 @@ if ($BDD) {
             }
             
         }else{
-            $valeur = $infos[$nomParam];
+            if($nomParam=="AdresseMail"){ // On gère le cas particulier de l'adresse mail qui est une information de compte et pas une information personelle
+                $valeur = $adresseMail;
+            }else{
+                $valeur = $infos[$nomParam];
+            }
         }
         $visibilite = $tuple["Visibilite"];
         

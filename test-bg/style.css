@@ -1,32 +1,24 @@
 body {
-	background: linear-gradient(-45deg, #39a9dc, #f29400, #e2007a, #97be0d);
-	background-size: 500%;
-	-webkit-animation: gradient 15s ease infinite;
-	        animation: gradient 15s ease infinite;
-
+	background: #39a9dc;
+	animation: pulse 30s infinite;
 
 }
 
-@-webkit-keyframes gradient {
+@keyframes pulse {
+
 	0% {
-		background-position: 0% 50%;
+		background-color:#f29400;
 	}
 	50% {
-		background-position: 100% 50%;
+		background-color: #e2007a;
 	}
 	100% {
-		background-position: 0% 50%;
+		background-color: #f29400;
 	}
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+#nav1
+{  
+    background-color: rgba(31, 31, 31, 0.877); 
+    opacity: 0.95; 
 }

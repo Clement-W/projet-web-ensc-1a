@@ -13,14 +13,14 @@ session_start();
 <?php
 $pageTitle = "Accueil";
 require_once "../includes/fragments/head.php";
+
 ?>
 
-<body>
+<body class="fond-colore">
     <?php require_once "../includes/fragments/header.php"; ?>
     <div class="container">
-
-
     </div>
+    <?php require_once "../includes/scripts/script.php"; ?>
 
 </body>
 

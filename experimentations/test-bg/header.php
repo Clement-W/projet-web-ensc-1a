@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark transparent" id="nav1">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark transparent" id="nav">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="btn btn-default" href="#">

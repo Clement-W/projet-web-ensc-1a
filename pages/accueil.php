@@ -1,9 +1,6 @@
 <?php
 require_once "../includes/functions.php";
 session_start();
-
-
-
 ?>
 
 
@@ -13,7 +10,6 @@ session_start();
 <?php
 $pageTitle = "Accueil";
 require_once "../includes/fragments/head.php";
-
 ?>
 
 <body class="fond-colore">

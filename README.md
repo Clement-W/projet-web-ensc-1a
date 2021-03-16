@@ -30,3 +30,18 @@ Pour savoir si un compte connecté est un gestionnaire ou non, il faudra faire u
 
 
 QUAND un gestionnaire refuse l'inscription d'un éleve en appuyant sur la croix, ça envoie un mail qui lui dit qu'il a été refusé puis ça le supprime de la bdd
+
+
+
+À mettre dans TOUS les fichiers : 
+
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier :
+ * Permet de créer la database ainsi que d'allouer tous les privilèges dessus pour un utilisateur donné
+ *
+ * À ajouter en premier pour la création de la DB
+ *
+ * Copyright 2020, BINET Coline et PERRIER Alban
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */ 

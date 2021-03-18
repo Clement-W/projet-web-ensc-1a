@@ -9,7 +9,6 @@
             </button>
             <a class="navbar-brand  text-light" href="#">Annuaire</a>
         </div>
-
         <div class="collapse navbar-collapse" id="navbartarget"></div>
         <!--Met les éléments de la navbar à l'opposé l'un de l'autre-->
 
@@ -20,12 +19,36 @@
             </form>
         <?php } ?>
 
-        <!-- if (isAdminConnected()) { -->
-        <?php $testGestionnaireConnecte = true; ?>
-        <?php if ($testGestionnaireConnecte) { ?>
+        <!-- if (isUserConnected()) { -->
+        <?php $testUtilisateurConnecte = false; ?>
+        <?php if ($testUtilisateurConnecte) { ?>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 text-light " type="submit">Bonjour Utilisateur</button>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Bonjour Emma !
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Profil</a>
+                        <a class="dropdown-item" href="#">Se déconnecter</a>
+                    </div>
+                </div>
             </form>
         <?php } ?>
+
+        <!-- if (isAdminConnected()) { -->
+            <?php $testGestionnaireConnecte = true; ?>
+        <?php if ($testGestionnaireConnecte) { ?>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Bonjour Gestionnaire !
+                    </button>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-light" href="#">Se déconnecter</a>
+                    </div>
+                </div>
+            </form>
+        <?php } ?>
+
     </div>
 </nav>

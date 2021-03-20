@@ -46,7 +46,7 @@ require_once "../includes/fragments/head.php";
             </div>
         </div>
     </div>
-    </div>
+
 
 
 

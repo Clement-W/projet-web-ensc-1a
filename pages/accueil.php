@@ -8,7 +8,7 @@ session_start();
 <html lang="fr">
 
 <?php
-$pageTitle = "Accueil";
+$titrePage = "Accueil";
 require_once "../includes/fragments/head.php";
 ?>
 
@@ -48,9 +48,6 @@ require_once "../includes/fragments/head.php";
     </div>
 
 
-
-
-    <?php require_once "../includes/scripts/script.php"; ?>
 
 </body>
 

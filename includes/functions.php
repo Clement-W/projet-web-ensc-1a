@@ -347,7 +347,115 @@ function verifierExperiencesPro()
 }
 
 //retourne toutes les informations du profil de quelqu'un de connecté
-function getInfosPerso()
-{
-    
+function getInfosPerso() {
+    $BDD = getBDD();
+
+    $nomUtilisateur = $_SESSION["nomUtilisateur"];
+    //On recupère les infos personelles et les informations de compte de l'utilisateur
+    $requeteInfosPerso = $BDD->PREPARE("SELECT * FROM Compte,Eleve,InfosPerso WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = InfosPerso.IdEleve AND Compte.NomUtilisateur = ?");
+    $requeteInfosPerso->execute(array($nomUtilisateur));
+    return $requeteInfosPerso->fetch();
 }
+
+//retourne les experiences professionnelles d'un élève connecté
+function getExperiencesPro() {
+    $BDD = getBDD();
+
+    $nomUtilisateur = $_SESSION["nomUtilisateur"];
+    //On recupère les experiences pro de l'utilisateur
+    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Compte.NomUtilisateur = ?");
+    $requeteExperiencesPro->execute(array($nomUtilisateur));
+    return $requeteExperiencesPro->fetchAll();
+}
+
+// permet d'ajouter une experience professionnelle
+// prend en compte le fait que certaines informations sont facultatives, et les ajoutes si elles sont présentes.
+function ajouterExperiencePro(){
+    if (!empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["lieu"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {
+
+        //DateFin
+        //Description
+        //Salaire
+        $BDD = getBDD();
+
+        $typeExperiencePro = escape($_POST["typeExperiencePro"]);
+        $dateDebutStr = escape($_POST["dateDebut"]);
+        $dateDebut = date("Y-m-d H:i:s",strtotime($dateDebutStr));
+        $typeOrganisation = escape($_POST["typeOrganisation"]);
+        $lieu = escape($_POST["lieu"]);
+        $secteursActivitesArray = $_POST["secteursActivites"];
+        $domainesCompetencesArray = $_POST["domainesCompetences"];
+
+
+        // On convertit le tableau de secteurs d'activités en strings séparés par des virgules
+        $secteursActivites = "";
+        foreach($secteursActivitesArray as $secteurAct){
+            $secteursActivites .= escape($secteurAct) . ", ";
+        }
+
+        // On convertit le tableau de domaines de compétences en strings séparés par des virgules
+        $domainesCompetences = "";
+        foreach($domainesCompetencesArray as $domaineComp){
+            $domainesCompetences .= escape($domaineComp) . ", ";
+        }
+
+        //On recupere le nom d'utilisateur et on requete la bdd pour avoir l'id de l'eleve afin de lui associer une nouvelle experience pro
+        $nomUtilisateur = $_SESSION["nomUtilisateur"];
+        $requeteIdEleve = $BDD->prepare("SELECT IdEleve FROM Compte,Eleve WHERE Compte.IdCompte = Eleve.IdCompte AND Compte.NomUtilisateur = ?");
+        $requeteIdEleve->execute(array($nomUtilisateur));
+        $idEleve = $requeteIdEleve->fetch()[0];
+
+        //On insert les informations obligatoires de la nouvelle experience professionnelle
+        $requeteInsertionExpPro = $BDD->prepare("INSERT INTO ExperiencePro(TypeExperiencePro, DateDebut, TypeOrganisation, Lieu, SecteursActivites, DomainesCompetences, IdEleve) VALUES (?,?,?,?,?,?,?)");
+        $requeteInsertionExpPro->execute(array($typeExperiencePro,$dateDebut,$typeOrganisation,$lieu,$secteursActivites,$domainesCompetences,$idEleve));
+
+        // On recupère l'id de l'experience pro insérée
+        $idExperiencePro = $BDD->lastInsertId();
+
+
+        // Si la date de fin de l'experience pro est donnée alors on l'ajoute également
+        if(!empty($_POST["dateFin"])){
+            $dateFinStr = escape($_POST["dateFin"]);
+            $dateFin=date("Y-m-d H:i:s",strtotime($dateFinStr));
+            $requeteUpdateDateFin = $BDD->prepare("UPDATE ExperiencePro SET DateFin=? WHERE IdExperiencePro=?");
+            $requeteUpdateDateFin->execute(array($dateFin,$idExperiencePro));
+        }
+
+        // Si la description de l'experience pro est donnée alors on l'ajoute également
+        if(!empty($_POST["description"])){
+            $description = escape($_POST["description"]);
+            $requeteUpdateDescription = $BDD->prepare("UPDATE ExperiencePro SET Description=? WHERE IdExperiencePro=?");
+            $requeteUpdateDescription->execute(array($description,$idExperiencePro));
+        }
+
+        // Si le salaire de l'experience pro est donnée alors on l'ajoute également
+        if(!empty($_POST["salaire"])){
+            $salaire = escape($_POST["salaire"]);
+            $requeteUpdateSalaire = $BDD->prepare("UPDATE ExperiencePro SET Salaire=? WHERE IdExperiencePro=?");
+            $requeteUpdateSalaire->execute(array($salaire,$idExperiencePro));
+        }
+
+        $alert["bootstrapClassAlert"] = "success";
+        $alert["messageAlert"] = "L'experience professionnelle a bien été ajoutée.";
+
+    }else{
+        $alert["bootstrapClassAlert"] = "danger";
+        $alert["messageAlert"] = "Des informations sont manquantes.";
+    }
+    return $alert;
+}
+/*
+$_SESSION["nomUtilisateur"] = "cweinreich1";
+$_POST["typeExperiencePro"] = "Stage";
+$_POST["dateDebut"] = "02-04-2023 10:29:39";
+$_POST["typeOrganisation"] = "Laboratoire";
+$_POST["lieu"] = "Avranches";
+$_POST["secteursActivites"] = array("Transport","Aéronautique");
+$_POST["domainesCompetences"] = array("IA","SHS","UX");
+$_POST["dateFin"] = "02-06-2023 00:00:00";
+$_POST["description"] = "description de la fête";
+$_POST["salaire"] = "2942";
+
+
+$alert = ajouterExperiencePro();
+print_r($alert);*/

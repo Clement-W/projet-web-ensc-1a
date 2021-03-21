@@ -1,0 +1,54 @@
+body
+{
+ margin:0 auto;
+ padding:0px;
+ text-align:center;
+ width:100%;
+ font-family: "Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+ background-color:#F2F2F2;
+}
+#wrapper
+{
+ margin:0 auto;
+ padding:0px;
+ text-align:center;
+ width:995px;
+}
+#wrapper h1
+{
+ margin-top:50px;
+ font-size:45px;
+ color:#585858;
+}
+#wrapper h1 p
+{
+ font-size:18px;
+}
+#search_box input[type="text"]
+{
+ width:450px;
+ height:45px;
+ padding-left:10px;
+ font-size:18px; 
+ margin-bottom:15px;
+ color:#424242;
+ border:none;
+}
+#search_box input[type="submit"]
+{
+ width:100px;
+ height:45px;
+ background-color:#585858;
+ color:white;
+ border:none;
+}
+#result_div
+{
+ width:555px; 
+ margin-left:220px;
+}
+#result_div li
+{ 
+ margin-bottom:20px;
+ list-style-type:none;
+}

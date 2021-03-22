@@ -44,6 +44,7 @@ body {
     border-radius: 10px;
     height: auto;
     margin-top: 8%;
+    margin-bottom: 8%;
 
 }
 
@@ -72,25 +73,25 @@ input {
     overflow: hidden;
 }
 
-.form-button{
-    
+.form-button {
+    margin-top: 15%;
 }
-.form-group:last-child {
-    margin-bottom: 0px;
-}
-
 
 .signup-form {
-    width: 100%;    
+    margin-top: 15%;
+    width: 100%;
     overflow: hidden;
-}
-
-.signup-content {
     padding: 10px 0;
-    padding-left: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
     padding-top: 10px;
+    margin-bottom: 15%;
 }
 
-.signup {
-    margin-bottom: 15%;
+.ml {
+    margin-left: 20%;
+}
+
+.mr {
+    margin-right: 20%;
 }

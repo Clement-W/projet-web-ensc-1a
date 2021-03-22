@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbartarget"></div>
         <!--Met les éléments de la navbar à l'opposé l'un de l'autre-->
 
-        <?php $testPasConnecte = false; ?>
+        <?php $testPasConnecte = true; ?>
         <?php if ($testPasConnecte) { ?>
             <form class="form-inline my-2 my-lg-0">
                 <button class="btn btn-outline-secondary my-2 my-sm-0 text-light " type="submit">J'ai déjà un compte</button>
@@ -36,7 +36,7 @@
         <?php } ?>
 
         <!-- if (isAdminConnected()) { -->
-            <?php $testGestionnaireConnecte = true; ?>
+            <?php $testGestionnaireConnecte = false; ?>
         <?php if ($testGestionnaireConnecte) { ?>
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">

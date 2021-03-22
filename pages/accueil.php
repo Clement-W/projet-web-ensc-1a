@@ -20,79 +20,83 @@ require_once "../includes/fragments/head.php";
         <div class="row d-flex justify-content-center">
             <div class="col-lg-6 align-self-center">
                 <div class="small-12 large-6 columns">
-                    <h1>Une plateforme rapide, accessible et réaliste pour tester vos compétences en hacking.</h1>
+                    <h1 class="text-center">Bienvenue sur l'annuaire des élèves de l'ENSC !</h1>
                 </div>
             </div>
 
             <div class="col-lg-6 align-item-center">
-                <div class="whitecontainer d-flex justify-content-center">
-                    <section class="signup">
-                        <div class="signup-content">
-                            <div class="signup-form">
-                                <h2>Inscription</h2>
-                                <form method="POST" class="register-form" id="register-form">
-                                    <div id="carouselExampleIndicators" class="carousel slide divCarousel" data-interval="false">
-                                        <div class="carousel-inner divCarousel">
-                                            <div class="carousel-item active">
+                <div class="whitecontainer flex-column d-flex justify-content-center">
+                    <form method="POST" class="register-form" id="register-form">
+                    <h2 class="d-flex justify-content-center mt-3">Inscription</h2>
 
-                                                <div class="form-group">
-                                                    <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                                    <input type="text" name="name" id="name" placeholder="Name" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                                    <input type="email" name="email" id="email" placeholder="Email" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                                    <input type="password" name="pass" id="pass" placeholder="Password" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                                    <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
-                                                </div>
-                                                <div class="form-group form-button">
-                                                    <input type="button" name="signup" id="signup" class="form-submit" value="Continuer" />
-                                                </div>
-                                                <script type="text/javascript">
-                                                    $("#signup").click(() => $(".carousel").carousel("next"));
-                                                </script>
+                        <div id="carouselExampleIndicators" class="carousel slide divCarousel ml mr" data-interval="false">
+                            <div class="carousel-inner divCarousel">
+                                <div class="carousel-item active">
 
-                                            </div>
-                                            <div class="carousel-item">
-                                            <div class="form-group">
-                                                    <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                                    <input type="text" name="name" id="name" placeholder="Promo" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                                    <input type="email" name="email" id="email" placeholder="Genre" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                                    <input type="password" name="pass" id="pass" placeholder="Adresse" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                                    <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
-                                                </div>
-                                                <div class="form-group form-button">
-                                                    <input type="button" name="signup" id="signup" value="Précédent" />
-                                                </div>
-                                                <script type="text/javascript">
-                                                    $("#signup").click(() => $(".carousel").carousel("prev"));
-                                                </script>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img class="d-block w-100" src="images/archi3.jpg" alt="Third slide">
-                                            </div>
-                                        </div>
-                                      
+                                    <div class="form-group">
+                                        <label for="prenom"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                        <input type="text" name="prenom" id="prenom" placeholder="Prénom" />
                                     </div>
-                                </form>
+                                    <div class="form-group">
+                                        <label for="nom"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                        <input type="text" name="nom" id="nom" placeholder="Nom" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="genre"><i class="zmdi zmdi-email"></i></label>
+                                        <input type="text" name="genre" id="genre" placeholder="Genre" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                        <input type="password" name="pass" id="pass" placeholder="Mot de passe" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="promo"><i class="zmdi zmdi-email"></i></label>
+                                        <input type="number" name="promo" id="promo" placeholder="Promo" />
+                                    </div>
+                                    <div class="form-group form-button">
+                                        <input type="button" class="btn btn-outline-secondary" name="signup" id="continuer1" class="form-submit" value="Continuer" />
+                                    </div>
+                                    <script type="text/javascript">
+                                        $("#continuer1").click(() => $(".carousel").carousel("next"));
+                                    </script>
+
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="form-group">
+                                        <label for="adresse"><i class="zmdi zmdi-lock"></i></label>
+                                        <input type="text" name="adresse" id="adresse" placeholder="Adresse" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ville"><i class="zmdi zmdi-lock-outline"></i></label>
+                                        <input type="text" name="ville" id="ville" placeholder="Ville" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="codePostal"><i class="zmdi zmdi-lock-outline"></i></label>
+                                        <input type="number" name="codePostal" id="codePostal" placeholder="Code Postal" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email"><i class="zmdi zmdi-lock-outline"></i></label>
+                                        <input type="email" name="email" id="email" placeholder="E-mail" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tel"><i class="zmdi zmdi-lock-outline"></i></label>
+                                        <input type="number" name="tel" id="tel" placeholder="Téléphone" />
+                                    </div>
+                                    <div class="form-group form-button d-flex ">
+                                        <input type="button" class="btn btn-outline-secondary mr-1" name="signup" id="precedent" value="Précédent" />
+                                        <input type="submit" class="btn btn-outline-success" name="signup" id="terminer" value="Terminer" />
+                                    </div>
+                                    <script type="text/javascript">
+                                        $("#precedent").click(() => $(".carousel").carousel("prev"));
+                                    </script>
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/archi3.jpg" alt="Third slide">
+                                </div>
                             </div>
+
                         </div>
-                    </section>
+                    </form>
                 </div>
             </div>
         </div>

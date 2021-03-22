@@ -16,12 +16,14 @@
     <script type="text/javascript">
         function do_search() {
             var search_term = $("#search_term").val(); // val = get value element of the input form
+            var search_param = $("#search_param").val();
             $.ajax({
                 type: 'post',
                 url: 'get_results.php',
                 data: {
                     search: "search",
-                    search_term: search_term
+                    search_term: search_term,
+                    search_param: search_param
                 },
                 success: function(response) {
                     document.getElementById("result_div").innerHTML = response;
@@ -38,9 +40,16 @@
 
     <div id="wrapper">
         <h1> Test barre de recherche</h1>
+        <p> Vous pouvez chercher par promo, organisation, secteur d'activité, etc.</p>
+
 
         <div id="search_box">
-            <form method="post" action="get_results.php" onsubmit="return do_search();">
+            <form method="post" onsubmit="return do_search();">
+                <select name="search_param" id="search_param" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                    <option value="TypeOrganisation">Type d'organisation</option>
+                    <option value="DomainesCompetences">Domaines de compétences</option>
+                    <option value="SecteursActivites">Secteurs d'activités</option>
+                </select>
                 <input type="text" id="search_term" name="search_term" placeholder="Enter Search" onkeyup="do_search();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
                 <input type="submit" name="search" value="SEARCH">
             </form>
@@ -49,6 +58,7 @@
         <div id="result_div"></div>
 
     </div>
+
 </body>
 
 </html>

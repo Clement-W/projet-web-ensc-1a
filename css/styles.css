@@ -30,13 +30,20 @@ body {
     }
 }
 
-#nav {
-    background-color: black;
-    opacity: 0.95;
-}
 
-.dropdown-menu>button>a {
-    background-color: #39a9dc;
+.navbar
+        {
+            background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(black));
+            background: -webkit-linear-gradient(bottom, #a18cd1 0%, black 100%);
+            background: -moz-linear-gradient(bottom, #a18cd1 0%, black 100%);
+            background: -o-linear-gradient(bottom, #a18cd1 0%, black 100%);
+            background: linear-gradient(to top, #a18cd1 0%, black 100%);
+            border-bottom:2px solid rgb(233, 233, 233);
+        }
+
+
+.dropdown-menu > a:hover, .dropdown-menu > a:focus {
+    background-color:rgb(95, 95, 95);
 }
 
 .whitecontainer {

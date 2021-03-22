@@ -285,7 +285,7 @@ function validerCompteEleve($idEleve)
 
     return $alert;
 }
-
+validerCompteEleve(1);
 
 
 

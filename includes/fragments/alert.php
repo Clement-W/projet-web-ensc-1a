@@ -1,6 +1,6 @@
 <?php
 if (isset($alert)) {
-    $bootstrapClassAlert =  $alert['classAlert'];
+    $bootstrapClassAlert =  $alert['bootstrapClassAlert'];
     $messageAlert = $alert['messageAlert'];
 ?>
     <div class="alert alert-<?= $bootstrapClassAlert ?>">

@@ -31,7 +31,7 @@ body {
 }
 
 #nav {
-    background-color: rgba(31, 31, 31, 0.877);
+    background-color: black;
     opacity: 0.95;
 }
 
@@ -88,10 +88,16 @@ input {
     margin-bottom: 15%;
 }
 
-.ml {
+.marge-inscription {
     margin-left: 20%;
+    margin-right: 20%;
 }
 
-.mr {
-    margin-right: 20%;
+
+.marge-connexion{
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 5%;
+
 }

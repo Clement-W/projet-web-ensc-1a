@@ -2,20 +2,19 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="btn btn-default" href="#">
-                <i class="fas fa-coffee"></i>
+                <i class="fa fa-share-alt-square fa-2x" style="color:white" aria-hidden="true"></i>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbartarget" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
             <a class="navbar-brand  text-light" href="#">Annuaire</a>
         </div>
         <div class="collapse navbar-collapse" id="navbartarget"></div>
+
         <!--Met les éléments de la navbar à l'opposé l'un de l'autre-->
 
         <?php $testPasConnecte = true; ?>
         <?php if ($testPasConnecte) { ?>
             <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-secondary my-2 my-sm-0 text-light " type="submit">J'ai déjà un compte</button>
+                <button onclick="location.href='connexion.php';" class="btn btn-outline-secondary my-2 my-sm-0 text-light"> J'ai déjà un compte</button>
             </form>
         <?php } ?>
 
@@ -36,7 +35,7 @@
         <?php } ?>
 
         <!-- if (isAdminConnected()) { -->
-            <?php $testGestionnaireConnecte = false; ?>
+        <?php $testGestionnaireConnecte = false; ?>
         <?php if ($testGestionnaireConnecte) { ?>
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">

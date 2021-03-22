@@ -1,8 +1,10 @@
 <?php
 require_once "../includes/functions.php";
 session_start();
+if(!empty($_POST["inscription"])){
+    $alert=inscription();
+}
 ?>
-
 
 <!doctype html>
 <html lang="fr">
@@ -10,11 +12,11 @@ session_start();
 <?php
 $titrePage = "Accueil";
 require_once "../includes/fragments/head.php";
-
 ?>
 
 <body class="background">
     <?php require_once "../includes/fragments/header.php"; ?>
+    <?php require_once('../includes/fragments/alert.php'); ?>
 
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -26,10 +28,10 @@ require_once "../includes/fragments/head.php";
 
             <div class="col-lg-6 align-item-center">
                 <div class="whitecontainer flex-column d-flex justify-content-center">
-                    <form method="POST" class="register-form" id="register-form">
-                    <h2 class="d-flex justify-content-center mt-3">Inscription</h2>
 
-                        <div id="carouselExampleIndicators" class="carousel slide divCarousel ml mr" data-interval="false">
+                    <form method="POST" action="accueil.php" class="register-form" id="register-form">
+                        <h2 class="d-flex justify-content-center mt-3">Inscription</h2>
+                        <div id="carouselExampleIndicators" class="carousel slide divCarousel marge-inscription" data-interval="false">
                             <div class="carousel-inner divCarousel">
                                 <div class="carousel-item active">
 
@@ -46,8 +48,8 @@ require_once "../includes/fragments/head.php";
                                         <input type="text" name="genre" id="genre" placeholder="Genre" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="password" name="pass" id="pass" placeholder="Mot de passe" />
+                                        <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
+                                        <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" />
                                     </div>
                                     <div class="form-group">
                                         <label for="promo"><i class="zmdi zmdi-email"></i></label>
@@ -59,8 +61,8 @@ require_once "../includes/fragments/head.php";
                                     <script type="text/javascript">
                                         $("#continuer1").click(() => $(".carousel").carousel("next"));
                                     </script>
-
                                 </div>
+
                                 <div class="carousel-item">
                                     <div class="form-group">
                                         <label for="adresse"><i class="zmdi zmdi-lock"></i></label>
@@ -79,28 +81,24 @@ require_once "../includes/fragments/head.php";
                                         <input type="email" name="email" id="email" placeholder="E-mail" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="tel"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type="number" name="tel" id="tel" placeholder="Téléphone" />
+                                        <label for="telephone"><i class="zmdi zmdi-lock-outline"></i></label>
+                                        <input type="number" name="telephone" id="telephone" placeholder="Téléphone" />
                                     </div>
                                     <div class="form-group form-button d-flex ">
-                                        <input type="button" class="btn btn-outline-secondary mr-1" name="signup" id="precedent" value="Précédent" />
-                                        <input type="submit" class="btn btn-outline-success" name="signup" id="terminer" value="Terminer" />
+                                        <input type="button" class="btn btn-outline-secondary mr-1" name="precedent" id="precedent" value="Précédent" />
+                                        <input type="submit" class="btn btn-outline-success" name="inscription" id="inscription" value="Terminer" />
                                     </div>
                                     <script type="text/javascript">
                                         $("#precedent").click(() => $(".carousel").carousel("prev"));
                                     </script>
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="images/archi3.jpg" alt="Third slide">
-                                </div>
                             </div>
-
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
+    </div>
 </body>
 
 </html>

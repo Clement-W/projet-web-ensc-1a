@@ -57,11 +57,15 @@ CREATE TABLE InfosPerso(
 
 CREATE TABLE ExperiencePro(
    IdExperiencePro INT AUTO_INCREMENT,
+   IntituleExperiencePro VARCHAR(50),
    TypeExperiencePro VARCHAR(50),
    DateDebut DATE,
    DateFin DATE,
    TypeOrganisation VARCHAR(50),
-   Lieu VARCHAR(50),
+   LibelleOrganisation VARCHAR(50),
+   TypePoste VARCHAR(50),
+   Region VARCHAR(50),
+   Ville VARCHAR(50),
    SecteursActivites VARCHAR(50),
    DomainesCompetences VARCHAR(50),
    Description VARCHAR(400),

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 10 mars 2021 à 17:38
+-- Généré le : lun. 22 mars 2021 à 18:10
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.1
 
@@ -39,8 +39,12 @@ CREATE TABLE `Compte` (
 --
 
 INSERT INTO `Compte` (`IdCompte`, `NomUtilisateur`, `MotDePasse`, `AdresseMail`) VALUES
-(1, 'username1', 'password1', 'username1@ensc.fr'),
-(2, 'username2', 'password2', 'username2@ensc.fr');
+(1, 'cweinreich', 'so6j$', 'clement@weinreich.fr'),
+(2, 'cweinreich1', 'so6j$', 'clement@weinreich.fr'),
+(3, 'cweinreich2', 'so6j$', 'clement@weinreich.fr'),
+(4, 'cweinreich3', 'so6j$', 'clement@weinreich.fr'),
+(5, 'cweinreich4', 'so6j$', 'clement@weinreich.fr'),
+(6, 'gestionax@gmail.com', 'oui', 'gestionax@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -59,7 +63,11 @@ CREATE TABLE `Eleve` (
 --
 
 INSERT INTO `Eleve` (`IdEleve`, `CompteValide`, `IdCompte`) VALUES
-(1, 0, 1);
+(1, 1, 1),
+(2, 1, 2),
+(3, 0, 3),
+(4, 0, 4),
+(5, 0, 5);
 
 -- --------------------------------------------------------
 
@@ -69,11 +77,15 @@ INSERT INTO `Eleve` (`IdEleve`, `CompteValide`, `IdCompte`) VALUES
 
 CREATE TABLE `ExperiencePro` (
   `IdExperiencePro` int(11) NOT NULL,
+  `IntituleExperiencePro` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `TypeExperiencePro` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateDebut` date DEFAULT NULL,
   `DateFin` date DEFAULT NULL,
   `TypeOrganisation` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Lieu` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `LibelleOrganisation` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TypePoste` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Region` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Ville` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `SecteursActivites` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DomainesCompetences` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Description` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -85,9 +97,9 @@ CREATE TABLE `ExperiencePro` (
 -- Déchargement des données de la table `ExperiencePro`
 --
 
-INSERT INTO `ExperiencePro` (`IdExperiencePro`, `TypeExperiencePro`, `DateDebut`, `DateFin`, `TypeOrganisation`, `Lieu`, `SecteursActivites`, `DomainesCompetences`, `Description`, `Salaire`, `IdEleve`) VALUES
-(1, 'Stage', '2019-04-22', '2019-06-22', 'Laboratoire', 'Tonlence', 'Santé', 'IA', 'Stage visant à étudier et expliciter les processus danalyse explcites', 3942, 1),
-(2, 'Stage', '2018-04-22', '2019-06-22', 'Entreprise', 'Bordaxe', 'Commerce', 'IHM', 'Stage visant à commercer avec le commerce', 3942, 1);
+INSERT INTO `ExperiencePro` (`IdExperiencePro`, `IntituleExperiencePro`, `TypeExperiencePro`, `DateDebut`, `DateFin`, `TypeOrganisation`, `LibelleOrganisation`, `TypePoste`, `Region`, `Ville`, `SecteursActivites`, `DomainesCompetences`, `Description`, `Salaire`, `IdEleve`) VALUES
+(1, 'Stage de 2ème année au laboratoire IMS', 'Stage', '2023-04-02', '2023-06-02', 'Laboratoire', 'IMS', 'Avranches', 'Normandie', 'Avranches', 'Transport, Aéronautique, ', 'IA, SHS, UX, ', 'description de la fête', 2942, 2),
+(2, 'Stage de 2ème année chez thales', 'Stage', '2023-04-02', '2023-06-02', 'Entreprise', 'thales', 'Avranches', 'Normandie', 'Avranches', 'Transport, Aéronautique, ', 'IA, SHS, UX, ', 'gros stage', 2942, 2);
 
 -- --------------------------------------------------------
 
@@ -105,7 +117,7 @@ CREATE TABLE `Gestionnaire` (
 --
 
 INSERT INTO `Gestionnaire` (`IdGestionnaire`, `IdCompte`) VALUES
-(1, 2);
+(1, 6);
 
 -- --------------------------------------------------------
 
@@ -131,7 +143,11 @@ CREATE TABLE `InfosPerso` (
 --
 
 INSERT INTO `InfosPerso` (`IdInfosPerso`, `Nom`, `Prenom`, `Genre`, `Promotion`, `Adresse`, `Ville`, `CodePostal`, `NumTelephone`, `IdEleve`) VALUES
-(1, 'Carena', 'Emma', 'F', 2023, '2 rue de la poisse', 'Tonlence', 30290, 622222222, 1);
+(1, 'weinreich', 'clément', 'M', 2023, '100B avenue roul', 'Talence', 33400, 624396336, 1),
+(2, 'weinreich', 'clément', 'M', 2023, '100B avenue roul', 'Talence', 33400, 624396336, 2),
+(3, 'weinreich', 'clément', 'M', 2023, '100B avenue roul', 'Talence', 33400, 624396336, 3),
+(4, 'weinreich', 'clément', 'M', 2023, '100B avenue roul', 'Talence', 33400, 624396336, 4),
+(5, 'weinreich', 'clément', 'M', 2023, '100B avenue roul', 'Talence', 33400, 624396336, 5);
 
 -- --------------------------------------------------------
 
@@ -145,23 +161,6 @@ CREATE TABLE `Parametres` (
   `Visibilite` tinyint(1) DEFAULT NULL,
   `IdEleve` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Déchargement des données de la table `Parametres`
---
-
-INSERT INTO `Parametres` (`IdParametres`, `LibelleInformation`, `Visibilite`, `IdEleve`) VALUES
-(1, 'Nom', 1, 1),
-(2, 'Prenom', 1, 1),
-(3, 'Genre', 0, 1),
-(4, 'Promotion', 1, 1),
-(5, 'Adresse', 0, 1),
-(6, 'Ville', 1, 1),
-(7, 'CodePostal', 1, 1),
-(8, 'NumTelephone', 0, 1),
-(9, '1', 1, 1),
-(10, '2', 1, 1),
-(11, 'AdresseMail', 0, 1);
 
 --
 -- Index pour les tables déchargées
@@ -216,13 +215,13 @@ ALTER TABLE `Parametres`
 -- AUTO_INCREMENT pour la table `Compte`
 --
 ALTER TABLE `Compte`
-  MODIFY `IdCompte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IdCompte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `Eleve`
 --
 ALTER TABLE `Eleve`
-  MODIFY `IdEleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdEleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `ExperiencePro`
@@ -240,13 +239,13 @@ ALTER TABLE `Gestionnaire`
 -- AUTO_INCREMENT pour la table `InfosPerso`
 --
 ALTER TABLE `InfosPerso`
-  MODIFY `IdInfosPerso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IdInfosPerso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `Parametres`
 --
 ALTER TABLE `Parametres`
-  MODIFY `IdParametres` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IdParametres` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées

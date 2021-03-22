@@ -205,8 +205,8 @@ function inscription()
     return $alert;
 }
 /*
-$_POST["nom"] = "famille";
-$_POST["prenom"] = "prenom";
+$_POST["nom"] = "weinreich";
+$_POST["prenom"] = "clément";
 $_POST["motDePasse"] = "so6j$";
 $_POST["promo"] = 2023;
 $_POST["genre"] = "M";
@@ -263,10 +263,16 @@ function creerCompteGestionnaire()
 
     return $alert;
 }
+/*
+$_POST["nomUtilisateur"] = "gestionax";
+$_POST["motDePasse"] = "oui";
+$_POST["email"] = "gestionax@gmail.com";
+
+creerCompteGestionnaire();*/
 
 
 // Valide un compte Élève
-function validerCompteEleve($idEleve, $nomUtilisateur)
+function validerCompteEleve($idEleve)
 {
 
     $BDD = getBDD();
@@ -275,10 +281,12 @@ function validerCompteEleve($idEleve, $nomUtilisateur)
     $requeteUpdate->execute(array($idEleve));
 
     $alert["bootstrapClassAlert"] = "success";
-    $alert["messageAlert"] = "Le compte élève de $nomUtilisateur a bien été validé.";
+    $alert["messageAlert"] = "Le compte élève n°$idEleve a bien été validé.";
 
     return $alert;
 }
+
+
 
 
 function supprimerCompteEleve($idEleve)
@@ -371,20 +379,22 @@ function getExperiencesPro() {
 // permet d'ajouter une experience professionnelle
 // prend en compte le fait que certaines informations sont facultatives, et les ajoutes si elles sont présentes.
 function ajouterExperiencePro(){
-    if (!empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["lieu"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {
+    if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {
 
-        //DateFin
-        //Description
-        //Salaire
+
         $BDD = getBDD();
 
+        $intituleExperiencePro = escape($_POST["intituleExperiencePro"]);
         $typeExperiencePro = escape($_POST["typeExperiencePro"]);
         $dateDebutStr = escape($_POST["dateDebut"]);
         $dateDebut = date("Y-m-d H:i:s",strtotime($dateDebutStr));
         $typeOrganisation = escape($_POST["typeOrganisation"]);
-        $lieu = escape($_POST["lieu"]);
+        $region = escape($_POST["region"]);
+        $ville = escape($_POST["ville"]);
+        $typePoste = escape($_POST["ville"]);
         $secteursActivitesArray = $_POST["secteursActivites"];
         $domainesCompetencesArray = $_POST["domainesCompetences"];
+        $libelleOrganisation = escape($_POST["libelleOrganisation"]);
 
 
         // On convertit le tableau de secteurs d'activités en strings séparés par des virgules
@@ -406,8 +416,8 @@ function ajouterExperiencePro(){
         $idEleve = $requeteIdEleve->fetch()[0];
 
         //On insert les informations obligatoires de la nouvelle experience professionnelle
-        $requeteInsertionExpPro = $BDD->prepare("INSERT INTO ExperiencePro(TypeExperiencePro, DateDebut, TypeOrganisation, Lieu, SecteursActivites, DomainesCompetences, IdEleve) VALUES (?,?,?,?,?,?,?)");
-        $requeteInsertionExpPro->execute(array($typeExperiencePro,$dateDebut,$typeOrganisation,$lieu,$secteursActivites,$domainesCompetences,$idEleve));
+        $requeteInsertionExpPro = $BDD->prepare("INSERT INTO ExperiencePro(IntituleExperiencePro,TypeExperiencePro, DateDebut, TypeOrganisation, LibelleOrganisation, TypePoste, Region, Ville, SecteursActivites, DomainesCompetences, IdEleve) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $requeteInsertionExpPro->execute(array($intituleExperiencePro,$typeExperiencePro,$dateDebut,$typeOrganisation,$libelleOrganisation,$typePoste,$region,$ville,$secteursActivites,$domainesCompetences,$idEleve));
 
         // On recupère l'id de l'experience pro insérée
         $idExperiencePro = $BDD->lastInsertId();
@@ -445,15 +455,19 @@ function ajouterExperiencePro(){
     return $alert;
 }
 /*
-$_SESSION["nomUtilisateur"] = "cweinreich1";
+$_SESSION["nomUtilisateur"] = "cweinreich";
+$_POST["intituleExperiencePro"] = "Stage de 2ème année chez thales";
 $_POST["typeExperiencePro"] = "Stage";
 $_POST["dateDebut"] = "02-04-2023 10:29:39";
-$_POST["typeOrganisation"] = "Laboratoire";
-$_POST["lieu"] = "Avranches";
+$_POST["typeOrganisation"] = "Entreprise";
+$_POST["libelleOrganisation"] = "thales";
+$_POST["typePoste"] = "Stagiaire";
+$_POST["ville"] = "Avranches";
+$_POST["region"] = "Normandie";
 $_POST["secteursActivites"] = array("Transport","Aéronautique");
 $_POST["domainesCompetences"] = array("IA","SHS","UX");
 $_POST["dateFin"] = "02-06-2023 00:00:00";
-$_POST["description"] = "description de la fête";
+$_POST["description"] = "gros stage";
 $_POST["salaire"] = "2942";
 
 

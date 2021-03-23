@@ -30,15 +30,17 @@ body {
     }
 }
 
-
+.pouet{
+    background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(black));
+    background: -webkit-linear-gradient(bottom, #a18cd1 0%, black 100%);
+    background: -moz-linear-gradient(bottom, #a18cd1 0%, black 100%);
+    background: -o-linear-gradient(bottom, #a18cd1 0%, black 100%);
+    background: linear-gradient(to top, #a18cd1 0%, black 100%);
+    border-bottom:2px solid rgb(233, 233, 233);
+}
 .navbar
         {
-            background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(black));
-            background: -webkit-linear-gradient(bottom, #a18cd1 0%, black 100%);
-            background: -moz-linear-gradient(bottom, #a18cd1 0%, black 100%);
-            background: -o-linear-gradient(bottom, #a18cd1 0%, black 100%);
-            background: linear-gradient(to top, #a18cd1 0%, black 100%);
-            border-bottom:2px solid rgb(233, 233, 233);
+            background-color: rgb(0, 0, 0, 0.4);
         }
 
 

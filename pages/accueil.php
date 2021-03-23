@@ -22,7 +22,7 @@ require_once "../includes/fragments/head.php";
     <div class="container">
 
         <?php require_once('../includes/fragments/alert.php');
-        if (isset($_SESSION["alert"]) ) {
+        if (isset($_SESSION["alert"])) {
             unset($_SESSION["alert"]);
         }
         ?>

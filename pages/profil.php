@@ -80,7 +80,6 @@ if (!estConnecte()) {
             </br>
 
             <?php
-            require_once "../includes/fragments/head.php";
 
             print_r(getInfosPerso());
             echo "</br>";

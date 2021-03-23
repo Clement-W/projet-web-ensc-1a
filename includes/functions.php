@@ -98,25 +98,26 @@ function connexion()
                     // feedback
                     $alert["bootstrapClassAlert"] = "success";
                     $alert["messageAlert"] = "Vous êtes maintenant connecté.";
+                    redirect('accueil.php');
 
                 }else{
-                    // SI le compte n'est pas validé, on ne peut pas se connecter
-                    $alert["bootstrapClassAlert"] = "danger";
-                    $alert["messageAlert"] = "Votre compte a été créé. Veuillez attendre la validation de votre compte par un gestionnaire pour pouvoir vous connecter.";
+                    redirect("attenteValidation.php");
                 }
             } else { // sinon c'est un gestionnaire
                 $_SESSION["nomUtilisateur"] = $nomUtilisateur;
                 $_SESSION["estGestionnaire"] = true;
 
                 $alert["bootstrapClassAlert"] = "success";
-                    $alert["messageAlert"] = "Vous êtes maintenant connecté.";
+                $alert["messageAlert"] = "Vous êtes maintenant connecté.";
+
+                redirect('accueil.php'); 
 
             }
 
             $_SESSION["alert"] = $alert;
             unset($_POST);
             $_POST = array();
-            redirect('accueil.php');     
+                
                
 
         } else { // Il n'y a pas de compte correspondant à ces identifiants
@@ -199,10 +200,7 @@ function inscription()
         $requeteInsertionInfosPerso = $BDD->prepare("INSERT INTO InfosPerso(Nom, Prenom, Genre, Promotion, Adresse, Ville, CodePostal, NumTelephone, IdEleve) VALUES (?,?,?,?,?,?,?,?,?)");
         $requeteInsertionInfosPerso->execute(array($nom, $prenom, $genre, $promo, $adresse, $ville, $codePostal, $telephone, $idEleve));
 
-        $alert["bootstrapClassAlert"] = "success";
-        $alert["messageAlert"] = "Votre compte a été créé. Veuillez attendre la validation de votre compte par un gestionnaire pour pouvoir vous connecter.";
-
-        redirect("accueil.php");
+        redirect("attenteValidation.php");
 
     } else { // Tous les champs n'ont pas été remplis
         $alert["bootstrapClassAlert"] = "danger";

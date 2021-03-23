@@ -8,7 +8,7 @@ session_start();
 <html lang="fr">
 
 <?php
-$titrePage = "404";
+$titrePage = "Validation en attente";
 require_once "../includes/fragments/head.php";
 ?>
 
@@ -18,8 +18,10 @@ require_once "../includes/fragments/head.php";
     <div class="d-flex justify-content-center container h-100">
 
         <div class="align-self-center mb-5 text-center">
-            <h1><strong>Erreur 404 : </strong> La page demandée n'est pas disponible :'(</h1>
+            <h1>~</h1>
+            <h2>Votre compte a été créé. Veuillez attendre la validation de votre compte par un gestionnaire pour pouvoir vous connecter.</h2>
             <h3><a href="accueil.php">Retour vers la page d'accueil</a></h3>
+            <h1>~</h1>
         </div>
 
 

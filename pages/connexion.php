@@ -3,7 +3,7 @@ require_once("../includes/functions.php");
 session_start();
 
 if (estConnecte()) {
-    redirect("profil.php");
+    redirect("profil.php"); // Si on est connecté et qu'on essaie d'accéder à cette page, redirect vers la page profil.
 } else {
     // Si on appuie sur le bouton de connexion 
     if (!empty($_POST["connexion"])) {
@@ -48,11 +48,11 @@ if (estConnecte()) {
 
                                     <div class="form-group">
                                         <label for="nomUtilisateur"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                        <input type="text" name="nomUtilisateur" id="nomUtilisateur" placeholder="Nom d'utilisateur" />
+                                        <input type="text" name="nomUtilisateur" id="nomUtilisateur" placeholder="Nom d'utilisateur" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" />
+                                        <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required/>
                                     </div>
                                     <div class="form-group form-button">
                                         <input type="submit" class="btn btn-outline-success" name="connexion" id="connexion" value="Terminer" />

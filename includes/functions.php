@@ -473,12 +473,12 @@ function ajouterExperiencePro(){
     $_SESSION["alert"] = $alert;
 }
 /*
-$_SESSION["nomUtilisateur"] = "cweinreich";
-$_POST["intituleExperiencePro"] = "Stage de 2ème année chez thales";
+$_SESSION["nomUtilisateur"] = "emarqueton";
+$_POST["intituleExperiencePro"] = "Stage de 3ème année à Dassau";
 $_POST["typeExperiencePro"] = "Stage";
-$_POST["dateDebut"] = "02-04-2023 10:29:39";
+$_POST["dateDebut"] = "04-02-2027 10:29:39";
 $_POST["typeOrganisation"] = "Entreprise";
-$_POST["libelleOrganisation"] = "thales";
+$_POST["libelleOrganisation"] = "Dassau";
 $_POST["typePoste"] = "Stagiaire";
 $_POST["ville"] = "Avranches";
 $_POST["region"] = "Normandie";
@@ -489,5 +489,5 @@ $_POST["description"] = "gros stage";
 $_POST["salaire"] = "2942";
 
 
-$alert = ajouterExperiencePro();
-print_r($alert);*/
+ajouterExperiencePro();
+*/

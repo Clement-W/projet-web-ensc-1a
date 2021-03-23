@@ -22,7 +22,7 @@ require_once "../includes/fragments/head.php";
     <div class="container">
 
         <?php require_once('../includes/fragments/alert.php');
-        if (isset($_SESSION["alert"])) {
+        if (isset($_SESSION["alert"]) ) {
             unset($_SESSION["alert"]);
         }
         ?>
@@ -46,33 +46,33 @@ require_once "../includes/fragments/head.php";
 
                                     <div class="form-group">
                                         <label for="prenom"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                        <input type="text" name="prenom" id="prenom" placeholder="Prénom" />
+                                        <input type="text" name="prenom" id="prenom" placeholder="Prénom" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="nom"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                        <input type="text" name="nom" id="nom" placeholder="Nom" />
+                                        <input type="text" name="nom" id="nom" placeholder="Nom" required />
                                     </div>
                                     <div class="form-group mt-5">
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                            <input type="radio" class="custom-control-input" id="defaultInline1" name="genre" value="Masculin" required>
                                             <label class="custom-control-label text-secondary" for="defaultInline1">Masculin</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                            <input type="radio" class="custom-control-input" id="defaultInline2" name="genre" value="Féminin">
                                             <label class="custom-control-label text-secondary" for="defaultInline2">Féminin</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample">
+                                            <input type="radio" class="custom-control-input" id="defaultInline3" name="genre" value="Autre">
                                             <label class="custom-control-label text-secondary" for="defaultInline3">Autre</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" />
+                                        <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="promo"><i class="zmdi zmdi-email"></i></label>
-                                        <input type="number" name="promo" id="promo" placeholder="Promo" />
+                                        <input type="number" name="promo" id="promo" placeholder="Promo" required/>
                                     </div>
                                     <div class="form-group form-button">
                                         <input type="button" class="btn btn-outline-secondary" name="signup" id="continuer1" class="form-submit" value="Continuer" />
@@ -85,23 +85,23 @@ require_once "../includes/fragments/head.php";
                                 <div class="carousel-item">
                                     <div class="form-group">
                                         <label for="adresse"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="text" name="adresse" id="adresse" placeholder="Adresse" />
+                                        <input type="text" name="adresse" id="adresse" placeholder="Adresse" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="ville"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type="text" name="ville" id="ville" placeholder="Ville" />
+                                        <input type="text" name="ville" id="ville" placeholder="Ville" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="codePostal"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type="number" name="codePostal" id="codePostal" placeholder="Code Postal" />
+                                        <input type="number" name="codePostal" id="codePostal" placeholder="Code Postal"  required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="email"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type="email" name="email" id="email" placeholder="E-mail" />
+                                        <input type="email" name="email" id="email" placeholder="E-mail" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="telephone"><i class="zmdi zmdi-lock-outline"></i></label>
-                                        <input type="number" name="telephone" id="telephone" placeholder="Téléphone" />
+                                        <input type="number" name="telephone" id="telephone" placeholder="Téléphone" required/>
                                     </div>
                                     <div class="form-group form-button d-flex ">
                                         <input type="button" class="btn btn-outline-secondary mr-1" name="precedent" id="precedent" value="Précédent" />

@@ -2,11 +2,11 @@
     <div class="container-fluid">
         <div class="navbar-header">
 
-            <a class="btn btn-default" href="#">
+            <a class="btn btn-default" href="accueil.php">
                 <i class="fa fa-address-book-o fa-2x" style="color:white" aria-hidden="true"></i>
             </a>
+            <a href="accueil.php" class="navbar-brand  text-light" href="#">Annuaire</a>
 
-            <a class="navbar-brand  text-light" href="#">Annuaire</a>
         </div>
         <div class="collapse navbar-collapse" id="navbartarget"></div>
 
@@ -19,7 +19,7 @@
                         Bonjour <?= $_SESSION["nomUtilisateur"]; ?>!
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Profil</a>
+                        <a class="dropdown-item" href="profil.php">Profil</a>
                         <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         Bonjour <?= $_SESSION["nomUtilisateur"]; ?>!
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Se déconnecter</a>
+                        <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                     </div>
                 </div>
             </form>

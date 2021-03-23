@@ -21,7 +21,6 @@ $tel = $infos["NumTelephone"];
 
 $experiencePro = getExperiencesPro();
 
-
 ?>
 
 <!doctype html>
@@ -39,25 +38,34 @@ require_once "../includes/fragments/head.php";
 
         <!-- Faire le form de connexion -->
 
-        <div class="whitecontainer d-flex">
-            <div class="d-flex flex-column">
-                <h2 class=" ml-5 pt-4">Profil</h2>
-
-                <div class="container d-flex justify-content-between ml-5 flex-wrap">
-                    <div class="d-flex flex-column">
-                        <div><?= $nom ?></div>
-                        <div><?= $prenom ?></div>
-                        <div><?= $promo ?></div>
-                        <div><?= $genre ?></div>
+        <div class="whitecontainer">
+            <h2 class="ml-5 pt-3">Profil</h2>
+            <hr />
+            <div class="ml-4 row text-secondary">
+                <div class="col-md-6 h4">
+                    <div class="col-md-12">
+                    <div class="affichage"><?= $prenom ?> <?= $nom ?></div>
+                        <div class="affichage">Promotion <?= $promo ?></div>
+                        <div class="affichage">Genre: <?= $genre ?></div>
                     </div>
-                    <div class="d-flex flex-column">
-                        <div><?= $adresse ?></div>
-                        <div><?= $ville ?></div>
-                        <div><?= $codePostal ?></div>
-                        <div><?= $mail ?></div>
-                        <div><?= $tel ?></div>
+                </div>
+            </div>
+            <hr class="ml-5 mr-5"/>
+            <div class="ml-4 row text-secondary">
+                <div class="col-md-6 h5">
+                    <div class="col-md-12">
+                        <div class="affichage text-underline-auto"><u>Contact</u>: </div>
+                        <div class="affichage"><?= $mail ?></div>
+                        <div class="affichage"><?= $tel ?></div>
                     </div>
-
+                </div>
+                <div class="col-md-6 h5">
+                    <div class="col-md-12">
+                        <div class="affichage"><u>Adresse</u>: </div>
+                        <div class="affichage"><?= $adresse ?></div>
+                        <div class="affichage"><?= $ville ?></div>
+                        <div class="affichage"><?= $codePostal ?></div>
+                    </div>
                 </div>
             </div>
         </div>

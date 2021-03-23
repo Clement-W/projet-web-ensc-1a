@@ -46,7 +46,7 @@ if (!estConnecte()) {
 
             <div class="whitecontainer">
                 <h2 class="ml-5 pt-3">Profil</h2>
-                <hr />
+                <hr class="ml-5 mr-5" />
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h4">
                         <div class="col-md-12">

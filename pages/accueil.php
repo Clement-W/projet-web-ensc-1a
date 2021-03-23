@@ -1,9 +1,10 @@
 <?php
 require_once "../includes/functions.php";
 session_start();
-if(!empty($_POST["inscription"])){
-    $alert=inscription();
+if (!empty($_POST["inscription"])) {
+    inscription();
 }
+
 ?>
 
 <!doctype html>
@@ -16,9 +17,17 @@ require_once "../includes/fragments/head.php";
 
 <body class="background">
     <?php require_once "../includes/fragments/header.php"; ?>
-    <?php require_once('../includes/fragments/alert.php'); ?>
+
 
     <div class="container">
+
+        <?php require_once('../includes/fragments/alert.php');
+        if (isset($_SESSION["alert"])) {
+            unset($_SESSION["alert"]);
+        }
+        ?>
+
+
         <div class="row d-flex justify-content-center">
             <div class="col-lg-6 align-self-center">
                 <div class="small-12 large-6 columns">

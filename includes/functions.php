@@ -113,7 +113,11 @@ function connexion()
 
             }
 
-            redirect('accueil.php');        
+            $_SESSION["alert"] = $alert;
+            unset($_POST);
+            $_POST = array();
+            redirect('accueil.php');     
+               
 
         } else { // Il n'y a pas de compte correspondant à ces identifiants
             $alert["bootstrapClassAlert"] = "danger";
@@ -124,7 +128,10 @@ function connexion()
         $alert["messageAlert"] = "Veuillez remplir tous les champs.";
     }
 
-    return $alert;
+    $_SESSION["alert"] = $alert; //permet d'afficher un feedback
+
+    unset($_POST);
+    $_POST = array();
 }
 
 // genere un nom d'utilisateur de façon unique
@@ -205,7 +212,8 @@ function inscription()
     unset($_POST);
     $_POST = array();
 
-    return $alert;
+    $_SESSION["alert"] = $alert;
+
 }
 /*
 $_POST["nom"] = "weinreich";
@@ -264,7 +272,10 @@ function creerCompteGestionnaire()
         $alert["messageAlert"] = "Veuillez remplir toutes les informations créer un comte gestionnaire";
     }
 
-    return $alert;
+    unset($_POST);
+    $_POST = array();
+
+    $_SESSION["alert"] = $alert;
 }
 /*
 $_POST["nomUtilisateur"] = "gestionax";
@@ -286,9 +297,9 @@ function validerCompteEleve($idEleve)
     $alert["bootstrapClassAlert"] = "success";
     $alert["messageAlert"] = "Le compte élève n°$idEleve a bien été validé.";
 
-    return $alert;
+    $_SESSION["alert"] = $alert;
 }
-validerCompteEleve(1);
+//validerCompteEleve(1);
 
 
 
@@ -334,7 +345,7 @@ function invaliderCompteEleve($idEleve)
     $alert["bootstrapClassAlert"] = "danger";
     $alert["messageAlert"] = "Le compte élève n°$idEleve a été supprimé.";
 
-    return $alert;
+    $_SESSION["alert"] = $alert;
 }
 
 // Permet d'afficher un popup (appelé dans verifierExperiencesPro())
@@ -455,7 +466,11 @@ function ajouterExperiencePro(){
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Des informations sont manquantes.";
     }
-    return $alert;
+
+    unset($_POST);
+    $_POST = array();
+
+    $_SESSION["alert"] = $alert;
 }
 /*
 $_SESSION["nomUtilisateur"] = "cweinreich";

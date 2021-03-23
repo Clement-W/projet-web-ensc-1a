@@ -1,5 +1,6 @@
 <?php
-if (isset($alert)) {
+if (isset($_SESSION["alert"])) {
+    $alert = $_SESSION["alert"];
     $bootstrapClassAlert =  $alert['bootstrapClassAlert'];
     $messageAlert = $alert['messageAlert'];
 ?>
@@ -15,5 +16,8 @@ if (isset($alert)) {
     </div>
 
 
+
 <?php
-} ?>
+} 
+
+?>

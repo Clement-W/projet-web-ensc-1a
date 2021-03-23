@@ -4,7 +4,7 @@ session_start();
 
 // Si on appuie sur le bouton de connexion 
 if (!empty($_POST["connexion"])) {
-    $alert = connexion();
+    connexion();
 }
 ?>
 
@@ -22,7 +22,14 @@ require_once "../includes/fragments/head.php";
 
     <div class="container">
 
-        <?php require_once('../includes/fragments/alert.php'); ?>
+        <?php require_once('../includes/fragments/alert.php');
+        if(isset($_SESSION["alert"]) && $_SESSION["alert"]["bootstrapClassAlert"]!="success"){
+            unset($_SESSION["alert"]); 
+        }
+        
+        
+        
+        ?>
 
         <!-- Faire le form de connexion -->
 
@@ -53,5 +60,6 @@ require_once "../includes/fragments/head.php";
                 </form>
             </div>
         </div>
+       
 
 </body>

@@ -113,7 +113,7 @@ function connexion()
 
             }
 
-            //redirect('accueil.php');        
+            redirect('accueil.php');        
 
         } else { // Il n'y a pas de compte correspondant à ces identifiants
             $alert["bootstrapClassAlert"] = "danger";
@@ -195,12 +195,15 @@ function inscription()
         $alert["bootstrapClassAlert"] = "success";
         $alert["messageAlert"] = "Votre compte a été créé. Veuillez attendre la validation de votre compte par un gestionnaire pour pouvoir vous connecter.";
 
-        //redirect("accueil.php");
+        redirect("accueil.php");
 
     } else { // Tous les champs n'ont pas été remplis
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Veuillez remplir toutes les informations pour vous inscrire.";
     }
+
+    unset($_POST);
+    $_POST = array();
 
     return $alert;
 }

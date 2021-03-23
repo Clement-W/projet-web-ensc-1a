@@ -52,9 +52,19 @@ require_once "../includes/fragments/head.php";
                                         <label for="nom"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                         <input type="text" name="nom" id="nom" placeholder="Nom" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="genre"><i class="zmdi zmdi-email"></i></label>
-                                        <input type="text" name="genre" id="genre" placeholder="Genre" />
+                                    <div class="form-group mt-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                            <label class="custom-control-label text-secondary" for="defaultInline1">Masculin</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                            <label class="custom-control-label text-secondary" for="defaultInline2">Féminin</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample">
+                                            <label class="custom-control-label text-secondary" for="defaultInline3">Autre</label>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
@@ -104,6 +114,7 @@ require_once "../includes/fragments/head.php";
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

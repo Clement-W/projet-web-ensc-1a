@@ -205,7 +205,7 @@ function inscription()
         $requeteInsertionInfosPerso->execute(array($nom, $prenom, $genre, $promo, $adresse, $ville, $codePostal, $telephone, $idEleve));
 
         // Visibilite des informations personnelles
-        $informationsParametrable =  array( "Genre", "Adresse", "Ville", "CodePostal", "NumTelephone","AdresseMail");// Contient les noms des champs dont la visibilité est parametrable
+        $informationsParametrable =  array("Genre", "Adresse", "Ville", "CodePostal", "NumTelephone","AdresseMail");// Contient les noms des champs dont la visibilité est parametrable
         foreach($informationsParametrable as $libelleInformation){ // pour chaque information du compte dont la visibilité est modifiable
             insererParametre($BDD,$idEleve,true,$libelleInformation); // on insert en base le parametre comme visible
         }
@@ -437,7 +437,6 @@ function getExperiencesProParId($id) {
 function ajouterExperiencePro(){
     if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {
 
-
         $BDD = getBDD();
 
         $intituleExperiencePro = escape($_POST["intituleExperiencePro"]);
@@ -501,6 +500,10 @@ function ajouterExperiencePro(){
             $requeteUpdateSalaire->execute(array($salaire,$idExperiencePro));
         }
 
+        // On ajoute le parametre de visibilité en base (par défaut, l'exp pro est visibile)
+        // Pour une experience pro, le libelle correspond à l'identifiant de l'experience pro. 
+        insererParametre($BDD,$idEleve,true,$idExperiencePro);
+
         $alert["bootstrapClassAlert"] = "success";
         $alert["messageAlert"] = "L'experience professionnelle a bien été ajoutée.";
 
@@ -515,12 +518,12 @@ function ajouterExperiencePro(){
     $_SESSION["alert"] = $alert;
 }
 /*
-$_SESSION["nomUtilisateur"] = "emarqueton";
+$_SESSION["nomUtilisateur"] = "cweinreich";
 $_POST["intituleExperiencePro"] = "Stage de 3ème année à Dassau";
 $_POST["typeExperiencePro"] = "Stage";
 $_POST["dateDebut"] = "04-02-2027 10:29:39";
-$_POST["typeOrganisation"] = "Entreprise";
-$_POST["libelleOrganisation"] = "Dassau";
+$_POST["typeOrganisation"] = "Laboratoire";
+$_POST["libelleOrganisation"] = "ims";
 $_POST["typePoste"] = "Stagiaire";
 $_POST["ville"] = "Avranches";
 $_POST["region"] = "Normandie";
@@ -531,8 +534,8 @@ $_POST["description"] = "gros stage";
 $_POST["salaire"] = "2942";
 
 
-ajouterExperiencePro();
-*/
+ajouterExperiencePro();*/
+
 
 function getIdEleveParNomUtilisateur($nomUtilisateur){
     $BDD = getBDD();
@@ -542,6 +545,7 @@ function getIdEleveParNomUtilisateur($nomUtilisateur){
     return $idEleve;
 }
 
+//formate le format date de mysql pour l'afficher dans les experiences pro
 function formaterDateExperiencePro($date){
     if($date==null){
         return "";

@@ -49,6 +49,9 @@
                     <option value="TypeOrganisation">Type d'organisation</option>
                     <option value="DomainesCompetences">Domaines de compétences</option>
                     <option value="SecteursActivites">Secteurs d'activités</option>
+                    <option value="TypeExperiencePro">Type d'experience</option>
+                    <option value="LibelleOrganisation">Libelle de l'organisation</option>
+                    <option value="Region">Region</option>
                 </select>
                 <input type="text" id="search_term" name="search_term" placeholder="Enter Search" onkeyup="do_search();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
                 <input type="submit" name="search" value="SEARCH">

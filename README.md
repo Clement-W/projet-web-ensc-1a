@@ -45,3 +45,12 @@ QUAND un gestionnaire refuse l'inscription d'un éleve en appuyant sur la croix,
  * https://ensc.bordeaux-inp.fr/fr
  *
  */ 
+
+
+
+TODO : 
+* bouton navbar couleur
+* input forcer la ongueur
+* probleme du search filter (envie de canner)
+* Changer session alert avec un status pour faire plus propre
+* rendre les id uniques sur la page modifier profil

@@ -53,7 +53,7 @@ require_once "../includes/fragments/head.php";
                                             <input type="text" name="prenom" id="prenom" placeholder="Prénom" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="nom"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                            <label for="nom"><i class="zmdi zmdi-account material-icons-name "></i></label>
                                             <input type="text" name="nom" id="nom" placeholder="Nom" required />
                                         </div>
                                         <div class="form-group mt-5">
@@ -125,7 +125,7 @@ require_once "../includes/fragments/head.php";
         <?php } else { ?>
             <!-- Si l'utilisateur est connecté, on lui affiche la page d'accueil d'un utilisateur connecte -->
             <script src="../js/recherche.js"></script>
-        
+
             <div id="wrapper">
                 <h1> Test barre de recherche</h1>
                 <p> Vous pouvez chercher par promo, organisation, secteur d'activité, etc.</p>
@@ -134,9 +134,21 @@ require_once "../includes/fragments/head.php";
                 <div id="search_box">
                     <form method="post" onsubmit="return rechercher();">
                         <select name="search_param" id="search_param" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                            <option value="TypeOrganisation">Type d'organisation</option>
-                            <option value="DomainesCompetences">Domaines de compétences</option>
-                            <option value="SecteursActivites">Secteurs d'activités</option>
+                            <optgroup label="Par experience pro">
+
+                                <option value="TypeOrganisation">Type d'organisation</option>
+                                <option value="DomainesCompetences">Domaines de compétences</option>
+                                <option value="SecteursActivites">Secteurs d'activités</option>
+                                <option value="TypeExperiencePro">Type d'experience</option>
+                                <option value="LibelleOrganisation">Libelle de l'organisation</option>
+                                <option value="Region">Region</option>
+                            </optgroup>
+
+                            <optgroup label="Par profil">
+                                <option value="Promotion">Promotion</option>
+                                <option value="PrenomNom">Nom ou prenom</option>
+                                <option value="Ville">Ville</option>
+                            </optgroup>
                         </select>
                         <input type="text" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
                         <input type="submit" name="search" value="SEARCH">

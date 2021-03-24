@@ -377,6 +377,16 @@ function getInfosPerso() {
     return $requeteInfosPerso->fetch();
 }
 
+//retourne les informations du profil par id
+function getInfosCompteParId($id){
+    $BDD = getBDD();
+
+    //On recupère les infos personelles et les informations de compte de l'utilisateur
+    $requeteInfosPerso = $BDD->PREPARE("SELECT * FROM Compte,Eleve,InfosPerso WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = InfosPerso.IdEleve AND Compte.IdCompte = ?");
+    $requeteInfosPerso->execute(array($id));
+    return $requeteInfosPerso->fetch();
+}
+
 //retourne les experiences professionnelles d'un élève connecté
 function getExperiencesPro() {
     $BDD = getBDD();

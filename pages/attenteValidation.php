@@ -2,6 +2,9 @@
 require_once("../includes/functions.php");
 session_start();
 
+if(estConnecte()){
+    redirect("accueil.php");
+}else{
 ?>
 
 <!doctype html>
@@ -28,3 +31,5 @@ require_once "../includes/fragments/head.php";
 
     </div>
 </body>
+
+<?php }?>

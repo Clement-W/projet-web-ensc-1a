@@ -27,7 +27,6 @@ require_once "../includes/fragments/head.php";
         }
         ?>
 
-
         <div class="row d-flex justify-content-center">
             <div class="col-lg-6 align-self-center">
                 <div class="small-12 large-6 columns">

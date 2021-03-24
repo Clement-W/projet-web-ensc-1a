@@ -387,6 +387,19 @@ function getInfosCompteEleveParId($id){
     return $requeteInfosPerso->fetch();
 }
 
+//verifie que l'id passé en paramètre est bien présent en base
+function idEleveValide($id){
+    $BDD = getBDD();
+
+    $requeteIdEleve = $BDD->prepare("SELECT IdEleve FROM Eleve WHERE IdEleve=?");
+    $requeteIdEleve->execute(array($id));
+    if($requeteIdEleve->rowCount()==0){ //Si l'id n'est pas présent en base alors on return false
+        return false;
+    }else{ // S'il est présent alors on return true
+        return true;
+    }
+}
+
 //retourne les experiences professionnelles d'un élève connecté
 function getExperiencesPro() {
     $BDD = getBDD();
@@ -397,6 +410,7 @@ function getExperiencesPro() {
     $requeteExperiencesPro->execute(array($nomUtilisateur));
     return $requeteExperiencesPro->fetchAll();
 }
+
 
 //retourne les experiences professionnelles par id
 function getExperiencesProParId($id) {

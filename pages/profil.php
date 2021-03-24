@@ -9,7 +9,8 @@
 require_once("../includes/functions.php");
 session_start();
 
-if (!estConnecte() || empty($_GET["idEleve"])) {
+if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["idEleve"]))) {
+    // Si un utilisateur n'est pas connecté, ou que l'id eleve n'est pas valide ou pas donné en get alors on redirige vers 404 error
     redirect("404.php");
 } else {
 

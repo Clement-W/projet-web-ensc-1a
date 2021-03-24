@@ -162,7 +162,11 @@ function genererNomUtilisateur($nom, $prenom)
     return $nomUtilisateur;
 }
 
-
+// Insert un paramètre dans la bdd
+function insererParametre($BDD,$idEleve,$visibilite,$libelleInformation){
+    $requeteInsertionParametre = $BDD->prepare("INSERT INTO Parametres(LibelleInformation, Visibilite, IdEleve) VALUES (?,?,?)");
+    $requeteInsertionParametre->execute(array($libelleInformation,$visibilite,$idEleve));
+}
 
 function inscription()
 {
@@ -199,6 +203,12 @@ function inscription()
         // On insert ses informations personnelles en base
         $requeteInsertionInfosPerso = $BDD->prepare("INSERT INTO InfosPerso(Nom, Prenom, Genre, Promotion, Adresse, Ville, CodePostal, NumTelephone, IdEleve) VALUES (?,?,?,?,?,?,?,?,?)");
         $requeteInsertionInfosPerso->execute(array($nom, $prenom, $genre, $promo, $adresse, $ville, $codePostal, $telephone, $idEleve));
+
+        // Visibilite des informations personnelles
+        $informationsParametrable =  array( "Genre", "Adresse", "Ville", "CodePostal", "NumTelephone","AdresseMail");// Contient les noms des champs dont la visibilité est parametrable
+        foreach($informationsParametrable as $libelleInformation){ // pour chaque information du compte dont la visibilité est modifiable
+            insererParametre($BDD,$idEleve,true,$libelleInformation); // on insert en base le parametre comme visible
+        }
 
         redirect("attenteValidation.php");
 

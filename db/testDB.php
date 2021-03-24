@@ -11,7 +11,7 @@ if ($BDD) {
 
 
     // On recpuere les paramètres correspondant à l'élève 1
-    $id = 1;
+    $id = 3;
     $querySettings = $BDD->prepare("SELECT * FROM Parametres WHERE IdEleve=?");
     $querySettings->execute(array($id));
  

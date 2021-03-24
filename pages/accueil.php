@@ -125,26 +125,25 @@ require_once "../includes/fragments/head.php";
         <?php } else { ?>
             <!-- Si l'utilisateur est connecté, on lui affiche la page d'accueil d'un utilisateur connecte -->
             <script src="../js/recherche.js"></script>
-            <link type="text/css" rel="stylesheet" href="../css/search_style.css" />
-
+        
             <div id="wrapper">
                 <h1> Test barre de recherche</h1>
                 <p> Vous pouvez chercher par promo, organisation, secteur d'activité, etc.</p>
 
 
                 <div id="search_box">
-                    <form method="post" onsubmit="return do_search();">
+                    <form method="post" onsubmit="return rechercher();">
                         <select name="search_param" id="search_param" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                             <option value="TypeOrganisation">Type d'organisation</option>
                             <option value="DomainesCompetences">Domaines de compétences</option>
                             <option value="SecteursActivites">Secteurs d'activités</option>
                         </select>
-                        <input type="text" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="do_search();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
+                        <input type="text" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
                         <input type="submit" name="search" value="SEARCH">
                     </form>
                 </div>
 
-                <div id="resultat_recherche"></div>
+                <div id="resultat_recherche"></div> <!-- ici s'affiche les resultats (inséré par ajax)-->
 
             </div>
 

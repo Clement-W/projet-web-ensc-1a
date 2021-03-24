@@ -1,9 +1,9 @@
-function do_search() {
+function rechercher() {
     var search_term = $("#search_term").val(); 
     var search_param = $("#search_param").val();
     $.ajax({
         type: 'post',
-        url: 'get_results.php',
+        url: '../includes/recherche_resultats.php',
         data: {
             search: "search",
             search_term: search_term,
@@ -16,3 +16,5 @@ function do_search() {
 
     return false;
 }
+
+

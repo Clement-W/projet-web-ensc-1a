@@ -86,7 +86,6 @@ input {
 /* ==========================================================================
      #PROFIL
 ========================================================================== */
-
 .affichageProfil{
     margin-top: 5%;
     margin-bottom: 5%;
@@ -177,4 +176,16 @@ input {
     .timeline .event:after {
         left: -31.8px;
     }
+}
+
+
+.table{
+    border: none !important;
+    max-width: 100%;
+    table-layout: fixed; 
+}
+.table th { word-wrap: break-word; }
+
+.marge-modifierProfil{
+    margin-top: 5%;
 }

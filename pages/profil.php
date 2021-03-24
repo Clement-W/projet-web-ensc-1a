@@ -49,7 +49,10 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
             <div class="whitecontainer">
                 <div class="d-flex justify-content-between pt-3">
                     <h2 class="ml-5 ">Profil</h2>
-                    <button type="button" class="btn btn-outline-dark mr-5">Modifier</button>
+                    <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté-->
+                    <?php if(getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]){?>
+                        <a href="modifierProfil.php?idEleve=<?=getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
+                        <?php }?>
                 </div>
                 <hr class="ml-5 mr-5" />
                 <div class="ml-4 row text-secondary">
@@ -65,7 +68,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
-                            <div class="affichageProfil"><u>Contact</u>: </div>
+                            <div class="affichageProfil"><u>Contact</u> </div>
                             <div class="affichageProfil">
                                 <i class="fa fa-at fa-lg" aria-hidden="true"></i>
                                 <?= $mail ?>
@@ -78,7 +81,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                     </div>
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
-                            <div class="affichageProfil"><u>Adresse</u>: </div>
+                            <div class="affichageProfil"><u>Adresse</u> </div>
                             <div class="affichageProfil"><?= $adresse ?></div>
                             <div class="affichageProfil"><?= $ville ?></div>
                             <div class="affichageProfil"><?= $codePostal ?></div>
@@ -91,7 +94,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-body ml-3">
-                                <h6 class="card-title h5 text-secondary"><u>Expériences:</u> </h6>
+                                <h6 class="card-title h5 text-secondary"><u>Expériences</u> </h6>
                                 <div id="content">
                                     <ul class="timeline">
                                         <?php foreach ($experiencePro as $expPro) {

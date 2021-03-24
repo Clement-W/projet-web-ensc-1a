@@ -48,7 +48,7 @@ CREATE TABLE InfosPerso(
    Adresse VARCHAR(50),
    Ville VARCHAR(50),
    CodePostal INT,
-   NumTelephone INT,
+   NumTelephone VARCHAR(20),
    IdEleve INT NOT NULL,
    PRIMARY KEY(IdInfosPerso),
    UNIQUE(IdEleve),

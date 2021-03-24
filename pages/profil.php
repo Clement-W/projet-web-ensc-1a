@@ -55,9 +55,9 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h4">
                         <div class="col-md-12">
-                            <div class="affichage"><?= $prenom ?> <?= $nom ?></div>
-                            <div class="affichage">Promotion <?= $promo ?></div>
-                            <div class="affichage">Genre: <?= $genre ?></div>
+                            <div class="affichageProfil"><?= $prenom ?> <?= $nom ?></div>
+                            <div class="affichageProfil">Promotion <?= $promo ?></div>
+                            <div class="affichageProfil">Genre: <?= $genre ?></div>
                         </div>
                     </div>
                 </div>
@@ -65,12 +65,12 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
-                            <div class="affichage"><u>Contact</u>: </div>
-                            <div class="affichage">
+                            <div class="affichageProfil"><u>Contact</u>: </div>
+                            <div class="affichageProfil">
                                 <i class="fa fa-at fa-lg" aria-hidden="true"></i>
                                 <?= $mail ?>
                             </div>
-                            <div class="affichage">
+                            <div class="affichageProfil">
                                 <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
                                 <?= $tel ?>
                             </div>
@@ -78,10 +78,10 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                     </div>
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
-                            <div class="affichage"><u>Adresse</u>: </div>
-                            <div class="affichage"><?= $adresse ?></div>
-                            <div class="affichage"><?= $ville ?></div>
-                            <div class="affichage"><?= $codePostal ?></div>
+                            <div class="affichageProfil"><u>Adresse</u>: </div>
+                            <div class="affichageProfil"><?= $adresse ?></div>
+                            <div class="affichageProfil"><?= $ville ?></div>
+                            <div class="affichageProfil"><?= $codePostal ?></div>
                         </div>
                     </div>
                 </div>
@@ -109,9 +109,9 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                             $description = $expPro["Description"];
                                             $salaire = $expPro["Salaire"];
                                         ?>
-                                            <?php $dates = $dateDebut . " - "; ?> </br> <?php $dates .= $dateFin; ?>
-                                        
-                                            <li class="event" data-date="<?= $dates ?>">
+
+                                            <?php $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin); ?>
+                                            <li class="event" title=<?= $dates ?>>
                                                 <h4><?= $intituleExp ?></h4>
                                                 <p class="h6">
                                                     <?php echo $libelleOrganisation . " - " . $typeExp ?>

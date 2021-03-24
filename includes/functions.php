@@ -532,3 +532,15 @@ function getIdEleveParNomUtilisateur($nomUtilisateur){
     return $idEleve;
 }
 
+function formaterDateExperiencePro($date){
+    if($date==null){
+        return "";
+    }
+    else{
+        $mois = substr($date, 5, 2);
+        $annee = substr($date, 0, 4);
+    
+        $newDate = $mois."/".$annee;
+        return $newDate;
+    }
+}

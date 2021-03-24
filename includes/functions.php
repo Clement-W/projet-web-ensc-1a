@@ -531,3 +531,4 @@ function getIdEleveParNomUtilisateur($nomUtilisateur){
     $idEleve = $requeteIdEleve -> fetch()[0];
     return $idEleve;
 }
+

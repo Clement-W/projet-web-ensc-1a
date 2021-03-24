@@ -60,7 +60,7 @@ body {
 
 /* ==========================================================================
      #FORM
-     ========================================================================== */
+========================================================================== */
 
 input {
     background-color: rgb(252, 252, 252);
@@ -115,6 +115,9 @@ input {
     margin-bottom: 5%;
 }
 
+/* ==========================================================================
+     #TIMELINE EXPÉRIENCE PRO
+========================================================================== */
 
 .timeline {
     border-left: 3px solid #727cf5;
@@ -129,7 +132,7 @@ input {
     padding: 50px;
     list-style: none;
     text-align: left;
-    max-width: 40%;
+    max-width: 70%;
 }
 
 @media (max-width: 767px) {
@@ -137,18 +140,6 @@ input {
         max-width: 98%;
         padding: 25px;
     }
-}
-
-.timeline h1 {
-    font-weight: 300;
-    font-size: 1.4em;
-}
-
-.timeline h2,
-.timeline h3 {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 10px;
 }
 
 .timeline .event {
@@ -176,7 +167,7 @@ input {
     display: block;
     top: 0;
 }
-
+/* Affichage des dates */
 .timeline .event:before {
     left: -207px;
     content: attr(data-date);
@@ -192,7 +183,7 @@ input {
         text-align: left;
     }
 }
-
+/* Petit cercle sur la timeline */
 .timeline .event:after {
     -webkit-box-shadow: 0 0 0 3px #727cf5;
     box-shadow: 0 0 0 3px #727cf5;
@@ -209,24 +200,4 @@ input {
     .timeline .event:after {
         left: -31.8px;
     }
-}
-
-.rtl .timeline {
-    border-left: 0;
-    text-align: right;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-    border-right: 3px solid #727cf5;
-}
-
-.rtl .timeline .event::before {
-    left: 0;
-    right: -170px;
-}
-
-.rtl .timeline .event::after {
-    left: 0;
-    right: -55.8px;
 }

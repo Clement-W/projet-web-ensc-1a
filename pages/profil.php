@@ -65,9 +65,15 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
-                            <div class="affichage text-underline-auto"><u>Contact</u>: </div>
-                            <div class="affichage"><?= $mail ?></div>
-                            <div class="affichage"><?= $tel ?></div>
+                            <div class="affichage"><u>Contact</u>: </div>
+                            <div class="affichage">
+                                <i class="fa fa-at fa-lg" aria-hidden="true"></i>
+                                <?= $mail ?>
+                            </div>
+                            <div class="affichage">
+                                <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                                <?= $tel ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6 h5">
@@ -80,52 +86,48 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                     </div>
                 </div>
                 <hr class="ml-5 mr-5" />
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title">Timeline</h6>
-                                    <div id="content">
-                                        <ul class="timeline">
-                                            <li class="event" data-date="12:30 - 1:00pm">
-                                                <h3>Registration</h3>
-                                                <p>Get here on time, it's first come first serve. Be late, get turned away.</p>
+                            <div class="card-body ml-3">
+                                <h6 class="card-title h5 text-secondary"><u>Expériences:</u> </h6>
+                                <div id="content">
+                                    <ul class="timeline">
+                                        <?php foreach ($experiencePro as $expPro) {
+                                            $intituleExp = $expPro["IntituleExperiencePro"];
+                                            $typeExp = $expPro["TypeExperiencePro"];
+                                            $dateDebut = $expPro["DateDebut"];
+                                            $dateFin = $expPro["DateFin"];
+                                            $typeOrganisation = $expPro["TypeOrganisation"];
+                                            $libelleOrganisation = $expPro["LibelleOrganisation"];
+                                            $typePoste = $expPro["TypePoste"];
+                                            $region = $expPro["Region"];
+                                            $ville = $expPro["Ville"];
+                                            $secteursActivites = $expPro["SecteursActivites"];
+                                            $domainesCompetences = $expPro["DomainesCompetences"];
+                                            $description = $expPro["Description"];
+                                            $salaire = $expPro["Salaire"];
+                                        ?>
+                                            <?php $dates = $dateDebut . " - "; ?> </br> <?php $dates .= $dateFin; ?>
+                                        
+                                            <li class="event" data-date="<?= $dates ?>">
+                                                <h4><?= $intituleExp ?></h4>
+                                                <p class="h6">
+                                                    <?php echo $libelleOrganisation . " - " . $typeExp ?>
+                                                    </br>
+                                                    <?php echo $region . " - " . $ville ?>
+                                                </p>
+                                                <p><?= $description ?> </p>
                                             </li>
-                                            <li class="event" data-date="2:30 - 4:00pm">
-                                                <h3>Opening Ceremony</h3>
-                                                <p>Get ready for an exciting event, this will kick off in amazing fashion with MOP &amp; Busta Rhymes as an opening show.</p>
-                                            </li>
-                                            <li class="event" data-date="5:00 - 8:00pm">
-                                                <h3>Main Event</h3>
-                                                <p>This is where it all goes down. You will compete head to head with your friends and rivals. Get ready!</p>
-                                            </li>
-                                            <li class="event" data-date="8:30 - 9:30pm">
-                                                <h3>Closing Ceremony</h3>
-                                                <p>See how is the victor and who are the losers. The big stage is where the winners bask in their own glory.</p>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        <?php } ?>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            </br>
-
-            <?php
-
-            print_r(getInfosPerso());
-            echo "</br>";
-            echo "</br>";
-            print_r(getExperiencesPro());
-            echo "</br>";
-            echo "</br>";
-            ?>
-
-
         </div>
     </body>
 

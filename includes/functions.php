@@ -378,11 +378,11 @@ function getInfosPerso() {
 }
 
 //retourne les informations du profil par id
-function getInfosCompteParId($id){
+function getInfosCompteEleveParId($id){
     $BDD = getBDD();
 
     //On recupère les infos personelles et les informations de compte de l'utilisateur
-    $requeteInfosPerso = $BDD->PREPARE("SELECT * FROM Compte,Eleve,InfosPerso WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = InfosPerso.IdEleve AND Compte.IdCompte = ?");
+    $requeteInfosPerso = $BDD->PREPARE("SELECT * FROM Compte,Eleve,InfosPerso WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = InfosPerso.IdEleve AND Eleve.IdEleve = ?");
     $requeteInfosPerso->execute(array($id));
     return $requeteInfosPerso->fetch();
 }
@@ -395,6 +395,16 @@ function getExperiencesPro() {
     //On recupère les experiences pro de l'utilisateur
     $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Compte.NomUtilisateur = ?");
     $requeteExperiencesPro->execute(array($nomUtilisateur));
+    return $requeteExperiencesPro->fetchAll();
+}
+
+//retourne les experiences professionnelles par id
+function getExperiencesProParId($id) {
+    $BDD = getBDD();
+
+    //On recupère les experiences pro de l'utilisateur
+    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Eleve.IdEleve = ?");
+    $requeteExperiencesPro->execute(array($id));
     return $requeteExperiencesPro->fetchAll();
 }
 
@@ -499,3 +509,11 @@ $_POST["salaire"] = "2942";
 
 ajouterExperiencePro();
 */
+
+function getIdEleveParNomUtilisateur($nomUtilisateur){
+    $BDD = getBDD();
+    $requeteIdEleve = $BDD->prepare("SELECT IdEleve FROM Compte, Eleve WHERE Compte.IdCompte=Eleve.IdCompte AND Compte.NomUtilisateur = ?");
+    $requeteIdEleve -> execute(array($nomUtilisateur));
+    $idEleve = $requeteIdEleve -> fetch()[0];
+    return $idEleve;
+}

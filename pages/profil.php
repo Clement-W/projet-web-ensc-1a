@@ -9,11 +9,12 @@
 require_once("../includes/functions.php");
 session_start();
 
-if (!estConnecte()) {
+if (!estConnecte() || empty($_GET["idEleve"])) {
     redirect("404.php");
 } else {
 
-    $infos = getInfosPerso();
+    $idEleve = escape($_GET["idEleve"]);
+    $infos = getInfosCompteEleveParId($idEleve);
     $nom = $infos["Nom"];
     $prenom = $infos["Prenom"];
     $promo = $infos["Promotion"];
@@ -24,7 +25,7 @@ if (!estConnecte()) {
     $mail = $infos["AdresseMail"];
     $tel = $infos["NumTelephone"];
 
-    $experiencePro = getExperiencesPro();
+    $experiencePro = getExperiencesProParId($idEleve);
 
 ?>
 
@@ -45,7 +46,10 @@ if (!estConnecte()) {
 
 
             <div class="whitecontainer">
-                <h2 class="ml-5 pt-3">Profil</h2>
+                <div class="d-flex justify-content-between">
+                    <h2 class="ml-5 pt-3">Profil</h2>
+                    <button>Pouet</button>
+                </div>
                 <hr class="ml-5 mr-5" />
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h4">

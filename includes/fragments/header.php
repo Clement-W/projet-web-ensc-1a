@@ -1,3 +1,4 @@
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark transparent" id="nav">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -19,7 +20,7 @@
                         Bonjour <?= $_SESSION["nomUtilisateur"]; ?>!
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="profil.php">Profil</a>
+                        <a class="dropdown-item" href="profil.php?idEleve=<?=getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
                         <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                     </div>
                 </div>

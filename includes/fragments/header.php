@@ -17,7 +17,7 @@
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">
                     <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Bonjour <?= $_SESSION["nomUtilisateur"]; ?>!
+                        Bonjour <?= $_SESSION["nomUtilisateur"]; ?> 
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="profil.php?idEleve=<?=getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
@@ -29,7 +29,7 @@
             <form class="form-inline my-2 my-lg-0">
                 <div class="dropdown">
                     <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Bonjour <?= $_SESSION["nomUtilisateur"]; ?>!
+                        Bonjour <?= $_SESSION["nomUtilisateur"]; ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>

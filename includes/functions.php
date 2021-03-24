@@ -437,7 +437,7 @@ function ajouterExperiencePro(){
         $typeOrganisation = escape($_POST["typeOrganisation"]);
         $region = escape($_POST["region"]);
         $ville = escape($_POST["ville"]);
-        $typePoste = escape($_POST["ville"]);
+        $typePoste = escape($_POST["typePoste"]);
         $secteursActivitesArray = $_POST["secteursActivites"];
         $domainesCompetencesArray = $_POST["domainesCompetences"];
         $libelleOrganisation = escape($_POST["libelleOrganisation"]);

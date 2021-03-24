@@ -33,7 +33,7 @@ if ($BDD) {
 
     while($tuple= $querySettings -> fetch()){
         $nomParam = $tuple["LibelleInformation"];
-        if(is_numeric($nomParam)){
+        if(is_numeric($nomParam)){ // SI c'est numérique c'est une experience pro
 
             foreach($experiences as $experience){
                 if($experience["IdExperiencePro"]==(int)$nomParam){
@@ -42,7 +42,7 @@ if ($BDD) {
                 }
             }
             
-        }else{
+        }else{ 
             if($nomParam=="AdresseMail"){ // On gère le cas particulier de l'adresse mail qui est une information de compte et pas une information personelle
                 $valeur = $adresseMail;
             }else{

@@ -32,7 +32,7 @@
 
             return false;
         }
-    </script>
+    </script> 
 </head>
 
 <body>

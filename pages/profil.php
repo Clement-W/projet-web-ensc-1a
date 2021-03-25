@@ -49,9 +49,9 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="d-flex justify-content-between pt-3">
                     <h2 class="ml-5 ">Profil</h2>
                     <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté-->
-                    <?php if(getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]){?>
-                        <a href="modifierProfil.php?idEleve=<?=getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
-                        <?php }?>
+                    <?php if (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]) { ?>
+                        <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
+                    <?php } ?>
                 </div>
                 <hr class="ml-5 mr-5" />
                 <div class="ml-4 row text-secondary">
@@ -96,7 +96,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <h6 class="card-title h5 text-secondary"><u>Expériences</u> </h6>
                                 <div id="content">
                                     <ul class="timeline">
-                                        <?php foreach ($experiencePro as $expPro) {
+                                        <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
                                             $intituleExp = $expPro["IntituleExperiencePro"];
                                             $typeExp = $expPro["TypeExperiencePro"];
                                             $dateDebut = $expPro["DateDebut"];
@@ -110,9 +110,12 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                             $domainesCompetences = $expPro["DomainesCompetences"];
                                             $description = $expPro["Description"];
                                             $salaire = $expPro["Salaire"];
+
+                                            // on formate l'affichage de la date
+                                            $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin);
+
                                         ?>
 
-                                            <?php $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin); ?>
                                             <li class="event" title=<?= $dates ?>>
                                                 <h4><?= $intituleExp ?></h4>
                                                 <p class="h6">

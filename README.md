@@ -55,3 +55,10 @@ TODO :
 * Changer session alert avec un status pour faire plus propre
 * rendre les id uniques sur la page modifier profil
 * faire un toUpper sur la premiere lettre du prenom et du nom
+* Faire un if pas d'experience pro alors on affiche pas 
+* Cocher dans profil si c'est visible, sinon pas cocher
+* Pour la connexion il faut qu'un élève connaisse son nom d'utilisateur
+* commenter
+* relire le code
+* ajouter les entetes de chaque fichier avec une explication du fichier
+* Faire en sorte que quand on clique sur une experience pro ça affiche les details dans une modale

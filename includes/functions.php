@@ -505,7 +505,7 @@ function ajouterExperiencePro(){
     $_SESSION["alert"] = $alert;
 }
 /*
-$_SESSION["nomUtilisateur"] = "cweinreich";
+$_SESSION["nomUtilisateur"] = "jlegoff";
 $_POST["intituleExperiencePro"] = "Stage de 3ème année à Dassau";
 $_POST["typeExperiencePro"] = "Stage";
 $_POST["dateDebut"] = "04-02-2027 10:29:39";
@@ -514,8 +514,8 @@ $_POST["libelleOrganisation"] = "ims";
 $_POST["typePoste"] = "Stagiaire";
 $_POST["ville"] = "Avranches";
 $_POST["region"] = "Normandie";
-$_POST["secteursActivites"] = array("Transport","Aéronautique");
-$_POST["domainesCompetences"] = array("IA","SHS","UX");
+$_POST["secteursActivites"] = "Transport, Aéronautique";
+$_POST["domainesCompetences"] = "IA, SHS, UX";
 $_POST["dateFin"] = "02-06-2023 00:00:00";
 $_POST["description"] = "gros stage";
 $_POST["salaire"] = "2942";
@@ -545,3 +545,34 @@ function formaterDateExperiencePro($date){
         return $newDate;
     }
 }
+
+//retourne un tableau associatif contenant la visibilité des différents paramètres
+function getVisibiliteInfosProfil($idEleve){
+    $BDD = getBDD();
+
+    $requeteParametres = $BDD->prepare("SELECT LibelleInformation,Visibilite FROM Parametres WHERE IdEleve = ?");
+    $requeteParametres -> execute(array($idEleve));
+    $parametres = $requeteParametres->fetchAll();
+
+    $visibilite = array();
+    foreach($parametres as $parametre){
+        $visibilite[$parametre["LibelleInformation"]] = $parametre["Visibilite"];
+    }
+
+    return $visibilite; 
+
+}
+
+
+function mettreAJourProfil(){
+    if(!empty($_POST["mettreAJourProfil"])){ // pas besoin de verifier les autres champs vu qu'ils étaient en required
+        #print_r($_POST);
+
+        $idEleve = getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);
+
+
+        redirect("profil.php?idEleve=".$idEleve);
+    } 
+
+}
+

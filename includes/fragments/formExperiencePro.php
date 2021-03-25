@@ -2,7 +2,8 @@
 
 <div class="d-flex">
     <div class="custom-control custom-checkbox mt-2 col-sm-4">
-        <input type="checkbox" class="custom-control-input" id="intituleVisibilite<?= (isset($idExpPro)) ? $idExpPro :""; ?>">
+        <!-- On ajoute l'id de l'experience pro pour rendre unique ce champ s'il est affiché sur un profil avec plusieurs experiences pro -->
+        <input type="checkbox" class="custom-control-input" id="intituleVisibilite<?= (isset($idExpPro)) ? $idExpPro :""; ?>" <?= (isset($visibilite) && ($visibilite[$idExpPro] == true)) ? "checked" : ""; ?>> <!-- On coche si la visibiliite de l'experience pro déjà existante a été cochée  -->
         <label class="custom-control-label font-weight-bold" for="intituleVisibilite<?= (isset($idExpPro)) ? $idExpPro :""; ?>">Intitulé de l'expérience</label>
     </div>
     <div class="form-group col-sm-8">

@@ -146,7 +146,7 @@ require_once "../includes/fragments/head.php";
 
                             <optgroup label="Par profil">
                                 <option value="Promotion">Promotion</option>
-                                <option value="PrenomNom">Nom ou prenom</option>
+                                <option value="NomPrenom">Nom ou prenom</option>
                                 <option value="Ville">Ville</option>
                             </optgroup>
                         </select>

@@ -65,8 +65,11 @@ TODO :
 * ajouter le username du profil sur lequel on est dans le titre de la page (10min)
 * permettre la modification du profil (1h30) -> faire ce qu'il y a marqué dans function.php modifierProfil()
 * dans modifier le profil, mettre tous les champs obligatoires en required pour pas qu'on puisse les enlever (20min)
+* faire la modification du mot de passe avec une verification (45min)
+* intergrer la popup qui dit qu'on a pas ajouté d'experience pro (20min)
 ---
 
+2h :
 * commenter
 * relire le code
 * ajouter les entetes de chaque fichier avec une explication du fichier

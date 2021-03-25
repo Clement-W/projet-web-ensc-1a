@@ -307,7 +307,7 @@ function validerCompteEleve($idEleve)
 
     $_SESSION["alert"] = $alert;
 }
-//validerCompteEleve(1);
+//validerCompteEleve(2);
 
 
 
@@ -359,7 +359,7 @@ function invaliderCompteEleve($idEleve)
 // Permet d'afficher un popup (appelé dans verifierExperiencesPro())
 function afficherPopUp()
 {
-    require_once "../includes/fragments/popup.php";
+    require_once "../includes/modals/popup.php";
 }
 
 // Verifie qu'un compte Élève a bien des experiences pro (lorsqu'il est connecté)
@@ -416,7 +416,7 @@ function getExperiencesPro() {
 
     $nomUtilisateur = $_SESSION["nomUtilisateur"];
     //On recupère les experiences pro de l'utilisateur
-    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Compte.NomUtilisateur = ?");
+    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Compte.NomUtilisateur = ? ORDER BY ExperiencePro.DateDebut DESC");
     $requeteExperiencesPro->execute(array($nomUtilisateur));
     return $requeteExperiencesPro->fetchAll();
 }
@@ -427,7 +427,7 @@ function getExperiencesProParId($id) {
     $BDD = getBDD();
 
     //On recupère les experiences pro de l'utilisateur
-    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Eleve.IdEleve = ?");
+    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Eleve.IdEleve = ? ORDER BY ExperiencePro.DateDebut DESC");
     $requeteExperiencesPro->execute(array($id));
     return $requeteExperiencesPro->fetchAll();
 }
@@ -435,8 +435,7 @@ function getExperiencesProParId($id) {
 // permet d'ajouter une experience professionnelle
 // prend en compte le fait que certaines informations sont facultatives, et les ajoutes si elles sont présentes.
 function ajouterExperiencePro(){
-    if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {
-
+    if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {      
         $BDD = getBDD();
 
         $intituleExperiencePro = escape($_POST["intituleExperiencePro"]);
@@ -447,22 +446,10 @@ function ajouterExperiencePro(){
         $region = escape($_POST["region"]);
         $ville = escape($_POST["ville"]);
         $typePoste = escape($_POST["typePoste"]);
-        $secteursActivitesArray = $_POST["secteursActivites"];
-        $domainesCompetencesArray = $_POST["domainesCompetences"];
+        $secteursActivites = $_POST["secteursActivites"];
+        $domainesCompetences = $_POST["domainesCompetences"];
         $libelleOrganisation = escape($_POST["libelleOrganisation"]);
 
-
-        // On convertit le tableau de secteurs d'activités en strings séparés par des virgules
-        $secteursActivites = "";
-        foreach($secteursActivitesArray as $secteurAct){
-            $secteursActivites .= escape($secteurAct) . ", ";
-        }
-
-        // On convertit le tableau de domaines de compétences en strings séparés par des virgules
-        $domainesCompetences = "";
-        foreach($domainesCompetencesArray as $domaineComp){
-            $domainesCompetences .= escape($domaineComp) . ", ";
-        }
 
         //On recupere le nom d'utilisateur et on requete la bdd pour avoir l'id de l'eleve afin de lui associer une nouvelle experience pro
         $nomUtilisateur = $_SESSION["nomUtilisateur"];

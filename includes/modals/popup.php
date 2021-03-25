@@ -15,15 +15,14 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.href='oui'">Mettre à jour</button>
+                <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-success" type="button">Mettre à jour</a>
             </div>
         </div>
     </div>
 </div>
 
 
-<script type="text/javascript"> // Pour afficher la popup
-$('#popup').modal('show');
+<script type="text/javascript">
+    // Pour afficher la popup
+    $('#popup').modal('show');
 </script>
-
-

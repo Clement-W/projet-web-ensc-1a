@@ -4,7 +4,6 @@ session_start();
 if (!empty($_POST["inscription"])) {
     inscription();
 }
-
 ?>
 
 <!doctype html>
@@ -17,7 +16,6 @@ require_once "../includes/fragments/head.php";
 
 <body class="background">
     <?php require_once "../includes/fragments/header.php"; ?>
-
 
 
 
@@ -126,35 +124,44 @@ require_once "../includes/fragments/head.php";
             <!-- Si l'utilisateur est connecté, on lui affiche la page d'accueil d'un utilisateur connecte -->
             <script src="../js/recherche.js"></script>
 
-            <div class="text-center">
-                <h1 class="mt-5">Rechercher dans l'annuaire</h1>
-  
-                <div id="search_box">
-                    <form method="post" onsubmit="return rechercher();"> <!-- appelle la fonction js dans js/recherche.js -->
-                        <select name="search_param" id="search_param" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-                            <optgroup label="Par experience pro">
+            <div class="container d-flex">
+                <div class="col">
+                    <div class="row justify-content-center">
+                        <h1 class="mt-5">Rechercher dans l'annuaire</h1>
+                    </div>
+                    <form class="row mt-5" method="post" onsubmit="return rechercher();">
+                        <!-- appelle la fonction js dans js/recherche.js -->
+                        <div class="col ml-5">
+                            <select name="search_param" id="search_param" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                                <optgroup label="Par experience pro">
+                                    <option value="TypeOrganisation">Type d'organisation</option>
+                                    <option value="DomainesCompetences">Domaines de compétences</option>
+                                    <option value="SecteursActivites">Secteurs d'activités</option>
+                                    <option value="TypeExperiencePro">Type d'experience</option>
+                                    <option value="LibelleOrganisation">Libelle de l'organisation</option>
+                                    <option value="Region">Region</option>
+                                </optgroup>
 
-                                <option value="TypeOrganisation">Type d'organisation</option>
-                                <option value="DomainesCompetences">Domaines de compétences</option>
-                                <option value="SecteursActivites">Secteurs d'activités</option>
-                                <option value="TypeExperiencePro">Type d'experience</option>
-                                <option value="LibelleOrganisation">Libelle de l'organisation</option>
-                                <option value="Region">Region</option>
-                            </optgroup>
+                                <optgroup label="Par profil">
+                                    <option value="Promotion">Promotion</option>
+                                    <option value="NomPrenom">Nom ou prenom</option>
+                                    <option value="Ville">Ville</option>
+                                </optgroup>
+                            </select>
+                        </div>
 
-                            <optgroup label="Par profil">
-                                <option value="Promotion">Promotion</option>
-                                <option value="NomPrenom">Nom ou prenom</option>
-                                <option value="Ville">Ville</option>
-                            </optgroup>
-                        </select>
-                        <input type="text" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
-                        <input type="submit" name="search" value="SEARCH">
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
+                        </div>
+
+                        <div class="col mr-5">
+                            <input class="btn btn-dark" type="submit" name="search" value="Rechercher">
+                        </div>
                     </form>
+
+                    <div id="resultat_recherche"></div> <!-- ici s'affiche les resultats (inséré par ajax)-->
+
                 </div>
-
-                <div id="resultat_recherche"></div> <!-- ici s'affiche les resultats (inséré par ajax)-->
-
             </div>
 
 

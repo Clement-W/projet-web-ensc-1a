@@ -63,7 +63,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div class="col-md-12">
                             <div class="affichageProfil"><?= $prenom ?> <?= $nom ?></div>
                             <div class="affichageProfil">Promotion <?= $promo ?></div>
-                            <div class="affichageProfil">Genre: <?= $genre ?></div>
+                            <div class="affichageProfil">Genre: <?= $genre ?></div> 
+                            <!-- TODOOOOOOOOOO : si la personne connectée n'est pas l'id de l'eleve et que la personne connectée n'est pas un gestionnaire : alors on affiche le genre que si le genre est rendu visible par le propriétaire du comtpe -->
                         </div>
                     </div>
                 </div>

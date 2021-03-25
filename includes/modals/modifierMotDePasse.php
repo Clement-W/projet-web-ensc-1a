@@ -2,9 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <script type="text/javascript">
-            console.log("test");
-            </script>
+ 
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Modifier le mot de passe</h4>

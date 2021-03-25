@@ -2,9 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
-            <script type="text/javascript">
-                console.log("test");
-            </script>
+
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Ajouter une nouvelle expérience</h4>

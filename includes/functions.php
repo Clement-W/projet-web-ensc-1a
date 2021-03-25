@@ -434,9 +434,11 @@ function getExperiencesProParId($id) {
 
 // permet d'ajouter une experience professionnelle
 // prend en compte le fait que certaines informations sont facultatives, et les ajoutes si elles sont présentes.
-function ajouterExperiencePro(){
+function ajouterExperiencePro(){ 
 
     if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {       
+        
+        
         $BDD = getBDD();
 
         $intituleExperiencePro = escape($_POST["intituleExperiencePro"]);
@@ -509,24 +511,7 @@ function ajouterExperiencePro(){
 
     redirect("profil.php?idEleve=".$idEleve);
 }
-/*
-$_SESSION["nomUtilisateur"] = "jlegoff";
-$_POST["intituleExperiencePro"] = "Stage de 3ème année à Dassau";
-$_POST["typeExperiencePro"] = "Stage";
-$_POST["dateDebut"] = "04-02-2027 10:29:39";
-$_POST["typeOrganisation"] = "Laboratoire";
-$_POST["libelleOrganisation"] = "ims";
-$_POST["typePoste"] = "Stagiaire";
-$_POST["ville"] = "Avranches";
-$_POST["region"] = "Normandie";
-$_POST["secteursActivites"] = "Transport, Aéronautique";
-$_POST["domainesCompetences"] = "IA, SHS, UX";
-$_POST["dateFin"] = "02-06-2023 00:00:00";
-$_POST["description"] = "gros stage";
-$_POST["salaire"] = "2942";
 
-
-ajouterExperiencePro();*/
 
 
 function getIdEleveParNomUtilisateur($nomUtilisateur){
@@ -570,9 +555,14 @@ function getVisibiliteInfosProfil($idEleve){
 
 
 function mettreAJourProfil(){
-    if(!empty($_POST["mettreAJourProfil"])){ // pas besoin de verifier les autres champs vu qu'ils étaient en required
+    if(!empty($_POST["mettreAJourProfil"])){ // pas besoin de verifier les autres champs vu qu'ils sont en required
         
         print_r($_POST);
+
+        // On fait getInfoCompteParId puis on verifie si les champs sont différents que ceux du post, si oui on fait un update du champ en utilisant arraykey pour avoir le champ en question (il faut gérer le cas particulier de l'adresse mail)
+        // pour chaque experience pro, on verifie si lenom du champ concatené avec l'id est différent du nom du champ de l'experience pro , si oui on update
+        //ensuite on regarde au nivau des paramètres de visibilité : pour les 6 infos perso on regarde si c'est set ou non, puis si c'est set on verifie que c'était biein visibile avant aussi, et inversemment puis on update en conséquent
+        //pour la visibilité des experiences pro, on loop dans les experiences pro et on regarde si visiliteExProX avec X l'id de l'expro est set, si oui alors on regarde si cc'était aussi visible avant et on update en conséquent
 
         $idEleve = getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);
         //redirect("profil.php?idEleve=".$idEleve);

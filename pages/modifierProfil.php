@@ -2,23 +2,21 @@
 require_once("../includes/functions.php");
 session_start();
 
+//Si on appuie sur le bouton submit du form d'ajout d'une experience pro 
+if (!empty($_POST["ajouterExperiencePro"])) {
+    ajouterExperiencePro();
+}
+
+//Si on appuie sur le bouton submit du form de mise à jour du profil
+if (!empty($_POST["mettreAJourProfil"])) {
+    mettreAJourProfil();
+}
 
 if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["idEleve"]) || !(getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]))) {
     // Si un utilisateur n'est pas connecté, ou que l'id eleve n'est pas valide ou pas donné en get alors on redirige vers 404 error
-    //redirect("404.php");
+    redirect("404.php");
 } else {
-
-    //Si on appuie sur le bouton submit du form d'ajout d'une experience pro 
-    if (!empty($_POST["ajouterExperiencePro"])) {
-        ajouterExperiencePro();
-    }
-
-    //Si on appuie sur le bouton submit du form de mise à jour du profil
-    if (!empty($_POST["mettreAJourProfil"])) {
-        //mettreAJourProfil();
-        echo "rfoidjfoi";
-    }
-
+    
     $idEleve = escape($_GET["idEleve"]);
     $infos = getInfosCompteEleveParId($idEleve);
     $nom = $infos["Nom"];
@@ -87,7 +85,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
 
 
                 <div class="d-flex flex-wrap flex-column ml-5">
-                    <form method="POST" action="modifierProfil.php">
+                    <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">
                         <p class="h3 text-secondary"><u>Informations personnelles</u></p>
                         </br>
                         <div class="d-flex">

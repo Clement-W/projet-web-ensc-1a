@@ -435,7 +435,8 @@ function getExperiencesProParId($id) {
 // permet d'ajouter une experience professionnelle
 // prend en compte le fait que certaines informations sont facultatives, et les ajoutes si elles sont présentes.
 function ajouterExperiencePro(){
-    if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {      
+
+    if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {       
         $BDD = getBDD();
 
         $intituleExperiencePro = escape($_POST["intituleExperiencePro"]);
@@ -449,7 +450,8 @@ function ajouterExperiencePro(){
         $secteursActivites = $_POST["secteursActivites"];
         $domainesCompetences = $_POST["domainesCompetences"];
         $libelleOrganisation = escape($_POST["libelleOrganisation"]);
-
+        $visibilite = (isset($_POST["visibiliteExpPro"])) ? 1 : 0; //Si la checkbox est checked alors c'est envoyé par le post, sinon non
+        // 1 ou 0 pour être compatible avec le tinyint de mysql
 
         //On recupere le nom d'utilisateur et on requete la bdd pour avoir l'id de l'eleve afin de lui associer une nouvelle experience pro
         $nomUtilisateur = $_SESSION["nomUtilisateur"];
@@ -488,8 +490,9 @@ function ajouterExperiencePro(){
         }
 
         // On ajoute le parametre de visibilité en base (par défaut, l'exp pro est visibile)
-        // Pour une experience pro, le libelle correspond à l'identifiant de l'experience pro. 
-        insererParametre($BDD,$idEleve,true,$idExperiencePro);
+        // Pour une experience pro, le libelle correspond à l'identifiant de l'experience pro.
+
+        insererParametre($BDD,$idEleve,$visibilite,$idExperiencePro);
 
         $alert["bootstrapClassAlert"] = "success";
         $alert["messageAlert"] = "L'experience professionnelle a bien été ajoutée.";
@@ -499,10 +502,12 @@ function ajouterExperiencePro(){
         $alert["messageAlert"] = "Des informations sont manquantes.";
     }
 
-    unset($_POST);
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
     $_POST = array();
 
     $_SESSION["alert"] = $alert;
+
+    redirect("profil.php?idEleve=".$idEleve);
 }
 /*
 $_SESSION["nomUtilisateur"] = "jlegoff";
@@ -566,12 +571,11 @@ function getVisibiliteInfosProfil($idEleve){
 
 function mettreAJourProfil(){
     if(!empty($_POST["mettreAJourProfil"])){ // pas besoin de verifier les autres champs vu qu'ils étaient en required
-        #print_r($_POST);
+        
+        print_r($_POST);
 
         $idEleve = getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);
-
-
-        redirect("profil.php?idEleve=".$idEleve);
+        //redirect("profil.php?idEleve=".$idEleve);
     } 
 
 }

@@ -56,9 +56,14 @@ TODO :
 * rendre les id uniques sur la page modifier profil
 * faire un toUpper sur la premiere lettre du prenom et du nom
 * Faire un if pas d'experience pro alors on affiche pas 
-* Cocher dans profil si c'est visible, sinon pas cocher
 * Pour la connexion il faut qu'un élève connaisse son nom d'utilisateur
+* Faire en sorte que quand on clique sur une experience pro ça affiche les details dans une modale
+* probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer
+* gerer la vsibilité des infos dans profil (entre le gestionnaire, les autres comptes et le compte connecté)
+* Mettre des exemples dans les place holders de ajout experience pro
+* pour l'ajout d'experience pro il faut preciser que la checkbox correspond à la visibilité
+---
+
 * commenter
 * relire le code
 * ajouter les entetes de chaque fichier avec une explication du fichier
-* Faire en sorte que quand on clique sur une experience pro ça affiche les details dans une modale

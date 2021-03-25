@@ -14,7 +14,7 @@
             <!-- Modal body -->
 
             <div class="modal-body">
-                <form method="POST" action="modifierProfil.php">
+                <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">
                     </br>
                     <p class="h5 text-secondary"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Les champs avec des astérisques (*) sont obligatoires. </p>
                     </br>

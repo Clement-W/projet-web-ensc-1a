@@ -54,3 +54,4 @@ TODO :
 * probleme du search filter (envie de canner)
 * Changer session alert avec un status pour faire plus propre
 * rendre les id uniques sur la page modifier profil
+* faire un toUpper sur la premiere lettre du prenom et du nom

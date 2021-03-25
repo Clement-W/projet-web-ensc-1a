@@ -126,13 +126,11 @@ require_once "../includes/fragments/head.php";
             <!-- Si l'utilisateur est connecté, on lui affiche la page d'accueil d'un utilisateur connecte -->
             <script src="../js/recherche.js"></script>
 
-            <div id="wrapper">
-                <h1> Test barre de recherche</h1>
-                <p> Vous pouvez chercher par promo, organisation, secteur d'activité, etc.</p>
-
-
+            <div class="text-center">
+                <h1 class="mt-5">Rechercher dans l'annuaire</h1>
+  
                 <div id="search_box">
-                    <form method="post" onsubmit="return rechercher();">
+                    <form method="post" onsubmit="return rechercher();"> <!-- appelle la fonction js dans js/recherche.js -->
                         <select name="search_param" id="search_param" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                             <optgroup label="Par experience pro">
 

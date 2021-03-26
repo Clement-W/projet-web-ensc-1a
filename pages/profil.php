@@ -53,7 +53,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="d-flex justify-content-between pt-3">
                     <h2 class="ml-5 ">Profil</h2>
                     <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté-->
-                    <?php if (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]) { ?>
+                    <?php if (!estGestionnaire() && (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"])) { ?>
                         <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
                     <?php } ?>
                 </div>

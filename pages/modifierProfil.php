@@ -93,7 +93,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <p for="nom">Nom</p>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="nom" value="<?= $nom ?>" class="form-control" id="nom" required>
+                                <input type="text" name="Nom" value="<?= $nom ?>" class="form-control" id="nom" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -101,25 +101,25 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <p for="prenom">Prénom</p>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="prenom" value="<?= $prenom ?>" class="form-control" id="prenom" required>
+                                <input type="text" name="Prenom" value="<?= $prenom ?>" class="form-control" id="prenom" required>
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="custom-control custom-checkbox col-sm-3">
-                                <input type="checkbox" name="genreVisibilite" class="custom-control-input" id="genreVisibilite" <?=($visibilite["Genre"] == true) ? "checked" : "" ?>>
-                                <label class="custom-control-label" for="Genre">Genre</label>
+                                <input type="checkbox" name="GenreVisibilite" class="custom-control-input" id="genreVisibilite" <?=($visibilite["Genre"] == true) ? "checked" : "" ?>>
+                                <label class="custom-control-label" for="genreVisibilite">Genre</label>
                             </div>
                             <div class="form-group col-sm-8">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="defaultInline1" name="genre" value="Masculin" required <?=($genre == "Masculin") ? "checked" : "" ?> >
+                                    <input type="radio" class="custom-control-input" id="defaultInline1" name="Genre" value="Masculin" required <?=($genre == "Masculin") ? "checked" : "" ?> >
                                     <label class="custom-control-label text-secondary" for="defaultInline1">Masculin</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="defaultInline2" name="genre" value="Féminin" <?=($genre == "Féminin") ? "checked" : "" ?>>
+                                    <input type="radio" class="custom-control-input" id="defaultInline2" name="Genre" value="Féminin" <?=($genre == "Féminin") ? "checked" : "" ?>>
                                     <label class="custom-control-label text-secondary" for="defaultInline2">Féminin</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="defaultInline3" name="genre" value="Autre" <?=($genre == "Autre") ? "checked" : "" ?>>
+                                    <input type="radio" class="custom-control-input" id="defaultInline3" name="Genre" value="Autre" <?=($genre == "Autre") ? "checked" : "" ?>>
                                     <label class="custom-control-label text-secondary" for="defaultInline3">Autre</label>
                                 </div>
                             </div>
@@ -129,54 +129,54 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <p for="promotion">Promotion</p>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="number" name="promotion" value="<?= $promo ?>" class="form-control" id="promotion" required>
+                                <input type="number" name="Promotion" value="<?= $promo ?>" class="form-control" id="promotion" required>
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="custom-control custom-checkbox mt-2 col-sm-3">
-                                <input type="checkbox" name="adresseVisibilite" class="custom-control-input" id="adresseVisibilite" <?=($visibilite["Adresse"] == true) ? "checked" : "" ?>  > <!-- on coche si l'utilisateur a ce parametre en visible ou non -->
+                                <input type="checkbox" name="AdresseVisibilite" class="custom-control-input" id="adresseVisibilite" <?=($visibilite["Adresse"] == true) ? "checked" : "" ?>  > <!-- on coche si l'utilisateur a ce parametre en visible ou non -->
                                 <label class="custom-control-label" for="adresseVisibilite">Adresse</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="adresse" value="<?= $adresse ?>" class="form-control" id="adresse" required>
+                                <input type="text" name="Adresse" value="<?= $adresse ?>" class="form-control" id="adresse" required>
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="custom-control custom-checkbox mt-2 col-sm-3">
-                                <input type="checkbox" name="villeVisibilite" class="custom-control-input" id="villeVisibilite" <?=($visibilite["Ville"] == true) ? "checked" : "" ?>>
+                                <input type="checkbox" name="VilleVisibilite" class="custom-control-input" id="villeVisibilite" <?=($visibilite["Ville"] == true) ? "checked" : "" ?>>
                                 <label class="custom-control-label" for="villeVisibilite">Ville</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="ville" value="<?= $ville ?>" class="form-control" id="ville" required>
+                                <input type="text" name="Ville" value="<?= $ville ?>" class="form-control" id="ville" required>
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="custom-control custom-checkbox mt-2 col-sm-3">
-                                <input type="checkbox" name="codePostalVisibilite" class="custom-control-input" id="codePostalVisibilite" <?=($visibilite["CodePostal"] == true) ? "checked" : "" ?> >
+                                <input type="checkbox" name="CodePostalVisibilite" class="custom-control-input" id="codePostalVisibilite" <?=($visibilite["CodePostal"] == true) ? "checked" : "" ?> >
                                 <label class="custom-control-label" for="codePostalVisibilite">Code Postal</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="number" name="codePostal" value="<?= $codePostal ?>" class="form-control" id="codePostal" required>
+                                <input type="number" name="CodePostal" value="<?= $codePostal ?>" class="form-control" id="codePostal" required>
                             </div>
                         </div>
 
                         <div class="d-flex">
                             <div class="custom-control custom-checkbox mt-2 col-sm-3">
-                                <input type="checkbox" name="adresseMailVisibilite" class="custom-control-input" id="adresseMailVisibilite" <?=($visibilite["AdresseMail"] == true) ? "checked" : "" ?> >
+                                <input type="checkbox" name="AdresseMailVisibilite" class="custom-control-input" id="adresseMailVisibilite" <?=($visibilite["AdresseMail"] == true) ? "checked" : "" ?> >
                                 <label class="custom-control-label" for="adresseMailVisibilite">Adresse Mail</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="adresseMail" value="<?= $tel ?>" class="form-control" id="adresseMail" required>
+                                <input type="text" name="AdresseMail" value="<?= $mail ?>" class="form-control" id="adresseMail" required>
                             </div>
                         </div>
 
                         <div class="d-flex">
                             <div class="custom-control custom-checkbox mt-2 col-sm-3">
-                                <input type="checkbox" name="numTelephoneVisibilite" class="custom-control-input" id="numTelephoneVisibilite" <?=($visibilite["NumTelephone"] == true) ? "checked" : "" ?> >
-                                <label class="custom-control-label" for="telephoneVisibilite">Téléphone</label>
+                                <input type="checkbox" name="NumTelephoneVisibilite" class="custom-control-input" id="numTelephoneVisibilite" <?=($visibilite["NumTelephone"] == true) ? "checked" : "" ?> >
+                                <label class="custom-control-label" for="numTelephoneVisibilite">Téléphone</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="numTelephone" value="<?= $tel ?>" class="form-control" id="telephone" required>
+                                <input type="text" name="NumTelephone" value="<?= $tel ?>" class="form-control" id="telephone" required>
                             </div>
                         </div>
 

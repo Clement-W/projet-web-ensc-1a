@@ -63,10 +63,12 @@ TODO :
 * Mettre des exemples dans les place holders de ajout experience pro (10min)
 * pour l'ajout d'experience pro il faut preciser que la checkbox correspond à la visibilité avec un petit texte (5min)
 * ajouter le username du profil sur lequel on est dans le titre de la page (10min)
-* permettre la modification du profil (1h30) -> faire ce qu'il y a marqué dans function.php modifierProfil()
 * dans modifier le profil, mettre tous les champs obligatoires en required pour pas qu'on puisse les enlever (20min)
 * faire la modification du mot de passe avec une verification (45min)
 * intergrer la popup qui dit qu'on a pas ajouté d'experience pro (20min)
+* Faire le fait que quand on clique sur une experience pro ça affiche une modal avec plus d'infos
+* probeme création de compte gestionnaire mail as utilisateur
+* lancer fonction js dans un onclick
 ---
 
 2h :

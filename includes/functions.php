@@ -35,16 +35,15 @@ function estGestionnaire()
     return $_SESSION['estGestionnaire'];
 }
 
-function estUnCompteValide($idCompte){
+function estUnCompteValide($idCompte)
+{
     $BDD = getBDD();
     $requeteCompteValide =  $BDD->prepare("SELECT CompteValide FROM Eleve WHERE IdCompte = ?");
     $requeteCompteValide->execute(array($idCompte));
-    if($requeteCompteValide->rowCount()==0){
+    if ($requeteCompteValide->rowCount() == 0) {
         throw new Exception("L'IdCompte spécifié ne correspond à aucun compte présent en base.");
     }
     return $requeteCompteValide->fetch()[0];
-
-    
 }
 
 
@@ -99,8 +98,7 @@ function connexion()
                     $alert["bootstrapClassAlert"] = "success";
                     $alert["messageAlert"] = "Vous êtes maintenant connecté.";
                     redirect('accueil.php');
-
-                }else{
+                } else {
                     redirect("attenteValidation.php");
                 }
             } else { // sinon c'est un gestionnaire
@@ -110,16 +108,12 @@ function connexion()
                 $alert["bootstrapClassAlert"] = "success";
                 $alert["messageAlert"] = "Vous êtes maintenant connecté.";
 
-                redirect('accueil.php'); 
-
+                redirect('accueil.php');
             }
 
             $_SESSION["alert"] = $alert;
             unset($_POST);
             $_POST = array();
-                
-               
-
         } else { // Il n'y a pas de compte correspondant à ces identifiants
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Aucun utilisateur ne correspond à ces informations.";
@@ -163,9 +157,10 @@ function genererNomUtilisateur($nom, $prenom)
 }
 
 // Insert un paramètre dans la bdd
-function insererParametre($BDD,$idEleve,$visibilite,$libelleInformation){
+function insererParametre($BDD, $idEleve, $visibilite, $libelleInformation)
+{
     $requeteInsertionParametre = $BDD->prepare("INSERT INTO Parametres(LibelleInformation, Visibilite, IdEleve) VALUES (?,?,?)");
-    $requeteInsertionParametre->execute(array($libelleInformation,$visibilite,$idEleve));
+    $requeteInsertionParametre->execute(array($libelleInformation, $visibilite, $idEleve));
 }
 
 function inscription()
@@ -173,7 +168,7 @@ function inscription()
     $BDD = getBDD();
 
     if (!empty($_POST["nom"]) && !empty($_POST["prenom"]) && !empty($_POST["motDePasse"]) && !empty($_POST["promo"]) && !empty($_POST["genre"]) && !empty($_POST["adresse"]) && !empty($_POST["ville"]) && !empty($_POST["codePostal"]) && !empty($_POST["email"]) && !empty($_POST["telephone"])) {
- 
+
         $nom = escape($_POST["nom"]);
         $prenom = escape($_POST["prenom"]);
         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
@@ -205,13 +200,12 @@ function inscription()
         $requeteInsertionInfosPerso->execute(array($nom, $prenom, $genre, $promo, $adresse, $ville, $codePostal, $telephone, $idEleve));
 
         // Visibilite des informations personnelles
-        $informationsParametrable =  array("Genre", "Adresse", "Ville", "CodePostal", "NumTelephone","AdresseMail");// Contient les noms des champs dont la visibilité est parametrable
-        foreach($informationsParametrable as $libelleInformation){ // pour chaque information du compte dont la visibilité est modifiable
-            insererParametre($BDD,$idEleve,true,$libelleInformation); // on insert en base le parametre comme visible
+        $informationsParametrable =  array("Genre", "Adresse", "Ville", "CodePostal", "NumTelephone", "AdresseMail"); // Contient les noms des champs dont la visibilité est parametrable
+        foreach ($informationsParametrable as $libelleInformation) { // pour chaque information du compte dont la visibilité est modifiable
+            insererParametre($BDD, $idEleve, true, $libelleInformation); // on insert en base le parametre comme visible
         }
 
         redirect("attenteValidation.php");
-
     } else { // Tous les champs n'ont pas été remplis
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Veuillez remplir toutes les informations pour vous inscrire.";
@@ -221,7 +215,6 @@ function inscription()
     $_POST = array();
 
     $_SESSION["alert"] = $alert;
-
 }
 /*
 $_POST["nom"] = "weinreich";
@@ -330,6 +323,10 @@ function supprimerCompteEleve($idEleve)
         $requeteDeleteInfosPerso = $BDD->prepare("DELETE FROM InfosPerso WHERE IdEleve = ?");
         $requeteDeleteInfosPerso->execute(array($idEleve));
 
+        // On supprime ses paramètres
+        $requeteDeleteParametres = $BDD->prepare("DELETE FROM Parametres WHERE IdEleve = ?");
+        $requeteDeleteParametres->execute(array($idEleve));
+
         // On supprime l'élève
         $requeteDeleteEleve = $BDD->prepare("DELETE FROM Eleve WHERE IdEleve = ?");
         $requeteDeleteEleve->execute(array($idEleve));
@@ -377,7 +374,8 @@ function verifierExperiencesPro()
 }
 
 //retourne toutes les informations du profil de quelqu'un de connecté
-function getInfosPerso() {
+function getInfosPerso()
+{
     $BDD = getBDD();
 
     $nomUtilisateur = $_SESSION["nomUtilisateur"];
@@ -388,7 +386,8 @@ function getInfosPerso() {
 }
 
 //retourne les informations du profil par id
-function getInfosCompteEleveParId($id){
+function getInfosCompteEleveParId($id)
+{
     $BDD = getBDD();
 
     //On recupère les infos personelles et les informations de compte de l'utilisateur
@@ -398,60 +397,64 @@ function getInfosCompteEleveParId($id){
 }
 
 //verifie que l'id passé en paramètre est bien présent en base
-function idEleveValide($id){
+function idEleveValide($id)
+{
     $BDD = getBDD();
 
     $requeteIdEleve = $BDD->prepare("SELECT IdEleve FROM Eleve WHERE IdEleve=?");
     $requeteIdEleve->execute(array($id));
-    if($requeteIdEleve->rowCount()==0){ //Si l'id n'est pas présent en base alors on return false
+    if ($requeteIdEleve->rowCount() == 0) { //Si l'id n'est pas présent en base alors on return false
         return false;
-    }else{ // S'il est présent alors on return true
+    } else { // S'il est présent alors on return true
         return true;
     }
 }
 
 //retourne les experiences professionnelles d'un élève connecté
-function getExperiencesPro() {
+function getExperiencesPro()
+{
     $BDD = getBDD();
 
     $nomUtilisateur = $_SESSION["nomUtilisateur"];
     //On recupère les experiences pro de l'utilisateur
-    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Compte.NomUtilisateur = ? ORDER BY ExperiencePro.DateDebut DESC");
+    $requeteExperiencesPro = $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Compte.NomUtilisateur = ? ORDER BY ExperiencePro.DateDebut DESC");
     $requeteExperiencesPro->execute(array($nomUtilisateur));
     return $requeteExperiencesPro->fetchAll();
 }
 
 
 //retourne les experiences professionnelles par id
-function getExperiencesProParId($id) {
+function getExperiencesProParId($id)
+{
     $BDD = getBDD();
 
     //On recupère les experiences pro de l'utilisateur
-    $requeteExperiencesPro= $BDD->PREPARE("SELECT * FROM Compte,Eleve,ExperiencePro WHERE Compte.IdCompte = Eleve.IdCompte AND Eleve.IdEleve = ExperiencePro.IdEleve AND Eleve.IdEleve = ? ORDER BY ExperiencePro.DateDebut DESC");
+    $requeteExperiencesPro = $BDD->PREPARE("SELECT * FROM Eleve,ExperiencePro WHERE Eleve.IdEleve = ExperiencePro.IdEleve AND Eleve.IdEleve = ? ORDER BY ExperiencePro.DateDebut DESC");
     $requeteExperiencesPro->execute(array($id));
     return $requeteExperiencesPro->fetchAll();
 }
 
 // permet d'ajouter une experience professionnelle
 // prend en compte le fait que certaines informations sont facultatives, et les ajoutes si elles sont présentes.
-function ajouterExperiencePro(){ 
+function ajouterExperiencePro()
+{
 
-    if (!empty($_POST["intituleExperiencePro"]) && !empty($_POST["typeExperiencePro"]) && !empty($_POST["dateDebut"]) &&  !empty($_POST["typeOrganisation"]) && !empty($_POST["libelleOrganisation"]) && !empty($_POST["region"]) && !empty($_POST["ville"]) &&  !empty($_POST["typePoste"]) && !empty($_POST["secteursActivites"]) && !empty($_POST["domainesCompetences"])) {       
-        
-        
+    if (!empty($_POST["IntituleExperiencePro"]) && !empty($_POST["TypeExperiencePro"]) && !empty($_POST["DateDebut"]) &&  !empty($_POST["TypeOrganisation"]) && !empty($_POST["LibelleOrganisation"]) && !empty($_POST["Region"]) && !empty($_POST["Ville"]) &&  !empty($_POST["TypePoste"]) && !empty($_POST["SecteursActivites"]) && !empty($_POST["DomainesCompetences"])) {
+
+
         $BDD = getBDD();
 
-        $intituleExperiencePro = escape($_POST["intituleExperiencePro"]);
-        $typeExperiencePro = escape($_POST["typeExperiencePro"]);
-        $dateDebutStr = escape($_POST["dateDebut"]);
-        $dateDebut = date("Y-m-d H:i:s",strtotime($dateDebutStr));
-        $typeOrganisation = escape($_POST["typeOrganisation"]);
-        $region = escape($_POST["region"]);
-        $ville = escape($_POST["ville"]);
-        $typePoste = escape($_POST["typePoste"]);
-        $secteursActivites = $_POST["secteursActivites"];
-        $domainesCompetences = $_POST["domainesCompetences"];
-        $libelleOrganisation = escape($_POST["libelleOrganisation"]);
+        $intituleExperiencePro = escape($_POST["IntituleExperiencePro"]);
+        $typeExperiencePro = escape($_POST["TypeExperiencePro"]);
+        $dateDebutStr = escape($_POST["DateDebut"]);
+        $dateDebut = date("Y-m-d H:i:s", strtotime($dateDebutStr));
+        $typeOrganisation = escape($_POST["TypeOrganisation"]);
+        $region = escape($_POST["Region"]);
+        $ville = escape($_POST["Ville"]);
+        $typePoste = escape($_POST["TypePoste"]);
+        $secteursActivites = $_POST["SecteursActivites"];
+        $domainesCompetences = $_POST["DomainesCompetences"];
+        $libelleOrganisation = escape($_POST["LibelleOrganisation"]);
         $visibilite = (isset($_POST["visibiliteExpPro"])) ? 1 : 0; //Si la checkbox est checked alors c'est envoyé par le post, sinon non
         // 1 ou 0 pour être compatible avec le tinyint de mysql
 
@@ -463,43 +466,42 @@ function ajouterExperiencePro(){
 
         //On insert les informations obligatoires de la nouvelle experience professionnelle
         $requeteInsertionExpPro = $BDD->prepare("INSERT INTO ExperiencePro(IntituleExperiencePro,TypeExperiencePro, DateDebut, TypeOrganisation, LibelleOrganisation, TypePoste, Region, Ville, SecteursActivites, DomainesCompetences, IdEleve) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-        $requeteInsertionExpPro->execute(array($intituleExperiencePro,$typeExperiencePro,$dateDebut,$typeOrganisation,$libelleOrganisation,$typePoste,$region,$ville,$secteursActivites,$domainesCompetences,$idEleve));
+        $requeteInsertionExpPro->execute(array($intituleExperiencePro, $typeExperiencePro, $dateDebut, $typeOrganisation, $libelleOrganisation, $typePoste, $region, $ville, $secteursActivites, $domainesCompetences, $idEleve));
 
         // On recupère l'id de l'experience pro insérée
         $idExperiencePro = $BDD->lastInsertId();
 
 
         // Si la date de fin de l'experience pro est donnée alors on l'ajoute également
-        if(!empty($_POST["dateFin"])){
-            $dateFinStr = escape($_POST["dateFin"]);
-            $dateFin=date("Y-m-d H:i:s",strtotime($dateFinStr));
+        if (!empty($_POST["DateFin"])) {
+            $dateFinStr = escape($_POST["DateFin"]);
+            $dateFin = date("Y-m-d H:i:s", strtotime($dateFinStr));
             $requeteUpdateDateFin = $BDD->prepare("UPDATE ExperiencePro SET DateFin=? WHERE IdExperiencePro=?");
-            $requeteUpdateDateFin->execute(array($dateFin,$idExperiencePro));
+            $requeteUpdateDateFin->execute(array($dateFin, $idExperiencePro));
         }
 
         // Si la description de l'experience pro est donnée alors on l'ajoute également
-        if(!empty($_POST["description"])){
-            $description = escape($_POST["description"]);
+        if (!empty($_POST["Description"])) {
+            $description = escape($_POST["Description"]);
             $requeteUpdateDescription = $BDD->prepare("UPDATE ExperiencePro SET Description=? WHERE IdExperiencePro=?");
-            $requeteUpdateDescription->execute(array($description,$idExperiencePro));
+            $requeteUpdateDescription->execute(array($description, $idExperiencePro));
         }
 
         // Si le salaire de l'experience pro est donnée alors on l'ajoute également
-        if(!empty($_POST["salaire"])){
-            $salaire = escape($_POST["salaire"]);
+        if (!empty($_POST["Salaire"])) {
+            $salaire = escape($_POST["Salaire"]);
             $requeteUpdateSalaire = $BDD->prepare("UPDATE ExperiencePro SET Salaire=? WHERE IdExperiencePro=?");
-            $requeteUpdateSalaire->execute(array($salaire,$idExperiencePro));
+            $requeteUpdateSalaire->execute(array($salaire, $idExperiencePro));
         }
 
         // On ajoute le parametre de visibilité en base (par défaut, l'exp pro est visibile)
         // Pour une experience pro, le libelle correspond à l'identifiant de l'experience pro.
 
-        insererParametre($BDD,$idEleve,$visibilite,$idExperiencePro);
+        insererParametre($BDD, $idEleve, $visibilite, $idExperiencePro);
 
         $alert["bootstrapClassAlert"] = "success";
         $alert["messageAlert"] = "L'experience professionnelle a bien été ajoutée.";
-
-    }else{
+    } else {
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Des informations sont manquantes.";
     }
@@ -509,64 +511,140 @@ function ajouterExperiencePro(){
 
     $_SESSION["alert"] = $alert;
 
-    redirect("profil.php?idEleve=".$idEleve);
+    redirect("profil.php?idEleve=" . $idEleve);
 }
 
 
 
-function getIdEleveParNomUtilisateur($nomUtilisateur){
+function getIdEleveParNomUtilisateur($nomUtilisateur)
+{
     $BDD = getBDD();
     $requeteIdEleve = $BDD->prepare("SELECT IdEleve FROM Compte, Eleve WHERE Compte.IdCompte=Eleve.IdCompte AND Compte.NomUtilisateur = ?");
-    $requeteIdEleve -> execute(array($nomUtilisateur));
-    $idEleve = $requeteIdEleve -> fetch()[0];
+    $requeteIdEleve->execute(array($nomUtilisateur));
+    $idEleve = $requeteIdEleve->fetch()[0];
     return $idEleve;
 }
 
 //formate le format date de mysql pour l'afficher dans les experiences pro
-function formaterDateExperiencePro($date){
-    if($date==null){
+function formaterDateExperiencePro($date)
+{
+    if ($date == null) {
         return "";
-    }
-    else{
+    } else {
         $mois = substr($date, 5, 2);
         $annee = substr($date, 0, 4);
-    
-        $newDate = $mois."/".$annee;
+
+        $newDate = $mois . "/" . $annee;
         return $newDate;
     }
 }
 
 //retourne un tableau associatif contenant la visibilité des différents paramètres
-function getVisibiliteInfosProfil($idEleve){
+function getVisibiliteInfosProfil($idEleve)
+{
     $BDD = getBDD();
 
     $requeteParametres = $BDD->prepare("SELECT LibelleInformation,Visibilite FROM Parametres WHERE IdEleve = ?");
-    $requeteParametres -> execute(array($idEleve));
+    $requeteParametres->execute(array($idEleve));
     $parametres = $requeteParametres->fetchAll();
 
     $visibilite = array();
-    foreach($parametres as $parametre){
+    foreach ($parametres as $parametre) {
         $visibilite[$parametre["LibelleInformation"]] = $parametre["Visibilite"];
     }
 
-    return $visibilite; 
-
+    return $visibilite;
 }
 
 
-function mettreAJourProfil(){
-    if(!empty($_POST["mettreAJourProfil"])){ // pas besoin de verifier les autres champs vu qu'ils sont en required
-        
+function mettreAJourProfil()
+{
+    if (!empty($_POST["mettreAJourProfil"])) { // pas besoin de verifier les autres champs vu qu'ils sont en required
+        $BDD = getBDD();
+        $miseAJour = false; //sera true si on fait une mise à jour
+
         print_r($_POST);
 
-        // On fait getInfoCompteParId puis on verifie si les champs sont différents que ceux du post, si oui on fait un update du champ en utilisant arraykey pour avoir le champ en question (il faut gérer le cas particulier de l'adresse mail)
-        // pour chaque experience pro, on verifie si lenom du champ concatené avec l'id est différent du nom du champ de l'experience pro , si oui on update
-        //ensuite on regarde au nivau des paramètres de visibilité : pour les 6 infos perso on regarde si c'est set ou non, puis si c'est set on verifie que c'était biein visibile avant aussi, et inversemment puis on update en conséquent
-        //pour la visibilité des experiences pro, on loop dans les experiences pro et on regarde si visiliteExProX avec X l'id de l'expro est set, si oui alors on regarde si cc'était aussi visible avant et on update en conséquent
+        /* Modification des champs d'information personelle */
 
         $idEleve = getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]);
-        //redirect("profil.php?idEleve=".$idEleve);
-    } 
+        $infos = getInfosCompteEleveParId($idEleve);
+        $labelsInfosPerso = array("Nom", "Prenom", "Promotion", "Genre", "Adresse", "Ville", "CodePostal", "NumTelephone"); // Ne contient pas l'adresse mail car c'est pas dans la table info perso (on le fait à part)
 
+        // on verifie si les infos perso ont été modifiées
+        foreach ($labelsInfosPerso as $label) {
+            if ($infos[$label] != escape($_POST[$label])) {
+                $requeteUpdateInfoPerso = $BDD->prepare("UPDATE InfosPerso SET $label=? WHERE IdEleve=?"); // On ne peut pas passer un nom de colonne par un parametre du prepare et on connait les valeurs de $label donc pas de problème de sécurité
+                $requeteUpdateInfoPerso->execute(array(escape($_POST[$label]), $idEleve));
+                $miseAJour=true;
+            }
+        }
+
+
+        // on verifie si l'adresse mail a été modifiée
+        if ($infos["AdresseMail"] != escape($_POST["AdresseMail"])) {
+            $requeteUpdateMail = $BDD->prepare("UPDATE Compte SET AdresseMail=? WHERE nomUtilisateur=?");
+            $requeteUpdateMail->execute(array(escape($_POST["AdresseMail"]), $_SESSION["nomUtilisateur"]));
+
+            $miseAJour=true;
+        }
+
+
+        /* Modification de la visibilité des champs des infos perso */
+
+        $parametres = getVisibiliteInfosProfil($idEleve);
+
+        $labelsVisibiliteInfosProfil = array("Adresse", "Ville", "CodePostal", "AdresseMail", "NumTelephone");
+        foreach ($labelsVisibiliteInfosProfil as $labelVisibilite) {
+            $visibilite = (isset($_POST[$labelVisibilite . "Visibilite"])) ? 1 : 0; // Si ce champs du post n'est pas set c'est que la checkbox n'est pas cochée, s'il est set alors c'est que la checkbox est cochée
+            if ($parametres[$labelVisibilite] != $visibilite) { // Si le parametre de visibilité est différent entre la valeur du form et la bdd alors on update
+                $requeteUpdateParametres = $BDD->prepare("UPDATE Parametres SET Visibilite=? WHERE IdEleve = ? AND LibelleInformation = ?");
+                $requeteUpdateParametres->execute(array($visibilite, $idEleve, $labelVisibilite));
+                $miseAJour = true;
+            }
+        }
+
+
+
+        /* Modification des champs des experiences pro */
+
+        // Les champs de la classe experience pro qui sont modifiables 
+        $labelsExperiencesPro = array("IntituleExperiencePro", "TypeExperiencePro", "DateDebut", "DateFin", "TypeOrganisation", "LibelleOrganisation", "TypePoste", "Region", "Ville", "SecteursActivites", "DomainesCompetences", "Description", "Salaire");
+
+        $experiencesPro = getExperiencesProParId($idEleve); // On recupère les experiences pro
+
+        foreach ($experiencesPro as $experience) { //pour chaque experience pro
+            foreach ($labelsExperiencesPro as $label) { //pour chaque label (champ) de l'experience pro
+                $idExperiencePro = $experience["IdExperiencePro"]; // on recupere l'id de l'experience pro car les noms des key du $_POST sont sous la forme "NomChampIdExperiencePro" 
+                if ($experience[$label] != escape($_POST[$label . $idExperiencePro])) { // Si le champ de l'experience est différent du champ passé dans le post pour cette experience alors on update la bdd
+                    $requeteUpdateExperiencePro = $BDD->prepare("UPDATE ExperiencePro SET $label=? WHERE IdExperiencePro = ?");
+                    $requeteUpdateExperiencePro->execute(array(escape($_POST[$label . $idExperiencePro]), $idExperiencePro));
+                    $miseAJour = true;
+                }
+            }
+            /* Modification de la visiblité des experiences pro */
+
+            // On profite de boucler dans les experiences pro pour gerer la visibilité
+            $visibilite = (isset($_POST["visibiliteExpPro" . $idExperiencePro])) ? 1 : 0; // Si ce champs du post n'est pas set c'est que la checkbox n'est pas cochée, s'il est set alors c'est que la checkbox est cochée
+            if ($parametres[$idExperiencePro] != $visibilite) { // Si le parametre de visibilité est différent entre la valeur du form et la bdd alors on update
+                // pour rappel dans les parametres, les experiences pro sont identifiées par leur identifiant
+                $requeteUpdateParametres = $BDD->prepare("UPDATE Parametres SET Visibilite=? WHERE IdEleve = ? AND LibelleInformation = ?");
+                $requeteUpdateParametres->execute(array($visibilite, $idEleve, $idExperiencePro));
+                $miseAJour = true;
+            }
+
+        }
+
+        unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
+        $_POST = array();
+
+        if ($miseAJour) {
+            $alert["bootstrapClassAlert"] = "success";
+            $alert["messageAlert"] = "Le profil a bien été mis à jour";
+            $_SESSION["alert"] = $alert;
+        }
+
+
+        redirect("profil.php?idEleve=".$idEleve);
+    }
 }
-

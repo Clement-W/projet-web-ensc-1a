@@ -27,6 +27,10 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     $tel = $infos["NumTelephone"];
 
     $experiencePro = getExperiencesProParId($idEleve);
+    $parametres = getVisibiliteInfosProfil($idEleve);
+
+    // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, sinon c'est false.
+    $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"])
 
 ?>
 
@@ -53,7 +57,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="d-flex justify-content-between pt-3">
                     <h2 class="ml-5 ">Profil</h2>
                     <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté-->
-                    <?php if (!estGestionnaire() && (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"])) { ?>
+                    <?php if (!estGestionnaire() && $estProfilDeLUtilisateurCo) { ?>
                         <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
                     <?php } ?>
                 </div>
@@ -63,8 +67,10 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div class="col-md-12">
                             <div class="affichageProfil"><?= $prenom ?> <?= $nom ?></div>
                             <div class="affichageProfil">Promotion <?= $promo ?></div>
-                            <div class="affichageProfil">Genre: <?= $genre ?></div> 
-                            <!-- TODOOOOOOOOOO : si la personne connectée n'est pas l'id de l'eleve et que la personne connectée n'est pas un gestionnaire : alors on affiche le genre que si le genre est rendu visible par le propriétaire du comtpe -->
+                            <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["Genre"]) { ?>
+                                <!-- si la personne connectée n'est pas un admin ou que ce n'est pas le propriétaire du compte alors on affiche pas les informations masquées -->
+                                <div class="affichageProfil">Genre: <?= $genre ?></div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -73,22 +79,32 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
                             <div class="affichageProfil"><u>Contact</u> </div>
-                            <div class="affichageProfil">
-                                <i class="fa fa-at fa-lg" aria-hidden="true"></i>
-                                <?= $mail ?>
-                            </div>
-                            <div class="affichageProfil">
-                                <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
-                                <?= $tel ?>
-                            </div>
+                            <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["AdresseMail"]) { ?>
+                                <div class="affichageProfil">
+                                    <i class="fa fa-at fa-lg" aria-hidden="true"></i>
+                                    <?= $mail ?>
+                                </div>
+                            <?php } ?>
+                            <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["NumTelephone"]) { ?>
+                                <div class="affichageProfil">
+                                    <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                                    <?= $tel ?>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="col-md-6 h5">
                         <div class="col-md-12">
                             <div class="affichageProfil"><u>Adresse</u> </div>
-                            <div class="affichageProfil"><?= $adresse ?></div>
-                            <div class="affichageProfil"><?= $ville ?></div>
-                            <div class="affichageProfil"><?= $codePostal ?></div>
+                            <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["Adresse"]) { ?>
+                                <div class="affichageProfil"><?= $adresse ?></div>
+                            <?php } ?>
+                            <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["Ville"]) { ?>
+                                <div class="affichageProfil"><?= $ville ?></div>
+                            <?php } ?>
+                            <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["CodePostal"]) { ?>
+                                <div class="affichageProfil"><?= $codePostal ?></div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -102,35 +118,40 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <div id="content">
                                     <ul class="timeline">
                                         <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
-                                            $intituleExp = $expPro["IntituleExperiencePro"];
-                                            $typeExp = $expPro["TypeExperiencePro"];
-                                            $dateDebut = $expPro["DateDebut"];
-                                            $dateFin = $expPro["DateFin"];
-                                            $typeOrganisation = $expPro["TypeOrganisation"];
-                                            $libelleOrganisation = $expPro["LibelleOrganisation"];
-                                            $typePoste = $expPro["TypePoste"];
-                                            $region = $expPro["Region"];
-                                            $ville = $expPro["Ville"];
-                                            $secteursActivites = $expPro["SecteursActivites"];
-                                            $domainesCompetences = $expPro["DomainesCompetences"];
-                                            $description = $expPro["Description"];
-                                            $salaire = $expPro["Salaire"];
+                                            $idExperiencePro = $expPro["IdExperiencePro"];
+                                            // Si l'eexperience pro est rendue invisible par l'utilisateur alors on ne le montre pas
+                                            if ($parametres[$idExperiencePro] || estGestionnaire() || $estProfilDeLUtilisateurCo) {
 
-                                            // on formate l'affichage de la date
-                                            $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin);
+                                                $intituleExp = $expPro["IntituleExperiencePro"];
+                                                $typeExp = $expPro["TypeExperiencePro"];
+                                                $dateDebut = $expPro["DateDebut"];
+                                                $dateFin = $expPro["DateFin"];
+                                                $typeOrganisation = $expPro["TypeOrganisation"];
+                                                $libelleOrganisation = $expPro["LibelleOrganisation"];
+                                                $typePoste = $expPro["TypePoste"];
+                                                $region = $expPro["Region"];
+                                                $ville = $expPro["Ville"];
+                                                $secteursActivites = $expPro["SecteursActivites"];
+                                                $domainesCompetences = $expPro["DomainesCompetences"];
+                                                $description = $expPro["Description"];
+                                                $salaire = $expPro["Salaire"];
+
+                                                // on formate l'affichage de la date
+                                                $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin);
 
                                         ?>
 
-                                            <li class="event" title=<?= $dates ?>>
-                                                <h4><?= $intituleExp ?></h4>
-                                                <p class="h6">
-                                                    <?php echo $libelleOrganisation . " - " . $typeExp ?>
-                                                    </br>
-                                                    <?php echo $region . " - " . $ville ?>
-                                                </p>
-                                                <p><?= $description ?> </p>
-                                            </li>
-                                        <?php } ?>
+                                                <li class="event" title=<?= $dates ?>>
+                                                    <h4><?= $intituleExp ?></h4>
+                                                    <p class="h6">
+                                                        <?php echo $libelleOrganisation . " - " . $typeExp ?>
+                                                        </br>
+                                                        <?php echo $region . " - " . $ville ?>
+                                                    </p>
+                                                    <p><?= $description ?> </p>
+                                                </li>
+                                        <?php }
+                                        } ?>
                                     </ul>
                                 </div>
                             </div>

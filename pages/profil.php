@@ -30,7 +30,9 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     $parametres = getVisibiliteInfosProfil($idEleve);
 
     // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, sinon c'est false.
-    $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"])
+    if(!estGestionnaire()){
+        $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]);
+    }
 
 ?>
 
@@ -115,6 +117,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div class="col-md-12">
                             <div class="card-body ml-3">
                                 <h6 class="card-title h5 text-secondary"><u>Expériences</u> </h6>
+                                <?php if(possedeExperiencePro($idEleve)){ ?>
+                                
                                 <div id="content">
                                     <ul class="timeline">
                                         <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
@@ -154,6 +158,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                         } ?>
                                     </ul>
                                 </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

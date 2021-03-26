@@ -681,15 +681,75 @@ function mettreAJourMotDePasse()
             $_SESSION["alert"] = $alert;
 
             redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
-
-        }
-        else{
+        } else {
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Veuillez vérifier les mots de passe rentrés";
             $_SESSION["alert"] = $alert;
         }
         unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
         $_POST = array();
-        
     }
+}
+
+function creerCompteEleveParGestionnaire()
+{
+    $BDD = getBDD();
+
+    if (!empty($_POST["prenom"]) && !empty($_POST["nom"]) && !empty($_POST["motDePasse"]) && !empty($_POST["promo"]) && !empty($_POST["mail"])) {
+
+        $nom = escape($_POST["nom"]);
+        $prenom = escape($_POST["prenom"]);
+        $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
+        $mdp = escape($_POST["motDePasse"]);
+        $promo = escape($_POST["promo"]);
+        $mail = escape($_POST["mail"]);
+
+        // On créé un compte associé au mail, nom d'utilisateur et mot de passe
+        $requeteInsertionCompte = $BDD->prepare("INSERT INTO Compte(NomUtilisateur, MotDePasse, AdresseMail) VALUES (?,?,?)");
+        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdp, $mail));
+
+        // On recupère l'id du compte inséré
+        $idCompte = $BDD->lastInsertId();
+
+        // On créé un élève à partir de l'id du compte créé
+        $requeteInsertionEleve = $BDD->prepare("INSERT INTO Eleve(CompteValide, IdCompte) VALUES (TRUE,?)");
+        $requeteInsertionEleve->execute(array($idCompte));
+
+        // On recupère l'id de l'élève inséré
+        $idEleve = $BDD->lastInsertId();
+
+        // On insert ses informations personnelles en base
+        $requeteInsertionInfosPerso = $BDD->prepare("INSERT INTO InfosPerso(Nom, Prenom, Promotion, IdEleve) VALUES (?,?,?,?)");
+        $requeteInsertionInfosPerso->execute(array($nom, $prenom, $promo, $idEleve));
+
+        // Visibilite des informations personnelles
+        $informationsParametrable =  array("Genre", "Adresse", "Ville", "CodePostal", "NumTelephone", "AdresseMail"); // Contient les noms des champs dont la visibilité est parametrable
+        foreach ($informationsParametrable as $libelleInformation) { // pour chaque information du compte dont la visibilité est modifiable
+            insererParametre($BDD, $idEleve, true, $libelleInformation); // on insert en base le parametre comme visible
+        }
+        $alert["bootstrapClassAlert"] = "success";
+        $alert["messageAlert"] = "Le compte a bien été créé.";
+    } else {
+        $alert["bootstrapClassAlert"] = "danger";
+        $alert["messageAlert"] = "Une erreur est survenue, le compte n'a pas pu être créé.";
+    }
+
+    unset($_POST);
+    $_POST = array();
+
+    $_SESSION["alert"] = $alert;
+}
+
+
+function possedeExperiencePro($id){
+    $BDD = getBDD();
+
+    $requetePossedeExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro WHERE IdEleve=?");
+    $requetePossedeExperiencePro->execute(array($id));
+    if ($requetePossedeExperiencePro->rowCount() == 0) { //Si aucune expérience n'a été rentré, on return false
+        return false;
+    } else { // S'il est présent alors on return true
+        return true;
+    }
+
 }

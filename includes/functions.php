@@ -241,7 +241,7 @@ function creerCompteGestionnaire()
 
         $BDD = getBDD();
 
-        $nomUtilisateur = escape($_POST["email"]);
+        $nomUtilisateur = escape($_POST["nomUtilisateur"]);
         $email = escape($_POST["email"]);
         $mdp = escape($_POST["motDePasse"]);
 
@@ -563,7 +563,6 @@ function mettreAJourProfil()
         $BDD = getBDD();
         $miseAJour = false; //sera true si on fait une mise à jour
 
-        print_r($_POST);
 
         /* Modification des champs d'information personelle */
 
@@ -576,7 +575,7 @@ function mettreAJourProfil()
             if ($infos[$label] != escape($_POST[$label])) {
                 $requeteUpdateInfoPerso = $BDD->prepare("UPDATE InfosPerso SET $label=? WHERE IdEleve=?"); // On ne peut pas passer un nom de colonne par un parametre du prepare et on connait les valeurs de $label donc pas de problème de sécurité
                 $requeteUpdateInfoPerso->execute(array(escape($_POST[$label]), $idEleve));
-                $miseAJour=true;
+                $miseAJour = true;
             }
         }
 
@@ -586,7 +585,7 @@ function mettreAJourProfil()
             $requeteUpdateMail = $BDD->prepare("UPDATE Compte SET AdresseMail=? WHERE nomUtilisateur=?");
             $requeteUpdateMail->execute(array(escape($_POST["AdresseMail"]), $_SESSION["nomUtilisateur"]));
 
-            $miseAJour=true;
+            $miseAJour = true;
         }
 
 
@@ -594,7 +593,7 @@ function mettreAJourProfil()
 
         $parametres = getVisibiliteInfosProfil($idEleve);
 
-        $labelsVisibiliteInfosProfil = array("Adresse", "Ville", "CodePostal", "AdresseMail", "NumTelephone");
+        $labelsVisibiliteInfosProfil = array("Adresse", "Ville", "CodePostal", "AdresseMail", "NumTelephone", "Genre");
         foreach ($labelsVisibiliteInfosProfil as $labelVisibilite) {
             $visibilite = (isset($_POST[$labelVisibilite . "Visibilite"])) ? 1 : 0; // Si ce champs du post n'est pas set c'est que la checkbox n'est pas cochée, s'il est set alors c'est que la checkbox est cochée
             if ($parametres[$labelVisibilite] != $visibilite) { // Si le parametre de visibilité est différent entre la valeur du form et la bdd alors on update
@@ -632,7 +631,6 @@ function mettreAJourProfil()
                 $requeteUpdateParametres->execute(array($visibilite, $idEleve, $idExperiencePro));
                 $miseAJour = true;
             }
-
         }
 
         unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
@@ -645,6 +643,53 @@ function mettreAJourProfil()
         }
 
 
-        redirect("profil.php?idEleve=".$idEleve);
+        redirect("profil.php?idEleve=" . $idEleve);
+    }
+}
+
+function getCompteNonValide()
+{
+    $BDD = getBDD();
+
+    //On recupère les infos personnelles et les informations de compte de l'utilisateur
+    $requeteCompteNonValide = $BDD->prepare("SELECT Nom, Prenom, Promotion, CompteValide, Eleve.IdEleve FROM Eleve, InfosPerso WHERE Eleve.IdEleve = InfosPerso.IdEleve AND Eleve.CompteValide = 0");
+    $requeteCompteNonValide->execute();
+    return $requeteCompteNonValide->fetchAll();
+}
+
+function mettreAJourMotDePasse()
+{
+    if (!empty($_POST["ancienMotDePasse"]) && !empty($_POST["nouveauMotDePasse"]) && !empty($_POST["confirmeNouveauMotDePasse"])) {
+
+        $ancienMotDePasse = escape($_POST["ancienMotDePasse"]);
+        $nouveauMotDePasse = escape($_POST["nouveauMotDePasse"]);
+        $confirmeNouveauMotDePasse = escape($_POST["confirmeNouveauMotDePasse"]);
+        $nomUtilisateur = $_SESSION["nomUtilisateur"];
+
+        $BDD = getBDD();
+
+        $requeteMotDePasse = $BDD->prepare("SELECT MotDePasse FROM Compte WHERE NomUtilisateur = ?");
+        $requeteMotDePasse->execute(array($nomUtilisateur));
+        $motDePasseActuel = $requeteMotDePasse->fetch()[0];
+
+        if (($ancienMotDePasse == $motDePasseActuel) && ($nouveauMotDePasse == $confirmeNouveauMotDePasse)) {
+            $requeteUpdateMotDePasse = $BDD->prepare("UPDATE Compte SET MotDePasse = ? WHERE NomUtilisateur = ?");
+            $requeteUpdateMotDePasse->execute(array($nouveauMotDePasse, $nomUtilisateur));
+
+            $alert["bootstrapClassAlert"] = "success";
+            $alert["messageAlert"] = "Le mot de passe a bien été mis à jour";
+            $_SESSION["alert"] = $alert;
+
+            redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
+
+        }
+        else{
+            $alert["bootstrapClassAlert"] = "danger";
+            $alert["messageAlert"] = "Veuillez vérifier les mots de passe rentrés";
+            $_SESSION["alert"] = $alert;
+        }
+        unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
+        $_POST = array();
+        
     }
 }

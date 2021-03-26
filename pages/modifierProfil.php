@@ -11,6 +11,10 @@ if (!empty($_POST["ajouterExperiencePro"])) {
 if (!empty($_POST["mettreAJourProfil"])) {
     mettreAJourProfil();
 } 
+//Si on appuie sur le bouton submit de la modal Modifier le mot de passe
+if (!empty($_POST["modifierMotDePasse"])) {
+    mettreAJourMotDePasse();
+} 
 
 if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["idEleve"]) || !(getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]))) {
     // Si un utilisateur n'est pas connecté, ou que l'id eleve n'est pas valide ou pas donné en get alors on redirige vers 404 error

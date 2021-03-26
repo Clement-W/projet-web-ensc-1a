@@ -18,7 +18,7 @@
                     </br>
                     <?php require_once("../includes/fragments/formExperiencePro.php"); ?>
                     <div class="d-flex justify-content-end ">
-                        <input type="submit" class="btn btn-outline-success" name="ajouterExperiencePro" id="ajouterExperiencePro" value="ajouterExperiencePro" />
+                        <input type="submit" class="btn btn-outline-success" name="ajouterExperiencePro" id="ajouterExperiencePro" value="Ajouter" />
                     </div>
                 </form>
             </div>

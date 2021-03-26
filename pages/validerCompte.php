@@ -27,15 +27,7 @@ require_once "../includes/fragments/head.php";
         }
 
 
-        function getCompteNonValide()
-        {
-            $BDD = getBDD();
-
-            //On recupère les infos personnelles et les informations de compte de l'utilisateur
-            $requeteCompteNonValide = $BDD->prepare("SELECT Nom, Prenom, Promotion, CompteValide, Eleve.IdEleve FROM Eleve, InfosPerso WHERE Eleve.IdEleve = InfosPerso.IdEleve AND Eleve.CompteValide = 0");
-            $requeteCompteNonValide->execute();
-            return $requeteCompteNonValide->fetchAll();
-        }
+        
         $comptesNonValides = getCompteNonValide();
         foreach ($comptesNonValides as $compte) {
         ?>

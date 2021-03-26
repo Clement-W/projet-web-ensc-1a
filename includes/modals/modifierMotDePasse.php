@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
- 
+
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Modifier le mot de passe</h4>
@@ -10,16 +10,28 @@
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body">
-                Vous n'avez pas encore ajouté d'expérience professionnelle à votre profil.
-            </div>
+            <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="register-form ml-5 mr-5" id="register-form">
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-success" type="button">Mettre à jour</a>
-            </div>
+                <div class="form-group">
+                    <label for="ancienMotDePasse"><i class="zmdi zmdi-lock"></i></label>
+                    <input type="password" name="ancienMotDePasse" id="ancienMotDePasse" placeholder="Ancien mot de passe" required />
+                </div>
+                <div class="form-group">
+                    <label for="nouveauMotDePasse"><i class="zmdi zmdi-account material-icons-name "></i></label>
+                    <input type="password" name="nouveauMotDePasse" id="nouveauMotDePasse" placeholder="Nouveau mot de passe" required />
+                </div>
+                <div class="form-group">
+                    <label for="confirmeNouveauMotDePasse"><i class="zmdi zmdi-account material-icons-name "></i></label>
+                    <input type="password" name="confirmeNouveauMotDePasse" id="confirmeNouveauMotDePasse" placeholder="Confirmer le nouveau mot de passe" required />
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="form-group form-button d-flex ">
+                        <input type="submit" class="btn btn-outline-success" name="modifierMotDePasse" id="modifierMotDePasse" value="Modifier" />
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-

@@ -1,10 +1,7 @@
 <?php
 
-// CERTAINES MÉTHODES DOIVENT ÊTRE DÉPLACÉES DANS LES FICHIERS PAGES ASSOCIÉES LORSQU'ELLES NE SONT UTILISÉES QU'UNE FOIS
-
 function getBDD()
 {
-    // Déploiement en local
     $server = "localhost";
     $username = "annuaireUser";
     $password = "explodingkittens";
@@ -169,8 +166,8 @@ function inscription()
 
     if (!empty($_POST["nom"]) && !empty($_POST["prenom"]) && !empty($_POST["motDePasse"]) && !empty($_POST["promo"]) && !empty($_POST["genre"]) && !empty($_POST["adresse"]) && !empty($_POST["ville"]) && !empty($_POST["codePostal"]) && !empty($_POST["email"]) && !empty($_POST["telephone"])) {
 
-        $nom = escape($_POST["nom"]);
-        $prenom = escape($_POST["prenom"]);
+        $nom = ucwords(strtolower(escape($_POST["nom"]))); // on met la première lettre en majuscule (on met tout en minuscule avant pour être sûr que ce soit apreil pour tout le monde)
+        $prenom = ucwords(strtolower(escape($_POST["prenom"])));
         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
         $mdp = escape($_POST["motDePasse"]);
         $promo = escape($_POST["promo"]);
@@ -681,8 +678,8 @@ function creerCompteEleveParGestionnaire()
 
     if (!empty($_POST["prenom"]) && !empty($_POST["nom"]) && !empty($_POST["motDePasse"]) && !empty($_POST["promo"]) && !empty($_POST["mail"])) {
 
-        $nom = escape($_POST["nom"]);
-        $prenom = escape($_POST["prenom"]);
+        $nom = ucwords(strtolower(escape($_POST["nom"]))); // on met la première lettre en majuscule (on met tout en minuscule avant pour être sûr que ce soit apreil pour tout le monde)
+        $prenom = ucwords(strtolower(escape($_POST["prenom"])));
         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
         $mdp = escape($_POST["motDePasse"]);
         $promo = escape($_POST["promo"]);
@@ -775,8 +772,8 @@ function creerComptesElevesDepuisCSV()
 
                 //on analyse les infos d'un élève pour verifier la validiter des inputs
                 // la csv a toujours la même forme donc on peut utiliser des indices fixes
-                $nom = trim($infosEleve[0]); // on trim pour enlever les espaces au début et à la fin
-                $prenom = trim($infosEleve[1]);
+                $nom = ucwords(strtolower(trim($infosEleve[0]))); // on trim pour enlever les espaces au début et à la fin
+                $prenom = ucwords(strtolower(trim($infosEleve[1])));
                 $mdp = trim($infosEleve[2]);
                 $mail = trim($infosEleve[3]);
 

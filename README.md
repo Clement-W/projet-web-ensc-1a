@@ -53,10 +53,11 @@ TODO :
 * input forcer la longueur pour eviter les erreurs mysql (30min)
 * probleme du search filter (envie de canner) (???min)
 * Changer session alert avec un status pour faire plus propre (30min)
+
 * rendre les id uniques sur la page modifier profil (20min)
+
 * faire un toUpper sur la premiere lettre du prenom et du nom sur le profil à l'insertion en base ou à l'affichage sur profil et dans la recherche (10min)
 
-* Faire en sorte que quand on clique sur une experience pro ça affiche les details dans une modale (1H30)
 
 * probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
 * Mettre des exemples dans les place holders de ajout experience pro (10min)
@@ -64,10 +65,11 @@ TODO :
 * ajouter le username du profil sur lequel on est dans le titre de la page (10min)
 
 * centrer le texte de attentevalidation.php et 404.php
-* intergrer la popup qui dit qu'on a pas ajouté d'experience pro (20min)
 
-* lancer fonction js dans un onclick
 * faire en sorte que le gestionnaire puisse modifier son profil
+
+
+* quand pas de compte à valider on affiche un message
 ---
 
 2h :

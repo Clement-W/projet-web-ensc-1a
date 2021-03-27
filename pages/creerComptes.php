@@ -11,6 +11,10 @@ if (!estGestionnaire()) {
     if (!empty($_POST["creerCompteEleve"])) {
         creerCompteEleveParGestionnaire();
     }
+
+    if (!empty($_POST["validerFileUpload"])) {
+        creerComptesElevesDepuisCSV();
+    }
 ?>
 
     <!doctype html>
@@ -116,17 +120,21 @@ if (!estGestionnaire()) {
                     <div class="whitecontainer flex-column d-flex justify-content-center">
 
                         <h2 class="d-flex justify-content-center mt-3">Créer plusieurs comptes Élève</h2>
-                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 text-justify">Vous pouvez télécharger ici le template excel (csv) permettant de créer plusieurs comptes Élève: </h4>
+                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 text-justify">Télécharger le template excel (csv) permettant de créer plusieurs comptes Élève </h4>
 
                         <a href="../README.md" type="button" class="btn btn-outline-success mr-5 ml-5 mb-5 mt-2" download="README.md">Télécharger</a>
 
-                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 text-justify">Une fois le template rempli, déposer le ici:</h4>
-                        <div class="file-upload-wrapper mt-3 mb-4">
-                            <input type="file" id="input-file-now" class="file-upload" />
-                        </div>
-                        <script>
-                            $('.file-upload').file_upload();
-                        </script>
+                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 text-justify">Vous pouvez déposer ce même fichier une fois rempli ci-dessous afin de créer plusieurs comptes</h4>
+
+                        <form method="post" action="creerComptes.php" class="" enctype="multipart/form-data"> <!-- ce enctype permet l'envoi de fichier -->
+
+                            <div class="mt-3 ">
+                                <input type="file" id="templateUploaded" name="templateUploaded" class="file-upload" required/>
+                            </div>
+
+                            <input type="submit" class="btn btn-outline-success" name="validerFileUpload" id="validerFileUpload" value="Valider" />
+
+                        </form>
                     </div>
                 </div>
             </div>

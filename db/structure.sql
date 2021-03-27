@@ -57,7 +57,7 @@ CREATE TABLE InfosPerso(
 
 CREATE TABLE ExperiencePro(
    IdExperiencePro INT AUTO_INCREMENT,
-   IntituleExperiencePro VARCHAR(50),
+   IntituleExperiencePro VARCHAR(200),
    TypeExperiencePro VARCHAR(50),
    DateDebut DATE,
    DateFin DATE,
@@ -68,7 +68,7 @@ CREATE TABLE ExperiencePro(
    Ville VARCHAR(50),
    SecteursActivites VARCHAR(50),
    DomainesCompetences VARCHAR(50),
-   Description VARCHAR(400),
+   Description VARCHAR(1000),
    Salaire DOUBLE,
    IdEleve INT,
    PRIMARY KEY(IdExperiencePro),

@@ -1,5 +1,6 @@
 <?php
 if (isset($_SESSION["alert"])) {
+    // On utilise la variable de session afin de pouvoir transporter les messages d'alerte de pages en pages.
     $alert = $_SESSION["alert"];
     $bootstrapClassAlert =  $alert['bootstrapClassAlert'];
     $messageAlert = $alert['messageAlert'];

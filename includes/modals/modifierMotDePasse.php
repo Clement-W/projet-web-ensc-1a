@@ -14,15 +14,15 @@
 
                 <div class="form-group">
                     <label for="ancienMotDePasse"><i class="zmdi zmdi-lock"></i></label>
-                    <input type="password" name="ancienMotDePasse" id="ancienMotDePasse" placeholder="Ancien mot de passe" required />
+                    <input type="password" maxlength="50" name="ancienMotDePasse" id="ancienMotDePasse" placeholder="Ancien mot de passe" required />
                 </div>
                 <div class="form-group">
                     <label for="nouveauMotDePasse"><i class="zmdi zmdi-account material-icons-name "></i></label>
-                    <input type="password" name="nouveauMotDePasse" id="nouveauMotDePasse" placeholder="Nouveau mot de passe" required />
+                    <input type="password" maxlength="50" name="nouveauMotDePasse" id="nouveauMotDePasse" placeholder="Nouveau mot de passe" required />
                 </div>
                 <div class="form-group">
                     <label for="confirmeNouveauMotDePasse"><i class="zmdi zmdi-account material-icons-name "></i></label>
-                    <input type="password" name="confirmeNouveauMotDePasse" id="confirmeNouveauMotDePasse" placeholder="Confirmer le nouveau mot de passe" required />
+                    <input type="password" maxlength="50" name="confirmeNouveauMotDePasse" id="confirmeNouveauMotDePasse" placeholder="Confirmer le nouveau mot de passe" required />
                 </div>
 
                 <!-- Modal footer -->

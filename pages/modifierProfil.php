@@ -99,7 +99,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <p for="nom">Nom</p>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="Nom" value="<?= $nom ?>" class="form-control" id="nom" required>
+                                <input type="text" name="Nom" maxlength="50" value="<?= $nom ?>" class="form-control" id="nom" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -107,7 +107,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <p for="prenom">Prénom</p>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="Prenom" value="<?= $prenom ?>" class="form-control" id="prenom" required>
+                                <input type="text" name="Prenom" maxlength="50" value="<?= $prenom ?>" class="form-control" id="prenom" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -135,7 +135,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <p for="promotion">Promotion</p>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="number" name="Promotion" value="<?= $promo ?>" class="form-control" id="promotion" required>
+                                <input type="number" name="Promotion" min="2000" max="9999" value="<?= $promo ?>" class="form-control" id="promotion" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -144,7 +144,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <label class="custom-control-label" for="adresseVisibilite">Adresse</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="Adresse" value="<?= $adresse ?>" class="form-control" id="adresse" required>
+                                <input type="text" name="Adresse" maxlength="50" value="<?= $adresse ?>" class="form-control" id="adresse" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -153,7 +153,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <label class="custom-control-label" for="villeVisibilite">Ville</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="Ville" value="<?= $ville ?>" class="form-control" id="ville" required>
+                                <input type="text" name="Ville" maxlength="50" value="<?= $ville ?>" class="form-control" id="ville" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -162,7 +162,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <label class="custom-control-label" for="codePostalVisibilite">Code Postal</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="number" name="CodePostal" value="<?= $codePostal ?>" class="form-control" id="codePostal" required>
+                                <input type="number" name="CodePostal" max="99999" value="<?= $codePostal ?>" class="form-control" id="codePostal" required>
                             </div>
                         </div>
 
@@ -172,7 +172,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <label class="custom-control-label" for="adresseMailVisibilite">Adresse Mail</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="AdresseMail" value="<?= $mail ?>" class="form-control" id="adresseMail" required>
+                                <input type="text" name="AdresseMail" maxlength="50" value="<?= $mail ?>" class="form-control" id="adresseMail" required>
                             </div>
                         </div>
 
@@ -182,7 +182,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <label class="custom-control-label" for="numTelephoneVisibilite">Téléphone</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="NumTelephone" value="<?= $tel ?>" class="form-control" id="telephone" required>
+                                <input type="text" name="NumTelephone" max="9999999999" value="<?= $tel ?>" class="form-control" id="telephone" required>
                             </div>
                         </div>
 

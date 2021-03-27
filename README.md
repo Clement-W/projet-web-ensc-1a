@@ -50,24 +50,23 @@ QUAND un gestionnaire refuse l'inscription d'un éleve en appuyant sur la croix,
 
 TODO : 
 * bouton navbar couleur (????min)
-* input forcer la longueur pour eviter les erreurs mysql (30min)
+
 * probleme du search filter (envie de canner) (???min)
-* Changer session alert avec un status pour faire plus propre (30min)
 
-* rendre les id uniques sur la page modifier profil (20min)
-
-* faire un toUpper sur la premiere lettre du prenom et du nom sur le profil à l'insertion en base ou à l'affichage sur profil et dans la recherche (10min)
-
+* verifier la portabilité de tout
 
 * probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
 
 * faire en sorte que le gestionnaire puisse modifier son profil
+
+* revoir le problème du labe lavec intitule experience pro dans la modification
 ---
 
 2h :
 * commenter
 * relire le code
 * ajouter les entetes de chaque fichier avec une explication du fichier
+
 
 
 rapport :

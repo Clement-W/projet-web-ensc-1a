@@ -56,30 +56,33 @@ if (!estGestionnaire()) {
 
 
                         </div>
+
                         <div id="carouselExampleIndicators" class="carousel slide divCarousel marge-inscription" data-interval="false">
                             <div class="carousel-inner divCarousel">
                                 <div class="carousel-item active">
+
+                                    <!-- form pour créer un compte élève -->
                                     <form method="POST" action="creerComptes.php" class="register-form" id="register-form">
 
                                         <div class="form-group">
                                             <label for="prenom"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                            <input type="text" name="prenom" id="prenom" placeholder="Prénom" required />
+                                            <input type="text" name="prenom" maxlength="50" id="prenom" placeholder="Prénom" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="nom"><i class="zmdi zmdi-account material-icons-name "></i></label>
-                                            <input type="text" name="nom" id="nom" placeholder="Nom" required />
+                                            <input type="text" name="nom" maxlength="50" id="nom" placeholder="Nom" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                            <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required />
+                                            <input type="password" maxlength="50" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="promo"><i class="zmdi zmdi-email"></i></label>
-                                            <input type="number" name="promo" id="promo" placeholder="Promo" required />
+                                            <input type="number" name="promo" min="2000" max="9999" id="promo" placeholder="Promo" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="mail"><i class="zmdi zmdi-email"></i></label>
-                                            <input type="email" name="mail" id="mail" placeholder="Mail" required />
+                                            <input type="email" name="mail" id="mail" maxlength="50" placeholder="Mail" required />
                                         </div>
                                         <div class="form-group form-button d-flex ">
                                             <input type="submit" class="btn btn-outline-success" name="creerCompteEleve" id="creerCompteEleve" value="Créer Elève" />
@@ -89,19 +92,21 @@ if (!estGestionnaire()) {
 
                                 </div>
 
+
                                 <div class="carousel-item">
+                                    <!-- form pour créer un compte gestionnaire -->
                                     <form method="POST" action="creerComptes.php" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="nom"><i class="zmdi zmdi-account material-icons-name "></i></label>
-                                            <input type="text" name="nomUtilisateur" id="nom" placeholder="Nom d'utilisateur" required />
+                                            <input type="text" name="nomUtilisateur" maxlength="50" id="nom" placeholder="Nom d'utilisateur" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                            <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required />
+                                            <input type="password" name="motDePasse" maxlength="50" id="motDePasse" placeholder="Mot de passe" required />
                                         </div>
                                         <div class="form-group">
                                             <label for="email"><i class="zmdi zmdi-lock-outline"></i></label>
-                                            <input type="email" name="email" id="email" placeholder="E-mail" required />
+                                            <input type="email" name="email" id="email" maxlength="50" placeholder="E-mail" required />
                                         </div>
                                         <div class="form-group form-button d-flex ">
                                             <input type="submit" class="btn btn-outline-success" name="creerCompteGestionnaire" id="creerCompteGestionnaire" value="Créer Gestionnaire" />

@@ -48,11 +48,11 @@ if (estConnecte()) {
 
                                     <div class="form-group">
                                         <label for="nomUtilisateur"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                        <input type="text" name="nomUtilisateur" id="nomUtilisateur" placeholder="Nom d'utilisateur" required />
+                                        <input type="text" maxlength="50" name="nomUtilisateur" id="nomUtilisateur" placeholder="Nom d'utilisateur" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required/>
+                                        <input type="password" maxlength="50" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required/>
                                     </div>
                                     <div class="form-group form-button">
                                         <input type="submit" class="btn btn-outline-success" name="connexion" id="connexion" value="Terminer" />

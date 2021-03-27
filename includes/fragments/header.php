@@ -1,3 +1,8 @@
+<?php //Si on appuie sur le bouton submit de la modal Modifier le mot de passe
+if (!empty($_POST["modifierMotDePasse"])) {
+    mettreAJourMotDePasse();
+}
+?>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark transparent" id="nav">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -33,7 +38,21 @@
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bonjour <?= $_SESSION["nomUtilisateur"]; ?>
                 </button>
+
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    
+                <!-- Modification de mot de passe -->
+                    <?php require_once('../includes/modals/modifierMotDePasse.php'); ?>
+
+                    <a class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Modifier mot de passe</a>
+
+                    <script type="text/javascript">
+                        $('#modifierMotDePasseGestionnaire').on('click', function() {
+                            $('#modifierMotDePasse').modal('show');
+                        });
+                    </script>
+                    <!-- Déconnexion -->
+
                     <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                 </div>
             </div>

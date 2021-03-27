@@ -4,6 +4,9 @@ session_start();
 if (!empty($_POST["inscription"])) {
     inscription();
 }
+if (!empty($_POST["modifierMotDePasse"])) {
+    mettreAJourMotDePasse();
+}
 ?>
 
 <!doctype html>

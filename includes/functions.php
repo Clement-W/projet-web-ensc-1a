@@ -295,10 +295,6 @@ function validerCompteEleve($idEleve)
     $requeteUpdate = $BDD->prepare("UPDATE Eleve SET CompteValide=TRUE WHERE IdEleve = ?");
     $requeteUpdate->execute(array($idEleve));
 
-    $alert["bootstrapClassAlert"] = "success";
-    $alert["messageAlert"] = "Le compte élève n°$idEleve a bien été validé.";
-
-    $_SESSION["alert"] = $alert;
 }
 //validerCompteEleve(2);
 
@@ -340,20 +336,7 @@ function supprimerCompteEleve($idEleve)
 }
 
 
-// Invalide un compte Élève et le supprime
-function invaliderCompteEleve($idEleve)
-{
-    $BDD = getBDD();
-
-    supprimerCompteEleve($idEleve);
-
-    $alert["bootstrapClassAlert"] = "danger";
-    $alert["messageAlert"] = "Le compte élève n°$idEleve a été supprimé.";
-
-    $_SESSION["alert"] = $alert;
-}
-
-// Permet d'afficher la popup d'alerte
+// Permet d'afficher la popup d'alerte qui indique que l'utilisateur n'a pas d'experience pro
 function afficherPopUpExperiencePro()
 {
     require_once "../includes/modals/alertePasDExperiencePro.php";

@@ -25,9 +25,9 @@
             </div>
         <?php } else if (estConnecte() && estGestionnaire()) { ?>
 
-            <a href="creerCompte.php" class="navbar-brand text-light" href="#">Créer un compte</a>
+            <a href="creerComptes.php" class="navbar-brand text-light" href="#">Créer un compte</a>
 
-            <a href="validerCompte.php" class="navbar-brand text-light" href="#">Valider un compte</a>
+            <a href="validationCompte.php" class="navbar-brand text-light" href="#">Valider un compte</a>
 
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

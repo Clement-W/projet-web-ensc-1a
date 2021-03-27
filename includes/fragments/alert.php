@@ -13,7 +13,6 @@ if (isset($_SESSION["alert"])) {
         $("#alert").fadeTo(2000, 500).slideUp(500, function() {
             $("#alert").slideUp(500);
         });
-        console.log("sdoidfjsdoif");
     </script> 
 
     

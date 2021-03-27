@@ -151,7 +151,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                             ?>
 
                                                     <li class="event" title=<?= $dates ?>>
-                                                        <h4><?= $intituleExp . " - " . $typePoste?> </h4>
+                                                        <h4><?= $intituleExp . " - " . $typePoste ?> </h4>
                                                         <p class="h6">
                                                             <?php echo $libelleOrganisation . " (" . $typeOrganisation . ")" . " - " . $typeExp ?>
                                                             </br>
@@ -160,8 +160,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                                         <p><?= $description ?></p>
                                                         Secteur(s) d'activité : <?= $secteursActivites ?></br>
                                                         Domaine(s) de compétence : <?= $domainesCompetences ?></br>
-                                                        Salaire : <?= $salaire ?>
-                                                        </p>
+                                                        <?php if ($salaire != null) { ?>Salaire : <?= $salaire ?> <?php } ?> <!-- s'il n'y a pas de salaire on affiche pas le libelle salaire -->
+                                                    </p>
 
                                                     </li>
                                             <?php }

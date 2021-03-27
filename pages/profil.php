@@ -30,7 +30,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     $parametres = getVisibiliteInfosProfil($idEleve);
 
     // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, sinon c'est false.
-    if(!estGestionnaire()){
+    if (!estGestionnaire()) {
         $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]);
     }
 
@@ -117,47 +117,52 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div class="col-md-12">
                             <div class="card-body ml-3">
                                 <h6 class="card-title h5 text-secondary"><u>Expériences</u> </h6>
-                                <?php if(possedeExperiencePro($idEleve)){ ?>
-                                
-                                <div id="content">
-                                    <ul class="timeline">
-                                        <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
-                                            $idExperiencePro = $expPro["IdExperiencePro"];
-                                            // Si l'eexperience pro est rendue invisible par l'utilisateur alors on ne le montre pas
-                                            if ($parametres[$idExperiencePro] || estGestionnaire() || $estProfilDeLUtilisateurCo) {
+                                <?php if (possedeExperiencePro($idEleve)) { ?>
 
-                                                $intituleExp = $expPro["IntituleExperiencePro"];
-                                                $typeExp = $expPro["TypeExperiencePro"];
-                                                $dateDebut = $expPro["DateDebut"];
-                                                $dateFin = $expPro["DateFin"];
-                                                $typeOrganisation = $expPro["TypeOrganisation"];
-                                                $libelleOrganisation = $expPro["LibelleOrganisation"];
-                                                $typePoste = $expPro["TypePoste"];
-                                                $region = $expPro["Region"];
-                                                $ville = $expPro["Ville"];
-                                                $secteursActivites = $expPro["SecteursActivites"];
-                                                $domainesCompetences = $expPro["DomainesCompetences"];
-                                                $description = $expPro["Description"];
-                                                $salaire = $expPro["Salaire"];
+                                    <div id="content">
+                                        <ul class="timeline">
+                                            <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
+                                                $idExperiencePro = $expPro["IdExperiencePro"];
+                                                // Si l'eexperience pro est rendue invisible par l'utilisateur alors on ne le montre pas
+                                                if ($parametres[$idExperiencePro] || estGestionnaire() || $estProfilDeLUtilisateurCo) {
 
-                                                // on formate l'affichage de la date
-                                                $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin);
+                                                    $intituleExp = $expPro["IntituleExperiencePro"];
+                                                    $typeExp = $expPro["TypeExperiencePro"];
+                                                    $dateDebut = $expPro["DateDebut"];
+                                                    $dateFin = $expPro["DateFin"];
+                                                    $typeOrganisation = $expPro["TypeOrganisation"];
+                                                    $libelleOrganisation = $expPro["LibelleOrganisation"];
+                                                    $typePoste = $expPro["TypePoste"];
+                                                    $region = $expPro["Region"];
+                                                    $ville = $expPro["Ville"];
+                                                    $secteursActivites = $expPro["SecteursActivites"];
+                                                    $domainesCompetences = $expPro["DomainesCompetences"];
+                                                    $description = $expPro["Description"];
+                                                    $salaire = $expPro["Salaire"];
 
-                                        ?>
+                                                    // on formate l'affichage de la date
+                                                    $dates = formaterDateExperiencePro($dateDebut) . "-" . formaterDateExperiencePro($dateFin);
 
-                                                <li class="event" title=<?= $dates ?>>
-                                                    <h4><?= $intituleExp ?></h4>
-                                                    <p class="h6">
-                                                        <?php echo $libelleOrganisation . " - " . $typeExp ?>
-                                                        </br>
-                                                        <?php echo $region . " - " . $ville ?>
-                                                    </p>
-                                                    <p><?= $description ?> </p>
-                                                </li>
-                                        <?php }
-                                        } ?>
-                                    </ul>
-                                </div>
+                                            ?>
+
+                                                    <li class="event" title=<?= $dates ?>>
+                                                        <h4><?= $intituleExp . " - " . $typePoste?> </h4>
+                                                        <p class="h6">
+                                                            <?php echo $libelleOrganisation . " (" . $typeOrganisation . ")" . " - " . $typeExp ?>
+                                                            </br>
+                                                            <?php echo $region . " - " . $ville ?>
+                                                            </br></br>
+                                                        <p><?= $description ?></p>
+                                                        Secteur(s) d'activité : <?= $secteursActivites ?></br>
+                                                        Domaine(s) de compétence : <?= $domainesCompetences ?></br>
+                                                        Salaire : <?= $salaire ?>
+                                                        </p>
+
+                                                    </li>
+                                            <?php }
+                                            } ?>
+                                        </ul>
+                                    </div>
                                 <?php } ?>
                             </div>
                         </div>

@@ -60,7 +60,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
 
                     <div class="d-flex">
 
-                        <!-- Bouton de modification du mot de passe -->
+                        <!-- Bouton d'ajout d'expérience -->
                         <?php require_once('../includes/modals/ajouterExperience.php'); ?>
                         <button type="button" id="boutonAjouterExperience" class="btn btn-outline-primary mr-5">Ajouter une expérience</button>
                         <script type="text/javascript">
@@ -69,7 +69,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                             });
                         </script>
 
-                        <!-- Bouton de modification de profil -->
+                        <!-- Bouton de modification de mot de passe -->
                         <?php require_once('../includes/modals/modifierMotDePasse.php'); ?>
                         <button type="button" id="boutonModifierMotDePasse" class="btn btn-outline-danger mr-5">Modifier le mot de passe</button>
                         <script type="text/javascript">

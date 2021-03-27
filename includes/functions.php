@@ -660,8 +660,12 @@ function mettreAJourMotDePasse()
             $alert["bootstrapClassAlert"] = "success";
             $alert["messageAlert"] = "Le mot de passe a bien été mis à jour";
             $_SESSION["alert"] = $alert;
-
-            redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
+            
+            if (estGestionnaire()) {
+                redirect("accueil.php");
+            } else {
+                redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
+            }
         } else {
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Veuillez vérifier les mots de passe rentrés";
@@ -779,7 +783,7 @@ function creerComptesElevesDepuisCSV()
 
                 // On controle la taille pour être cohérent avec la bdd
                 if (strlen($nom) < 50 && strlen($nom) > 0 && strlen($prenom) < 50 && strlen($prenom) > 0 && strlen($mdp) < 50 && strlen($mdp) > 0 && strlen($mail) < 50 && strlen($mail) > 0) {
-                    
+
                     //on contrôle que le mail est bien un email valide
                     if (filter_var($mail, FILTER_VALIDATE_EMAIL) !== false) {
 

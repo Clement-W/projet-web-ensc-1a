@@ -14,7 +14,7 @@
             <div class="modal-body">
                 <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">
                     </br>
-                    <p class="h5 text-secondary"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Les champs avec des astérisques (*) sont obligatoires. </p>
+                    <p class="h5 text-secondary"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Les champs avec des astérisques (*) sont obligatoires. Vous pouvez cocher la case pour rendre visible cette expérience professionelle auprès des autres utilisateurs. </p>
                     </br>
                     <?php require_once("../includes/fragments/formExperiencePro.php"); ?>
                     <div class="d-flex justify-content-end ">

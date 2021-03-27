@@ -1,0 +1,1 @@
+Ce répertoire contient de façon temporaire les fichiers téléchargés. Notamment le template CSV permettant de créer plusieurs comptes élèves.

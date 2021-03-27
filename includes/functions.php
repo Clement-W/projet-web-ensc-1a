@@ -294,7 +294,6 @@ function validerCompteEleve($idEleve)
 
     $requeteUpdate = $BDD->prepare("UPDATE Eleve SET CompteValide=TRUE WHERE IdEleve = ?");
     $requeteUpdate->execute(array($idEleve));
-
 }
 //validerCompteEleve(2);
 
@@ -726,7 +725,8 @@ function creerCompteEleveParGestionnaire()
 }
 
 
-function possedeExperiencePro($id){
+function possedeExperiencePro($id)
+{
     $BDD = getBDD();
 
     $requetePossedeExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro WHERE IdEleve=?");
@@ -736,18 +736,111 @@ function possedeExperiencePro($id){
     } else { // S'il est présent alors on return true
         return true;
     }
-
 }
 
-function getCSVDepuisTelechargement(){
-    print_r($_FILES);
+function getCSVDepuisTelechargement($chemin_fichier)
+{
 
-    //verifier l'extension, si c'est pas un csv on met une alert rouge en haut
+    if ($_FILES["templateUploaded"]["size"] <= 500000) { // Si la taille du fichier dépasse 500kb, 
 
+        if (move_uploaded_file($_FILES["templateUploaded"]["tmp_name"], $chemin_fichier)) {
+
+            return true;
+        }
+    }
+    return false;
 }
 
 
-function creerComptesElevesDepuisCSV(){
-    getCSVDepuisTelechargement();
+function creerComptesElevesDepuisCSV()
+{
 
+    if (!empty($_POST["validerFileUpload"])) {
+
+        $repertoire = "../temp/";
+        $chemin_fichier = $repertoire . basename($_FILES["templateUploaded"]["name"]);
+
+        if (getCSVDepuisTelechargement($chemin_fichier)) {
+            $csvTemplate = file($chemin_fichier);
+
+
+            foreach ($csvTemplate as $infosEleve) {
+                $infosEleve = explode(",", escape($infosEleve)); // on tranasforme la ligne en un tableau contenant les champs (on aurait également pu utiliser les méthodes de lecture de csv de php)
+
+                if ($infosEleve[0] == "Nom") {
+                    // Cela correspond aux intitulés du template, on analyse donc pas cette ligne
+                    continue;
+                }
+
+
+                //on analyse les infos d'un élève pour verifier la validiter des inputs
+                // la csv a toujours la même forme donc on peut utiliser des indices fixes
+                $nom = trim($infosEleve[0]); // on trim pour enlever les espaces au début et à la fin
+                $prenom = trim($infosEleve[1]);
+                $mdp = trim($infosEleve[2]);
+                $mail = trim($infosEleve[3]);
+
+                // On controle la taille pour être cohérent avec la bdd
+                if (strlen($nom) < 50 && strlen($nom) > 0 && strlen($prenom) < 50 && strlen($prenom) > 0 && strlen($mdp) < 50 && strlen($mdp) > 0 && strlen($mail) < 50 && strlen($mail) > 0) {
+                    
+                    //on contrôle que le mail est bien un email valide
+                    if (filter_var($mail, FILTER_VALIDATE_EMAIL) !== false) {
+
+                        //Tout est ok, on peut insérer cet élève.
+                        $BDD = getBDD();
+
+                        $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
+
+                        // On créé un compte associé au mail, nom d'utilisateur et mot de passe
+                        $requeteInsertionCompte = $BDD->prepare("INSERT INTO Compte(NomUtilisateur, MotDePasse, AdresseMail) VALUES (?,?,?)");
+                        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdp, $mail));
+
+                        // On recupère l'id du compte inséré
+                        $idCompte = $BDD->lastInsertId();
+
+                        // On créé un élève à partir de l'id du compte créé
+                        $requeteInsertionEleve = $BDD->prepare("INSERT INTO Eleve(CompteValide, IdCompte) VALUES (TRUE,?)");
+                        $requeteInsertionEleve->execute(array($idCompte));
+
+                        // On recupère l'id de l'élève inséré
+                        $idEleve = $BDD->lastInsertId();
+
+                        // On insert ses informations personnelles en base
+                        $requeteInsertionInfosPerso = $BDD->prepare("INSERT INTO InfosPerso(Nom, Prenom, IdEleve) VALUES (?,?,?)");
+                        $requeteInsertionInfosPerso->execute(array($nom, $prenom, $idEleve));
+
+                        // Visibilite des informations personnelles
+                        $informationsParametrable =  array("Genre", "Adresse", "Ville", "CodePostal", "NumTelephone", "AdresseMail"); // Contient les noms des champs dont la visibilité est parametrable
+                        foreach ($informationsParametrable as $libelleInformation) { // pour chaque information du compte dont la visibilité est modifiable
+                            insererParametre($BDD, $idEleve, true, $libelleInformation); // on insert en base le parametre comme visible
+                        }
+                    } else {
+                        $alert["bootstrapClassAlert"] = "danger";
+                        $alert["messageAlert"] = "Le mail '$mail' n'est pas valide.";
+                        break;
+                    }
+                } else {
+                    $alert["bootstrapClassAlert"] = "danger";
+                    $alert["messageAlert"] = "Il y a un problème dans les valeurs de l'élève $nom $prenom";
+                    break;
+                }
+            }
+        } else {
+            $alert["bootstrapClassAlert"] = "danger";
+            $alert["messageAlert"] = "Un problème a été rencontré lors de la lecture du fichier.";
+        }
+    }
+
+    if (!isset($alert)) {
+        $alert["bootstrapClassAlert"] = "success";
+        $alert["messageAlert"] = "Tous les comptes ont bien été créés.";
+    }
+
+
+    unlink($chemin_fichier);
+
+    unset($_POST);
+    $_POST = array();
+
+    $_SESSION["alert"] = $alert;
 }

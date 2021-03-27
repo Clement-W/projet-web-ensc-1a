@@ -126,13 +126,17 @@ if (!estGestionnaire()) {
 
                         <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5">Vous pouvez déposer ce même fichier une fois rempli ci-dessous afin de créer plusieurs comptes</h4>
 
-                        <form method="post" action="creerComptes.php" class="" enctype="multipart/form-data"> <!-- ce enctype permet l'envoi de fichier -->
+                        <form method="post" action="creerComptes.php" class="" enctype="multipart/form-data">
+                            <!-- ce enctype permet l'envoi de fichier -->
 
-                            <div class="mt-3 ">
-                                <input type="file" accept=".csv" id="templateUploaded" name="templateUploaded" class="file-upload" required/>
+                            <div class="mt-3">
+                                <input type="file" accept=".csv" id="templateUploaded" name="templateUploaded" class="file-upload" required />
+
                             </div>
 
-                            <input type="submit" class="btn btn-outline-success" name="validerFileUpload" id="validerFileUpload" value="Valider" />
+                            <div class="mr-5 ml-5 mb-5 mt-3">
+                                <input type="submit" class="btn btn-outline-success" name="validerFileUpload" id="validerFileUpload" value="Valider" />
+                            </div>
 
                         </form>
                     </div>

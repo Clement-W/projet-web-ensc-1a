@@ -121,7 +121,6 @@ input {
 
 .timeline .event {
     border-bottom: 1px dashed #e8ebf1;
-    padding-bottom: 25px;
     margin-bottom: 25px;
     position: relative;
 }

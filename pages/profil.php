@@ -29,7 +29,14 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     $experiencePro = getExperiencesProParId($idEleve);
     $parametres = getVisibiliteInfosProfil($idEleve);
 
+<<<<<<< HEAD
 
+=======
+    // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, sinon c'est false.
+    if (!estGestionnaire()) {
+        $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]);
+    }
+>>>>>>> 09fb0dca34da6cbd900cf275651dcb29b96b1f01
 
 ?>
 
@@ -152,6 +159,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                             ?>
 
                                                     <li class="event" title=<?= $dates ?>>
+<<<<<<< HEAD
                                                         <h4><?= $intituleExp ?></h4>
                                                         <p class="h6">
                                                             <?php echo $libelleOrganisation . " - " . $typeExp ?>
@@ -159,6 +167,20 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                                             <?php echo $region . " - " . $ville ?>
                                                         </p>
                                                         <p><?= $description ?> </p>
+=======
+                                                        <h4><?= $intituleExp . " - " . $typePoste?> </h4>
+                                                        <p class="h6">
+                                                            <?php echo $libelleOrganisation . " (" . $typeOrganisation . ")" . " - " . $typeExp ?>
+                                                            </br>
+                                                            <?php echo $region . " - " . $ville ?>
+                                                            </br></br>
+                                                        <p><?= $description ?></p>
+                                                        Secteur(s) d'activité : <?= $secteursActivites ?></br>
+                                                        Domaine(s) de compétence : <?= $domainesCompetences ?></br>
+                                                        Salaire : <?= $salaire ?>
+                                                        </p>
+
+>>>>>>> 09fb0dca34da6cbd900cf275651dcb29b96b1f01
                                                     </li>
                                             <?php }
                                             } ?>

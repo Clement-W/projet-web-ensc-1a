@@ -53,13 +53,13 @@ TODO :
 
 * probleme du search filter (envie de canner) (???min)
 
+* probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
+
 * verifier la portabilité de tout
 
-* probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
 
 * faire en sorte que le gestionnaire puisse modifier son profil
 
-* revoir le problème du labe lavec intitule experience pro dans la modification
 ---
 
 2h :

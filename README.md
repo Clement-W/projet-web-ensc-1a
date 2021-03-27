@@ -62,11 +62,7 @@ TODO :
 * probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
 * Mettre des exemples dans les place holders de ajout experience pro (10min)
 
-* ajouter le username du profil sur lequel on est dans le titre de la page (10min)
-
 * faire en sorte que le gestionnaire puisse modifier son profil
-
-* front de creerComptes.php faire le bouton bien cnetrés en bas (10min)
 ---
 
 2h :

@@ -56,8 +56,8 @@ if (isset($_POST['search'])) {
 
         // Si le filtre correspond à la promotion ou à la ville (table infos perso)
         else if ($search_filter == "Promotion" || $search_filter == "Ville") {
-            $requeteProfil = $BDD->prepare("SELECT Eleve.IdEleve, Nom, Prenom, Promotion, Ville, CompteValide FROM InfosPerso,Eleve WHERE Eleve.IdEleve = InfosPerso.IdEleve AND (InfosPerso.Promotion LIKE CONCAT('%',?,'%') OR InfosPerso.Ville LIKE CONCAT('%',?,'%')) ");
-            $requeteProfil->execute(array($search_val, $search_val));
+            $requeteProfil = $BDD->prepare("SELECT Eleve.IdEleve, Nom, Prenom, Promotion, Ville, CompteValide FROM InfosPerso,Eleve WHERE Eleve.IdEleve = InfosPerso.IdEleve AND InfosPerso.$search_filter LIKE CONCAT('%',?,'%') ");
+            $requeteProfil->execute(array($search_val));
             while ($profil = $requeteProfil->fetch()) {
                 if ($profil["CompteValide"] == true || estGestionnaire()) {
                     echo '<div class="whitecontainer mt-3 mb-3"> 

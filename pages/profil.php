@@ -36,7 +36,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     <html lang="fr">
 
     <?php
-    $titrePage = "Profil";
+    $titrePage = "Profil - $prenom $nom";
     require_once "../includes/fragments/head.php";
     ?>
 

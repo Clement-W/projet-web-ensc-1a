@@ -133,6 +133,13 @@ require_once "../includes/fragments/head.php";
                         <!-- appelle la fonction js dans js/function.js -->
                         <div class="col d-flex justify-content-center">
                             <select name="search_param" id="search_param" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+
+                                <optgroup label="Par profil">
+                                    <option value="Promotion">Promotion</option>
+                                    <option value="NomPrenom">Nom ou prenom</option>
+                                    <option value="Ville">Ville</option>
+                                </optgroup>
+
                                 <optgroup label="Par experience pro">
                                     <option value="TypeOrganisation">Type d'organisation</option>
                                     <option value="DomainesCompetences">Domaines de compétences</option>
@@ -142,11 +149,7 @@ require_once "../includes/fragments/head.php";
                                     <option value="Region">Region</option>
                                 </optgroup>
 
-                                <optgroup label="Par profil">
-                                    <option value="Promotion">Promotion</option>
-                                    <option value="NomPrenom">Nom ou prenom</option>
-                                    <option value="Ville">Ville</option>
-                                </optgroup>
+
                             </select>
                             <input type="text" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
                         </div>

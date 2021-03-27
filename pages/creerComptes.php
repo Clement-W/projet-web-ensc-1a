@@ -21,7 +21,7 @@ if (!estGestionnaire()) {
     <html lang="fr">
 
     <?php
-    $titrePage = "Accueil";
+    $titrePage = "Création de comptes";
     require_once "../includes/fragments/head.php";
     ?>
 

@@ -11,7 +11,7 @@
     </div>
     <div class="form-group col-sm-8">
     <!-- Si on ajoute une nouvelle expérience, la variable est vide donc on remplit les champs avec ""-->
-        <input type="text" name="IntituleExperiencePro<?=$idChamp?>" value="<?= (isset($intituleExp)) ? $intituleExp :""; ?>" class="form-control" id="intitule<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Stage de fin d'études chez ..." name="IntituleExperiencePro<?=$idChamp?>" value="<?= (isset($intituleExp)) ? $intituleExp :""; ?>" class="form-control" id="intitule<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -19,7 +19,7 @@
         <p class="ml-5">Type d'expérience *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="TypeExperiencePro<?=$idChamp?>" value="<?= (isset($typeExp)) ? $typeExp :""; ?>" class="form-control" id="typeExp<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Stage" name="TypeExperiencePro<?=$idChamp?>" value="<?= (isset($typeExp)) ? $typeExp :""; ?>" class="form-control" id="typeExp<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -43,7 +43,7 @@
         <p class="ml-5">Type d'organisation *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="TypeOrganisation<?=$idChamp?>" value="<?= (isset($typeOrganisation)) ? $typeOrganisation :""; ?>" class="form-control" id="typeOrganisation<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Entreprise, Laboratoire, ..." name="TypeOrganisation<?=$idChamp?>" value="<?= (isset($typeOrganisation)) ? $typeOrganisation :""; ?>" class="form-control" id="typeOrganisation<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -51,7 +51,7 @@
         <p class="ml-5">Libellé de l'organisation *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="LibelleOrganisation<?=$idChamp?>" value="<?= (isset($libelleOrganisation)) ? $libelleOrganisation :""; ?>" class="form-control" id="libelleOrganisation<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Thales, IMS, ..." name="LibelleOrganisation<?=$idChamp?>" value="<?= (isset($libelleOrganisation)) ? $libelleOrganisation :""; ?>" class="form-control" id="libelleOrganisation<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -59,7 +59,7 @@
         <p class="ml-5">Type de poste *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="TypePoste<?=$idChamp?>" value="<?= (isset($typePoste)) ? $typePoste :""; ?>" class="form-control" id="typePoste<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Stagiaire, Développeur, CTO, ..." name="TypePoste<?=$idChamp?>" value="<?= (isset($typePoste)) ? $typePoste :""; ?>" class="form-control" id="typePoste<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -67,7 +67,7 @@
         <p class="ml-5">Région *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="Region<?=$idChamp?>" value="<?= (isset($region)) ? $region :""; ?>" class="form-control" id="region<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Aquitaine" name="Region<?=$idChamp?>" value="<?= (isset($region)) ? $region :""; ?>" class="form-control" id="region<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -75,7 +75,7 @@
         <p class="ml-5">Ville *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="Ville<?=$idChamp?>" value="<?= (isset($villeExperience)) ? $villeExperience :""; ?>" class="form-control" id="ville<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Bordeaux" name="Ville<?=$idChamp?>" value="<?= (isset($villeExperience)) ? $villeExperience :""; ?>" class="form-control" id="ville<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -83,7 +83,7 @@
         <p class="ml-5">Secteur(s) d'activité *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="SecteursActivites<?=$idChamp?>" value="<?= (isset($secteursActivites)) ? $secteursActivites :""; ?>" class="form-control" id="secteursActivites<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : Agroalimentaire, Banque, Aéronautique, ..." name="SecteursActivites<?=$idChamp?>" value="<?= (isset($secteursActivites)) ? $secteursActivites :""; ?>" class="form-control" id="secteursActivites<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -91,7 +91,7 @@
         <p class="ml-5">Domaine(s) de compétence *</p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="DomainesCompetences<?=$idChamp?>" value="<?= (isset($domainesCompetences)) ? $domainesCompetences :""; ?>" class="form-control" id="domainesCompetences<?=$idChamp?>" required />
+        <input type="text" placeholder="Ex : IA, SHS, ..." name="DomainesCompetences<?=$idChamp?>" value="<?= (isset($domainesCompetences)) ? $domainesCompetences :""; ?>" class="form-control" id="domainesCompetences<?=$idChamp?>" required />
     </div>
 </div>
 <div class="d-flex">
@@ -99,7 +99,7 @@
         <p class="ml-5">Description </p>
     </div>
     <div class="form-group col-sm-8">
-        <input type="text" name="Description<?=$idChamp?>" value="<?= (isset($description)) ? $description :""; ?>" class="form-control" id="description<?=$idChamp?>"/>
+        <input type="text" placeholder="Description de l'experience, objectifs, responsabilités, ..." name="Description<?=$idChamp?>" value="<?= (isset($description)) ? $description :""; ?>" class="form-control" id="description<?=$idChamp?>"/>
     </div>
 </div>
 <div class="d-flex">
@@ -107,7 +107,7 @@
         <p class="ml-5">Salaire</p>
     </div> 
     <div class="form-group col-sm-8">
-        <input type="number" name="Salaire<?=$idChamp?>" value="<?= (isset($salaire)) ? $salaire :""; ?>" class="form-control" id="salaire<?=$idChamp?>"/>
+        <input type="number" placeholder="Salaire mensuel brut" name="Salaire<?=$idChamp?>" value="<?= (isset($salaire)) ? $salaire :""; ?>" class="form-control" id="salaire<?=$idChamp?>"/>
     </div>
 </div>
 

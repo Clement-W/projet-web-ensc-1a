@@ -68,7 +68,8 @@ TODO :
 
 * faire en sorte que le gestionnaire puisse modifier son profil
 
-* peut-être enleve le bouton rechercher pour la barre de recherche ? inutile et prend de la place pour rien
+
+* quand pas de compte à valider on affiche un message
 ---
 
 2h :

@@ -738,3 +738,16 @@ function possedeExperiencePro($id){
     }
 
 }
+
+function getCSVDepuisTelechargement(){
+    print_r($_FILES);
+
+    //verifier l'extension, si c'est pas un csv on met une alert rouge en haut
+
+}
+
+
+function creerComptesElevesDepuisCSV(){
+    getCSVDepuisTelechargement();
+
+}

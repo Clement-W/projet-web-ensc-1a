@@ -58,7 +58,7 @@ TODO :
 * verifier la portabilité de tout
 
 
-* faire en sorte que le gestionnaire puisse modifier son profil
+* duplication de code dans la navbar
 
 ---
 

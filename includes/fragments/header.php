@@ -1,4 +1,5 @@
 <?php //Si on appuie sur le bouton submit de la modal Modifier le mot de passe
+require_once('../includes/modals/modifierMotDePasse.php');
 if (!empty($_POST["modifierMotDePasse"])) {
     mettreAJourMotDePasse();
 }
@@ -17,18 +18,21 @@ if (!empty($_POST["modifierMotDePasse"])) {
         <!--Met les éléments de la navbar à l'opposé l'un de l'autre-->
 
         <?php if (estConnecte() && !estGestionnaire()) { ?>
-            <div class="collapse navbar-collapse" id="navbartarget"></div>
 
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bonjour <?= $_SESSION["nomUtilisateur"]; ?>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+
                     <a class="dropdown-item" href="profil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
                     <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                 </div>
             </div>
         <?php } else if (estConnecte() && estGestionnaire()) { ?>
+            <!-- navbar du gestionnaire -->
+            
 
             <a href="creerComptes.php" class="navbar-brand text-light" href="#">Créer un compte</a>
 
@@ -40,19 +44,17 @@ if (!empty($_POST["modifierMotDePasse"])) {
                 </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    
-                <!-- Modification de mot de passe -->
-                    <?php require_once('../includes/modals/modifierMotDePasse.php'); ?>
 
-                    <a class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Modifier mot de passe</a>
+                    <!-- Modification de mot de passe -->
+                    <button class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</button>
 
-                    <script type="text/javascript">
+                    <script type="text/javascript"> //pour ouvrir la modal
                         $('#modifierMotDePasseGestionnaire').on('click', function() {
                             $('#modifierMotDePasse').modal('show');
                         });
                     </script>
+                    
                     <!-- Déconnexion -->
-
                     <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                 </div>
             </div>

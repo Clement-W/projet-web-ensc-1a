@@ -27,6 +27,7 @@ if (estConnecte()) {
 
             <?php require_once('../includes/fragments/alert.php');
             if (isset($_SESSION["alert"]) && $_SESSION["alert"]["bootstrapClassAlert"] != "success") {
+                // S'il y a un alert de succes, on va être redirigé instantanément vers la page d'accueil, donc on ne veut pas unset l'alert dans connexion
                 unset($_SESSION["alert"]);
             }
 

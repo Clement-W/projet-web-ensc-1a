@@ -50,7 +50,10 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
         <?php require_once "../includes/fragments/header.php"; ?>
 
         <div class="container">
-            <?php require_once('../includes/fragments/alert.php'); ?>
+            <?php require_once('../includes/fragments/alert.php');
+            if (isset($_SESSION["alert"])) {
+                unset($_SESSION["alert"]);
+            } ?>
 
 
             <div class="whitecontainer">

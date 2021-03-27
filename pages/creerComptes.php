@@ -119,12 +119,12 @@ if (!estGestionnaire()) {
                 <div class="col-lg-6 ">
                     <div class="whitecontainer flex-column d-flex justify-content-center">
 
-                        <h2 class="d-flex justify-content-center mt-3">Créer plusieurs comptes Élève</h2>
-                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 text-justify">Télécharger le template excel (csv) permettant de créer plusieurs comptes Élève </h4>
+                        <h2 class="d-flex justify-content-center mt-3 text-center">Créer plusieurs comptes Élève</h2>
+                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 ">Télécharger le template excel (csv) permettant de créer plusieurs comptes Élève </h4>
 
                         <a href="../assets/creerComptes.csv" type="button" class="btn btn-outline-success mr-5 ml-5 mb-5 mt-2" download="creerComptes.csv">Télécharger</a>
 
-                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 text-justify">Vous pouvez déposer ce même fichier une fois rempli ci-dessous afin de créer plusieurs comptes</h4>
+                        <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5">Vous pouvez déposer ce même fichier une fois rempli ci-dessous afin de créer plusieurs comptes</h4>
 
                         <form method="post" action="creerComptes.php" class="" enctype="multipart/form-data"> <!-- ce enctype permet l'envoi de fichier -->
 

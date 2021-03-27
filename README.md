@@ -64,12 +64,9 @@ TODO :
 
 * ajouter le username du profil sur lequel on est dans le titre de la page (10min)
 
-* centrer le texte de attentevalidation.php et 404.php
-
 * faire en sorte que le gestionnaire puisse modifier son profil
 
-
-* quand pas de compte à valider on affiche un message
+* front de creerComptes.php faire le bouton bien cnetrés en bas (10min)
 ---
 
 2h :

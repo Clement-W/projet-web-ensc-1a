@@ -127,7 +127,7 @@ require_once "../includes/fragments/head.php";
             <div class="container d-flex">
                 <div class="col">
                     <div class="row justify-content-center">
-                        <h1 class="mt-5">Rechercher dans l'annuaire</h1>
+                        <h1 class="mt-5 text-center">Rechercher dans l'annuaire</h1>
                     </div>
                     <form class="row mt-5" method="post" onsubmit="return rechercher();">
                         <!-- appelle la fonction js dans js/function.js -->

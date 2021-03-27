@@ -51,7 +51,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
 
         <div class="container">
             <?php require_once('../includes/fragments/alert.php');
-            if (isset($_SESSION["alert"])) {
+            if (isset($_SESSION["alert"]) && $_SESSION["alert"]["bootstrapClassAlert"] != "success") {
                 unset($_SESSION["alert"]);
             } ?>
 

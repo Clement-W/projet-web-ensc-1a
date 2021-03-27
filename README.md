@@ -57,9 +57,6 @@ TODO :
 
 * verifier la portabilité de tout
 
-
-* duplication de code dans la navbar
-
 ---
 
 2h :

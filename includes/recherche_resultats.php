@@ -1,5 +1,6 @@
 <?php
 require_once("functions.php");
+session_start();
 $BDD = getBDD();
 
 if (isset($_POST['search'])) {
@@ -14,7 +15,7 @@ if (isset($_POST['search'])) {
             //echo $search_filter . " " . $search_val;
 
             while ($experiencePro = $requeteExperiencePro->fetch()) {
-                if ($experiencePro["Visibilite"] == true && $experiencePro["CompteValide"] == true) { // Si l'experiece pro est visible et que le compte est validé alors on la présente dans les résultats
+                if (($experiencePro["Visibilite"] == true && $experiencePro["CompteValide"] == true) || estGestionnaire()) { // Si l'experiece pro est visible et que le compte est validé alors on la présente dans les résultats
                     echo '<div class="whitecontainer mt-3 mb-3"> 
                     <div class="ml-4 row text-secondary">
                         <div class="col-md-6 h5">
@@ -37,7 +38,7 @@ if (isset($_POST['search'])) {
             $requeteNomPrenom->execute(array($search_val, $search_val));
 
             while ($profil = $requeteNomPrenom->fetch()) {
-                if ($profil["CompteValide"] == true) { // On vérifie que le compte est bien validé pour l'afficher
+                if ($profil["CompteValide"] == true || estGestionnaire()) { // On vérifie que le compte est bien validé pour l'afficher
                     echo '<div class="whitecontainer mt-3 mb-3"> 
                         <div class="ml-4 row text-secondary">
                             <div class="col-md-6 h3">
@@ -58,7 +59,7 @@ if (isset($_POST['search'])) {
             $requeteProfil = $BDD->prepare("SELECT Eleve.IdEleve, Nom, Prenom, Promotion, Ville, CompteValide FROM InfosPerso,Eleve WHERE Eleve.IdEleve = InfosPerso.IdEleve AND (InfosPerso.Promotion LIKE CONCAT('%',?,'%') OR InfosPerso.Ville LIKE CONCAT('%',?,'%')) ");
             $requeteProfil->execute(array($search_val, $search_val));
             while ($profil = $requeteProfil->fetch()) {
-                if ($profil["CompteValide"] == true) {
+                if ($profil["CompteValide"] == true || estGestionnaire()) {
                     echo '<div class="whitecontainer mt-3 mb-3"> 
                               <div class="ml-4 row text-secondary">
                                   <div class="col-md-6 h3">

@@ -353,13 +353,14 @@ function invaliderCompteEleve($idEleve)
     $_SESSION["alert"] = $alert;
 }
 
-// Permet d'afficher un popup (appelé dans verifierExperiencesPro())
-function afficherPopUp()
+// Permet d'afficher la popup d'alerte
+function afficherPopUpExperiencePro()
 {
-    require_once "../includes/modals/popup.php";
+    require_once "../includes/modals/alertePasDExperiencePro.php";
 }
 
 // Verifie qu'un compte Élève a bien des experiences pro (lorsqu'il est connecté)
+// retourne true s'il en a, false sinon
 function verifierExperiencesPro()
 {
     $BDD = getBDD();
@@ -369,8 +370,9 @@ function verifierExperiencesPro()
     $requeteExperiencesPro->execute(array($nomUtilisateur));
 
     if ($requeteExperiencesPro->rowCount() == 0) {
-        afficherPopUp();
+        return false;
     }
+    return true;
 }
 
 //retourne toutes les informations du profil de quelqu'un de connecté

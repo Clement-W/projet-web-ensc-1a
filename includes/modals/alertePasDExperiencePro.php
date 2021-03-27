@@ -1,4 +1,4 @@
-<div class="modal fade" id="popup">
+<div class="modal fade" id="alertePasExperiencePro">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -15,7 +15,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-success" type="button">Mettre à jour</a>
+                <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-success" type="button">Compléter le profil</a>
             </div>
         </div>
     </div>
@@ -24,5 +24,5 @@
 
 <script type="text/javascript">
     // Pour afficher la popup
-    $('#popup').modal('show');
+    $('#alertePasExperiencePro').modal('show');
 </script>

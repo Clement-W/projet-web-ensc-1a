@@ -46,8 +46,6 @@ if (!estGestionnaire()) {
                                 $("#precedent").click(() => $(".carousel").carousel(0));
                             </script>
                             <input type="button" class="btn btn-outline-secondary mr-4" name="suivant" id="suivant" value="Créer un Gestionnaire" />
-
-
                             <script type="text/javascript">
                                 $("#suivant").click(() => $(".carousel").carousel(1));
                             </script>
@@ -57,7 +55,7 @@ if (!estGestionnaire()) {
                         <div id="carouselExampleIndicators" class="carousel slide divCarousel marge-inscription" data-interval="false">
                             <div class="carousel-inner divCarousel">
                                 <div class="carousel-item active">
-                                    <form method="POST" action="creerCompte.php" class="register-form" id="register-form">
+                                    <form method="POST" action="creerComptes.php" class="register-form" id="register-form">
 
                                         <div class="form-group">
                                             <label for="prenom"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -88,7 +86,7 @@ if (!estGestionnaire()) {
                                 </div>
 
                                 <div class="carousel-item">
-                                    <form method="POST" action="creerCompte.php" class="register-form" id="register-form">
+                                    <form method="POST" action="creerComptes.php" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="nom"><i class="zmdi zmdi-account material-icons-name "></i></label>
                                             <input type="text" name="nomUtilisateur" id="nom" placeholder="Nom d'utilisateur" required />

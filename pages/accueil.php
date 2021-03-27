@@ -131,7 +131,7 @@ require_once "../includes/fragments/head.php";
                     </div>
                     <form class="row mt-5" method="post" onsubmit="return rechercher();">
                         <!-- appelle la fonction js dans js/function.js -->
-                        <div class="col ml-5">
+                        <div class="col d-flex justify-content-center">
                             <select name="search_param" id="search_param" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
                                 <optgroup label="Par experience pro">
                                     <option value="TypeOrganisation">Type d'organisation</option>
@@ -148,14 +148,7 @@ require_once "../includes/fragments/head.php";
                                     <option value="Ville">Ville</option>
                                 </optgroup>
                             </select>
-                        </div>
-
-                        <div class="col-6">
                             <input type="text" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
-                        </div>
-
-                        <div class="col mr-5">
-                            <input class="btn btn-dark" type="submit" name="search" value="Rechercher">
                         </div>
                     </form>
 

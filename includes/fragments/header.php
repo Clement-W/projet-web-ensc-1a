@@ -1,6 +1,7 @@
-<?php //Si on appuie sur le bouton submit de la modal Modifier le mot de passe
+<?php 
+//Si on appuie sur le bouton submit de la modal Modifier le mot de passe
 require_once('../includes/modals/modifierMotDePasse.php');
-if (!empty($_POST["modifierMotDePasse"])) {
+if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse changer son mot de passe depuis la modal 
     mettreAJourMotDePasse();
 }
 ?>
@@ -15,54 +16,55 @@ if (!empty($_POST["modifierMotDePasse"])) {
 
         </div>
 
-        <!--Met les éléments de la navbar à l'opposé l'un de l'autre-->
-
-        <?php if (estConnecte() && !estGestionnaire()) { ?>
-
-            <div class="dropdown">
-                <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Bonjour <?= $_SESSION["nomUtilisateur"]; ?>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-
-                    <a class="dropdown-item" href="profil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
-                    <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
-                </div>
-            </div>
-        <?php } else if (estConnecte() && estGestionnaire()) { ?>
-            <!-- navbar du gestionnaire -->
-            
-
+        <!-- seul le gestionnaire a des menus -->
+        <?php if (estConnecte() && estGestionnaire()) { ?>
             <a href="creerComptes.php" class="navbar-brand text-light" href="#">Créer un compte</a>
 
             <a href="validationCompte.php" class="navbar-brand text-light" href="#">Valider un compte</a>
 
+        <?php } ?>
+
+
+        <!-- personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
+        <?php if (estConnecte()) { ?>
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bonjour <?= $_SESSION["nomUtilisateur"]; ?>
                 </button>
-
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                    <!-- Modification de mot de passe -->
-                    <button class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</button>
+                    <?php if (!estGestionnaire()) { ?>
 
-                    <script type="text/javascript"> //pour ouvrir la modal
-                        $('#modifierMotDePasseGestionnaire').on('click', function() {
-                            $('#modifierMotDePasse').modal('show');
-                        });
-                    </script>
-                    
-                    <!-- Déconnexion -->
-                    <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
+
+                        <a class="dropdown-item" href="profil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
+                        <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
+
+                    <?php } else if (estGestionnaire()) { ?>
+
+                        <!-- Modification de mot de passe -->
+                        <button class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</button>
+
+                        <script type="text/javascript">
+                            //pour ouvrir la modal
+                            $('#modifierMotDePasseGestionnaire').on('click', function() {
+                                $('#modifierMotDePasse').modal('show');
+                            });
+                        </script>
+
+                        <!-- Déconnexion -->
+                        <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
                 </div>
             </div>
 
-
-        <?php } else { ?>
-            <a href="connexion.php" class="btn btn-outline-light my-2 my-sm-0 text-light" type="button"> J'ai déjà un compte</a>
         <?php } ?>
+
+
+
+
+    <!-- bouton de connnexion lorsqu'il n'y a pas d'utilisateur connecté -->
+    <?php } else { ?>
+        <a href="connexion.php" class="btn btn-outline-light my-2 my-sm-0 text-light" type="button"> J'ai déjà un compte</a>
+    <?php } ?>
 
     </div>
 </nav>

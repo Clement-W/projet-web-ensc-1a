@@ -34,7 +34,7 @@
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <div class="form-group form-button d-flex ">
-                            <input type="submit" class="btn btn-outline-success" name="modifierMotDePasse" id="modifierMotDePasse" value="Modifier" />
+                            <input type="submit" class="btn btn-outline-danger" name="modifierMotDePasse" id="modifierMotDePasse" value="Modifier" />
                         </div>
                     </div>
                     </form>

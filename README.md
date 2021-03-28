@@ -52,8 +52,15 @@ BACK :
 
 * probleme du search filter (envie de canner) (???min)
 
+* problème php session sur webhost
 
 * demander à Maxime pour les bonnes pratiques
+
+* probleme du numero de télépone qui peut être infini
+
+* popup experience pro
+
+
 
 FRONT : 
 * probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)

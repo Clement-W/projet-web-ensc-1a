@@ -51,7 +51,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
             // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, sinon c'est false.
             if (!estGestionnaire()) {
                 $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]);
-                if (!verifierExperiencesPro()) { // Si l'utilisateur n'a aucune experience pro alors on lui affiche un message d'alerte
+                if (!verifierExperiencesPro() && $estProfilDeLUtilisateurCo ) { // Si l'utilisateur n'a aucune experience pro alors on lui affiche un message d'alerte
                     afficherPopUpExperiencePro();
                 }
             }

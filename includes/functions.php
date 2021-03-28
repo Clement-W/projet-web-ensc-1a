@@ -4,7 +4,7 @@ function getBDD()
 {
     $server = "localhost";
     $username = "annuaireUser";
-    $password = "explodingkittens";
+    $password = "explodingkittens"; // très bon jeu de société
     $db = "annuaireEleves";
 
     try {
@@ -660,10 +660,8 @@ function mettreAJourMotDePasse()
             $alert["bootstrapClassAlert"] = "success";
             $alert["messageAlert"] = "Le mot de passe a bien été mis à jour";
             $_SESSION["alert"] = $alert;
-            
-            if (estGestionnaire()) {
-                redirect("accueil.php");
-            } else {
+
+            if (!estGestionnaire()) {
                 redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
             }
         } else {

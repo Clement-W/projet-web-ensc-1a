@@ -196,3 +196,8 @@ input {
 ========================================================================== */
 
 
+@media (max-width: 767.98px) { /* Dès qu'on passe à un format de type tablette, on supperpose barre de recherche et dropdown de filtre */
+    .barreRecherche{
+        flex-direction:column;
+    }
+ }

@@ -21,8 +21,6 @@ require_once "../includes/fragments/head.php";
 <body class="background">
     <?php require_once "../includes/fragments/header.php"; ?>
 
-
-
     <div class="container">
         <script src="../js/function.js"></script>
 
@@ -46,12 +44,10 @@ require_once "../includes/fragments/head.php";
 
                 <div class="whitecontainer mt-3 mb-3" id="compteNonValide<?= $compte["IdEleve"] ?>">
                     <div class="ml-4 row text-secondary">
-                        <div class="col-md-6 h3">
-                            <div class="col-md-12">
-                                <div class="affichageProfil"><?= $compte["Prenom"] ?> <?= $compte["Nom"] ?> - Promotion <?= $compte["Promotion"] ?></div>
+                        <div class="h3">
+                            <div class="affichageProfil"><?= $compte["Prenom"] ?> <?= $compte["Nom"] ?> - Promotion <?= $compte["Promotion"] ?></div>
 
-
-
+                            <div class="d-flex justify-content-between">
                                 <button class="btn btn-outline-success mr-5" onclick='validerCompte("<?= $compte["IdEleve"] ?>")'>Valider</button>
                                 <button class="btn btn-outline-danger mr-5" onclick='invaliderCompte("<?= $compte["IdEleve"] ?>")'>Refuser</button>
                                 <a href="profil.php?idEleve=<?= $compte["IdEleve"] ?>" class="btn btn-outline-dark mr-5" type="button">Voir le profil</a>

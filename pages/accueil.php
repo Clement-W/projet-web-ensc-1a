@@ -7,10 +7,13 @@ if (!empty($_POST["inscription"])) {
 if (!empty($_POST["modifierMotDePasse"])) {
     mettreAJourMotDePasse();
 }
+
 ?>
 
 <!doctype html>
 <html lang="fr">
+
+
 
 <?php
 $titrePage = "Accueil";
@@ -134,7 +137,7 @@ require_once "../includes/fragments/head.php";
                     </div>
                     <form class="row mt-5" method="post" onsubmit="return rechercher();">
                         <!-- appelle la fonction js dans js/function.js -->
-                        <div class="col d-flex justify-content-center">
+                        <div class="col d-flex justify-content-center barreRecherche">
                             <select name="search_param" id="search_param" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
 
                                 <optgroup label="Par profil">
@@ -154,6 +157,7 @@ require_once "../includes/fragments/head.php";
 
 
                             </select>
+
                             <input type="text" maxlength="200" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
                         </div>
                     </form>

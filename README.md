@@ -48,23 +48,28 @@ QUAND un gestionnaire refuse l'inscription d'un éleve en appuyant sur la croix,
 
 
 
-TODO : 
-* bouton navbar couleur (????min)
+BACK : 
 
 * probleme du search filter (envie de canner) (???min)
 
+
+* demander à Maxime pour les bonnes pratiques
+
+FRONT : 
 * probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
 
-* verifier la portabilité de tout
+* faire collapse navbar
+
 
 ---
 
-2h :
+3h :
 * commenter
 * relire le code
 * ajouter les entetes de chaque fichier avec une explication du fichier
 
 
+dire que le code a été indenté automatiquement par l'extension XXXXXX
 
 rapport :
 dire que la visibilté des infos dans profil n'est pas grisée si c'est invisible mais on y a pensé 

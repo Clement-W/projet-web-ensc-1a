@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Si on appuie sur le bouton submit de la modal Modifier le mot de passe
 require_once('../includes/modals/modifierMotDePasse.php');
 if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse changer son mot de passe depuis la modal 
@@ -15,6 +15,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
             <a href="accueil.php" class="navbar-brand text-light" href="#">Annuaire</a>
 
         </div>
+
 
         <!-- seul le gestionnaire a des menus -->
         <?php if (estConnecte() && estGestionnaire()) { ?>
@@ -42,7 +43,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
                     <?php } else if (estGestionnaire()) { ?>
 
                         <!-- Modification de mot de passe -->
-                        <button class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</button>
+                        <a class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</a>
 
                         <script type="text/javascript">
                             //pour ouvrir la modal
@@ -61,7 +62,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
 
 
 
-    <!-- bouton de connnexion lorsqu'il n'y a pas d'utilisateur connecté -->
+        <!-- bouton de connnexion lorsqu'il n'y a pas d'utilisateur connecté -->
     <?php } else { ?>
         <a href="connexion.php" class="btn btn-outline-light my-2 my-sm-0 text-light" type="button"> J'ai déjà un compte</a>
     <?php } ?>

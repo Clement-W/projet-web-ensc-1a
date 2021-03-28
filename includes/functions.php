@@ -96,6 +96,7 @@ function connexion()
                     $alert["messageAlert"] = "Vous êtes maintenant connecté.";
                     redirect('accueil.php');
                 } else {
+                    $_SESSION["nomUtilisateurCompteNonValide"] = $nomUtilisateur; // Pour que la page attenteValidation.php lui indique son nom d'utilisateur (comme lors de l'inscription)
                     redirect("attenteValidation.php");
                 }
             } else { // sinon c'est un gestionnaire
@@ -201,6 +202,8 @@ function inscription()
         foreach ($informationsParametrable as $libelleInformation) { // pour chaque information du compte dont la visibilité est modifiable
             insererParametre($BDD, $idEleve, true, $libelleInformation); // on insert en base le parametre comme visible
         }
+
+        $_SESSION["nomUtilisateurCompteNonValide"] = $nomUtilisateur; // permet de donner le nom d'utilisateur à la personne qui a créé le compte 
 
         redirect("attenteValidation.php");
     } else { // Tous les champs n'ont pas été remplis

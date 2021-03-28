@@ -8,6 +8,8 @@ if (!empty($_POST["validation"])) {
 if (!empty($_POST["invalidation"])) {
     supprimerCompteEleve(escape($_POST["IdEleve"]));
 }
+
+if(estConnecte() && estGestionnaire()){
 ?>
 
 <!doctype html>
@@ -64,3 +66,6 @@ require_once "../includes/fragments/head.php";
 </body>
 
 </html>
+<?php }else{
+    redirect("404.php");
+} ?>

@@ -60,6 +60,8 @@ BACK :
 
 * popup experience pro
 
+* montrer le nom d'utilisateur à un compte non connecté il faut à la connexion et à l'inscription mettre dans sesssion nomUtilisateurNV = nom utilisateur
+
 
 
 FRONT : 
@@ -71,6 +73,7 @@ FRONT :
 ---
 
 3h :
+* Verifier qu'il n'y a pas de problème de div et tout en regardant le code source de chaque page et en le passant dans w3c html validator
 * commenter
 * relire le code
 * ajouter les entetes de chaque fichier avec une explication du fichier

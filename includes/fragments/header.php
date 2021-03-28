@@ -1,9 +1,11 @@
 <?php
+require_once('../includes/modals/modifierMotDePasse.php'); // pour le gestionnaire
+
 //Si on appuie sur le bouton submit de la modal Modifier le mot de passe
-require_once('../includes/modals/modifierMotDePasse.php');
 if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse changer son mot de passe depuis la modal 
     mettreAJourMotDePasse();
 }
+
 ?>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark transparent" id="nav">
     <div class="container-fluid">
@@ -40,7 +42,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
                         <a class="dropdown-item" href="profil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
                         <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
 
-                    <?php } else if (estGestionnaire()) { ?>
+                    <?php } else if (estGestionnaire()) {  ?>
 
                         <!-- Modification de mot de passe -->
                         <a class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</a>

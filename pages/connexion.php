@@ -1,9 +1,18 @@
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier :
+* Permet de se connecter à son compte utilisateur ou gestionnaire.
+*
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
 <?php
 require_once("../includes/functions.php");
 session_start();
 
 if (estConnecte()) {
-    redirect("profil.php"); // Si on est connecté et qu'on essaie d'accéder à cette page, redirect vers la page profil.
+    redirect("profil.php"); // Si on est déjà connecté et qu'on essaie d'accéder à cette page, redirect vers la page profil.
 } else {
     // Si on appuie sur le bouton de connexion 
     if (!empty($_POST["connexion"])) {
@@ -35,7 +44,7 @@ if (estConnecte()) {
 
             ?>
 
-            <!-- Faire le form de connexion -->
+            <!-- Formulaire de connexion -->
 
             <div class="container">
 
@@ -53,7 +62,7 @@ if (estConnecte()) {
                                     </div>
                                     <div class="form-group">
                                         <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                        <input type="password" maxlength="50" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required/>
+                                        <input type="password" maxlength="50" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required />
                                     </div>
                                     <div class="form-group form-button">
                                         <input type="submit" class="btn btn-outline-success" name="connexion" id="connexion" value="Terminer" />

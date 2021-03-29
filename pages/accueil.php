@@ -1,9 +1,23 @@
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier :
+* Si un utilisateur n'est pas connecté, affiche la page d'accueil avec le formulaire de d'inscription.
+* Si un utilisateur est connecté, affiche la barre de recherche et le dropdown avec les 9 critères de recherche. Affiche dynamiquement les résultats d'une recherche.
+*
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
 <?php
 require_once "../includes/functions.php";
 session_start();
+
+//Lorsqu'on clique sur le bouton submit pour terminer l'inscription, on appelle la fonction inscription
 if (!empty($_POST["inscription"])) {
     inscription();
 }
+
+
 if (!empty($_POST["modifierMotDePasse"])) {
     mettreAJourMotDePasse();
 }
@@ -89,7 +103,7 @@ require_once "../includes/fragments/head.php";
                                             $("#continuer1").click(() => $(".carousel").carousel("next"));
                                         </script>
                                     </div>
-
+                                    <!-- Deuxième slide du formulaire d'inscription -->
                                     <div class="carousel-item">
                                         <div class="form-group">
                                             <label for="adresse"><i class="zmdi zmdi-lock"></i></label>
@@ -158,7 +172,7 @@ require_once "../includes/fragments/head.php";
 
                             </select>
 
-                            <input type="text" maxlength="200" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ca recherche tout seul -->
+                            <input type="text" maxlength="200" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ça recherche tout seul -->
                         </div>
                     </form>
 

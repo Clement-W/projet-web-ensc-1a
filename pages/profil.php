@@ -78,8 +78,9 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div class="col-md-12">
                             <div class="affichageProfil"><?= $prenom ?> <?= $nom ?></div> <!-- On affiche dans Prénom, Nom et Promo car ils sont obligatoirement visibles -->
                             <div class="affichageProfil">Promotion <?= $promo ?></div>
+
+                            <!-- Maintenant, si la personne connectée n'est pas un admin ou que ce n'est pas le propriétaire du compte, on affiche que les informations cochées "visibles" -->
                             <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["Genre"]) { ?>
-                                <!-- Maintenant, on affiche que les informations cochées "visible" si la personne connectée n'est pas un admin ou que ce n'est pas le propriétaire du compte -->
                                 <div class="affichageProfil">Genre: <?= $genre ?></div>
                             <?php } ?>
                         </div>
@@ -121,18 +122,20 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 </div>
                 <hr class="ml-5 mr-5" />
 
+                <!-- Affichage des expériences pro-->
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card-body ml-3">
                                 <h6 class="card-title h5 text-secondary"><u>Expériences</u> </h6>
+                                <!-- Si l'élève possède au moins une expériences pro -->
                                 <?php if (possedeExperiencePro($idEleve)) { ?>
 
                                     <div id="content">
                                         <ul class="timeline">
                                             <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
                                                 $idExperiencePro = $expPro["IdExperiencePro"];
-                                                // Si l'eexperience pro est rendue invisible par l'utilisateur alors on ne le montre pas
+                                                // Si l'experience pro est rendue invisible par l'utilisateur alors on ne le montre pas
                                                 if ($parametres[$idExperiencePro] || estGestionnaire() || $estProfilDeLUtilisateurCo) {
 
                                                     $intituleExp = $expPro["IntituleExperiencePro"];

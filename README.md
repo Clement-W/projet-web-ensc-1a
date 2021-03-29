@@ -50,24 +50,17 @@ QUAND un gestionnaire refuse l'inscription d'un éleve en appuyant sur la croix,
 
 BACK : 
 
-* probleme du search filter (envie de canner) (???min)
+* probleme du search filter (envie de canner) (???min) justifier dans le rapport en disant que le escape est assez safe
 
-* problème php session sur webhost
+* split le fichier function.php (bdd et pas bdd)
 
-* demander à Maxime pour les bonnes pratiques
-
-* probleme du numero de télépone qui peut être infini
+* mettre recherche_resultats.php dans un function.php
 
 * popup experience pro
-
-* montrer le nom d'utilisateur à un compte non connecté il faut à la connexion et à l'inscription mettre dans sesssion nomUtilisateurNV = nom utilisateur
-
-
 
 FRONT : 
 * probleme de la page modifier profil : il y a un espace blanc en dessous du bouton enregistrer quand on a des experiences pro(???min)
 
-* faire collapse navbar
 
 
 ---
@@ -79,7 +72,7 @@ FRONT :
 * ajouter les entetes de chaque fichier avec une explication du fichier
 
 
-dire que le code a été indenté automatiquement par l'extension XXXXXX
+dire que le code a été formaté automatiquement par l'extension XXXXXX
 
 rapport :
 dire que la visibilté des infos dans profil n'est pas grisée si c'est invisible mais on y a pensé 

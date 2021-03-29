@@ -1,3 +1,15 @@
+<?php 
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Contient la partie head utilisée dans chacunes des pages du site web
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

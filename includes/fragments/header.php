@@ -1,4 +1,15 @@
 <?php
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Contient la barre de navigation présente sur chacune des pages du site web
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+
+
 require_once('../includes/modals/modifierMotDePasse.php'); // pour le gestionnaire
 
 //Si on appuie sur le bouton submit de la modal Modifier le mot de passe

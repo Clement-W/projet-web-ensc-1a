@@ -1,6 +1,18 @@
-<!-- Utilisé pour afficher expérience déjà définie OU pour en ajouter une nouvelle-->
+<?php
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Ce fichier contient les champs d'un formulaire permettant d'afficher une expérience professionnelle déjà définie
+ * ou d'en ajouter une nouvelle.
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
 
-<?php $idChamp = (isset($idExpPro)) ? $idExpPro : ""; //on utilise l'id de l'experience pro pour rendre unique le champ pour le cas où il ya  plusieurs experiences pro sur un profil. Si idExpPro n'est pas défini on est pas dans la page de modification de profil mais dans la modal d'ajout d'experience pro 
+
+
+$idChamp = (isset($idExpPro)) ? $idExpPro : ""; //on utilise l'id de l'experience pro pour rendre unique le champ pour le cas où il ya  plusieurs experiences pro sur un profil. Si idExpPro n'est pas défini on est pas dans la page de modification de profil mais dans la modal d'ajout d'experience pro 
 ?>
 
 

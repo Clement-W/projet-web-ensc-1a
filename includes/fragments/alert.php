@@ -1,4 +1,15 @@
 <?php
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier : 
+* Affiche un message d'alerte en haut de la page pour faire un retour à l'utilisateur 
+* concernant une action qu'il a réalisé. 
+*
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
+
 if (isset($_SESSION["alert"])) {
     // On utilise la variable de session afin de pouvoir transporter les messages d'alerte de pages en pages.
     $alert = $_SESSION["alert"];

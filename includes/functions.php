@@ -1,4 +1,14 @@
 <?php
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Contient toutes les fonctions php utilisées dans notre code
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+
 
 function getBDD()
 {

@@ -1,9 +1,21 @@
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier : 
+* Contient les 3 fonctions javascript qui sont utilisées dans notre code
+*
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
+
+
+
 function rechercher() {
     var search_term = $("#search_term").val();
     var search_param = $("#search_param").val();
     $.ajax({
         type: 'post',
-        url: '../includes/recherche_resultats.php',
+        url: 'accueil.php',
         data: {
             search: "search",
             search_term: search_term,

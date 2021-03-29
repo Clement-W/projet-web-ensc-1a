@@ -1,14 +1,15 @@
-/* MODULE DE PROGRAMMATION WEB
-* Rôle du fichier :
-* Si un utilisateur n'est pas connecté, affiche la page d'accueil avec le formulaire de d'inscription.
-* Si un utilisateur est connecté, affiche la barre de recherche et le dropdown avec les 9 critères de recherche. Affiche dynamiquement les résultats d'une recherche.
-*
-*
-* Copyright 2021, MARQUETON Emma & WEINREICH Clément
-* https://ensc.bordeaux-inp.fr/fr
-*
-*/
 <?php
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier :
+ * Si un utilisateur n'est pas connecté, affiche la page d'accueil avec le formulaire de d'inscription.
+ * Si un utilisateur est connecté, affiche la barre de recherche et le dropdown avec les 9 critères de recherche. Affiche dynamiquement les résultats d'une recherche.
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+
 require_once "../includes/functions.php";
 session_start();
 
@@ -20,6 +21,10 @@ if (!empty($_POST["inscription"])) {
 
 if (!empty($_POST["modifierMotDePasse"])) {
     mettreAJourMotDePasse();
+}
+
+if(!empty($_POST["search"])){
+    recupererResultatsRecherche();
 }
 
 ?>

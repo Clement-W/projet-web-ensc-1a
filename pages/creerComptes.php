@@ -1,4 +1,3 @@
-
 <?php
 /* MODULE DE PROGRAMMATION WEB
 * Rôle du fichier :
@@ -100,7 +99,6 @@ if (!estGestionnaire()) {
                                         </div>
                                     </form>
 
-
                                 </div>
 
 
@@ -140,7 +138,7 @@ if (!estGestionnaire()) {
                         <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 ">Télécharger le template excel (csv) permettant de créer plusieurs comptes Élève </h4>
 
                         <a href="../assets/creerComptes.csv" type="button" class="btn btn-outline-success mr-5 ml-5 mb-5 mt-2" download="creerComptes.csv">Télécharger</a>
-                            <!-- Download permet de télécharger le template creerComptes.csv à remplir avec les informations des nouveaux comptes -->
+                        <!-- Download permet de télécharger le template creerComptes.csv à remplir avec les informations des nouveaux comptes -->
 
                         <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5">Vous pouvez déposer ce même fichier une fois rempli ci-dessous afin de créer plusieurs comptes</h4>
 
@@ -160,9 +158,6 @@ if (!estGestionnaire()) {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </body>
 

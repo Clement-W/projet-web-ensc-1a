@@ -1,4 +1,14 @@
 <?php
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier :
+* Permet de modifier le profil d'un utilisateur. Comprend la modif des info perso, des expériences pro, et de leur visibilité. 
+* Permet aussi de changer le mot de passe et d'ajouter une expérience pro au profil.
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
+
 require_once("../includes/functions.php");
 session_start();
 
@@ -17,10 +27,11 @@ if (!empty($_POST["modifierMotDePasse"])) {
 }
 
 if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["idEleve"]) || !(getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]))) {
-    // Si un utilisateur n'est pas connecté, ou que l'id eleve n'est pas valide ou pas donné en get alors on redirige vers 404 error
+    // Si un utilisateur n'est pas connecté, ou que l'id eleve n'est pas valide ou pas donné en get, alors on redirige vers 404 error
     redirect("404.php");
 } else {
 
+    //On nomme tous les paramètres qui peuvent nous servir pour modifier le profil afin de gagner en lisibilité
     $idEleve = escape($_GET["idEleve"]);
     $infos = getInfosCompteEleveParId($idEleve);
     $nom = $infos["Nom"];
@@ -52,7 +63,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
         <div class="container">
             <?php require_once('../includes/fragments/alert.php');
             if (isset($_SESSION["alert"]) && $_SESSION["alert"]["bootstrapClassAlert"] != "success") {
-                unset($_SESSION["alert"]);
+                // S'il y a un alert de succes, on va être redirigé instantanément vers la page d'accueil, donc on ne veut pas unset l'alert dans connexion
+                unset($_SESSION["alert"]); // Pour ne plus l'afficher, on l'enlève de la variable de session. 
             } ?>
 
 
@@ -68,6 +80,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div>
                             <button type="button" id="boutonAjouterExperience" class="btn btn-outline-primary mr-5">Ajouter une expérience</button>
                         </div>
+                        <!-- On appelle la fenêtre modale pour ajouter une expérience pro -->
                         <script type="text/javascript">
                             $('#boutonAjouterExperience').on('click', function() {
                                 $('#ajouterExperience').modal('show');
@@ -79,6 +92,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         <div>
                             <button type="button" id="boutonModifierMotDePasse" class="btn btn-outline-danger mr-5">Modifier le mot de passe</button>
                         </div>
+                        <!-- On appelle la fenêtre modale pour modifier le mot de passe -->
                         <script type="text/javascript">
                             $('#boutonModifierMotDePasse').on('click', function() {
                                 $('#modifierMotDePasse').modal('show');
@@ -92,7 +106,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <p class="ml-5 h5 text-secondary mr-3"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Il est possible de rendre invisible aux yeux des autres utilisateurs certaines de vos informations. Pour cela, décochez celles que vous ne souhaitez pas montrer dans votre profil.</p>
                 </br>
 
-
+                <!-- Formulaire de modification des infos perso et de leur visibilité, et affichage des expérience pro -->
                 <div class="d-flex flex-wrap flex-column ml-5">
                     <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">
                         <p class="h3 text-secondary"><u>Informations personnelles</u></p>
@@ -190,6 +204,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         </div>
 
                         </br>
+
+                        <!-- Affichage des expérience pro -->
                         <hr class="mr-5" />
                         <div class="d-flex justify-content-between pt-3">
                             <p class="h3 text-secondary"><u>Expériences professionnelles</u></p>
@@ -198,6 +214,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                         </br>
                         <p class="h5 text-secondary"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Les champs avec des astérisques (*) sont obligatoires. </p>
                         </br>
+
+                        <!-- On boucle sur les expériences pro stockées dans la variable $experiencePro -->
                         <?php foreach ($experiencePro as $expPro) {
                             $intituleExp = $expPro["IntituleExperiencePro"];
                             $typeExp = $expPro["TypeExperiencePro"];

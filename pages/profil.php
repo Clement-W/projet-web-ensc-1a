@@ -1,8 +1,15 @@
 <?php
-//fonctionne avec un parametre get, par exemple: pages/profil.php?idEleve=4
-//affiche le profil en conséquent. Si le compte n'est pas validé alors seul un gestionnaire peut le voir
-//Sinon affiche une 404
-//On affiche pas les infos cachées par l'utilisateur en question SAUF si c'est le profil de l'utilisatur connecté actuellement ou si c'est le gestionnaire qui regarde
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier :
+* Affiche le profil d'un élève. Fonctionne avec un parametre get, par exemple: pages/profil.php?idEleve=4 
+* Si le compte n'est pas validé alors seul un gestionnaire peut le voir
+* Sinon affiche une 404
+* On affiche pas les infos cachées par l'utilisateur en question SAUF si c'est le profil de l'utilisatur connecté actuellement ou si c'est le gestionnaire qui regarde
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
 ?>
 
 <?php
@@ -29,7 +36,6 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     $experiencePro = getExperiencesProParId($idEleve);
     $parametres = getVisibiliteInfosProfil($idEleve);
 
-
 ?>
 
     <!doctype html>
@@ -44,26 +50,24 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
         <?php require_once "../includes/fragments/header.php"; ?>
         <div class="container">
             <?php require_once('../includes/fragments/alert.php');
-            if (isset($_SESSION["alert"])) {
-                unset($_SESSION["alert"]);
+            if (isset($_SESSION["alert"])) { // Si une alerte a été émise, alors elle sera affichée car on require_once alert.php. 
+                unset($_SESSION["alert"]); // Pour ne plus l'afficher, on l'enlève de la variable de session. 
             }
 
-            // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, sinon c'est false.
+            // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, on affiche la popup, sinon c'est false.
             if (!estGestionnaire()) {
                 $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]);
-                if (!verifierExperiencesPro() && $estProfilDeLUtilisateurCo ) { // Si l'utilisateur n'a aucune experience pro alors on lui affiche un message d'alerte
+                if (!verifierExperiencesPro() && $estProfilDeLUtilisateurCo) { // Si l'utilisateur n'a aucune experience pro alors on lui affiche un message d'alerte
                     afficherPopUpExperiencePro();
                 }
             }
 
             ?>
 
-
-
             <div class="whitecontainer">
                 <div class="d-flex justify-content-between pt-3">
                     <h2 class="ml-5 ">Profil</h2>
-                    <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté-->
+                    <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté -->
                     <?php if (!estGestionnaire() && $estProfilDeLUtilisateurCo) { ?>
                         <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
                     <?php } ?>
@@ -72,10 +76,10 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                 <div class="ml-4 row text-secondary">
                     <div class="col-md-6 h4">
                         <div class="col-md-12">
-                            <div class="affichageProfil"><?= $prenom ?> <?= $nom ?></div>
+                            <div class="affichageProfil"><?= $prenom ?> <?= $nom ?></div> <!-- On affiche dans Prénom, Nom et Promo car ils sont obligatoirement visibles -->
                             <div class="affichageProfil">Promotion <?= $promo ?></div>
                             <?php if (estGestionnaire() || $estProfilDeLUtilisateurCo || $parametres["Genre"]) { ?>
-                                <!-- si la personne connectée n'est pas un admin ou que ce n'est pas le propriétaire du compte alors on affiche pas les informations masquées -->
+                                <!-- Maintenant, on affiche que les informations cochées "visible" si la personne connectée n'est pas un admin ou que ce n'est pas le propriétaire du compte -->
                                 <div class="affichageProfil">Genre: <?= $genre ?></div>
                             <?php } ?>
                         </div>
@@ -160,7 +164,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                                         <p><?= $description ?></p>
                                                         Secteur(s) d'activité : <?= $secteursActivites ?></br>
                                                         Domaine(s) de compétence : <?= $domainesCompetences ?></br>
-                                                        <?php if ($salaire != null) { ?>Salaire : <?= $salaire ?> <?php } ?> <!-- s'il n'y a pas de salaire on affiche pas le libelle salaire -->
+                                                        <?php if ($salaire != null) { ?>Salaire : <?= $salaire ?> <?php } ?>
+                                                    <!-- s'il n'y a pas de salaire on affiche pas le libelle salaire -->
                                                     </p>
 
                                                     </li>

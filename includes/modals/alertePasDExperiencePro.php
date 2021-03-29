@@ -1,3 +1,16 @@
+<?php
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Ce fichier inclus les champs de formExperiencePro.php pour créer un formulaire permettant
+ * d'ajouter une nouvelle expérience professionnelle.
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+?>
+
 <div class="modal fade" id="alertePasExperiencePro">
     <div class="modal-dialog">
         <div class="modal-content">

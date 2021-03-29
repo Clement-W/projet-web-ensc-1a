@@ -1,7 +1,7 @@
 <?php 
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
- * Contient la partie head utilisée dans chacunes des pages du site web
+ * Contient la partie head utilisée dans chacune des pages du site web
  *
  *
  * Copyright 2021, MARQUETON Emma & WEINREICH Clément

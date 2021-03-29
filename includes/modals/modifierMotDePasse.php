@@ -1,6 +1,17 @@
 
 <?php 
 
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Modal contenant un formulaire permettant de modifier son mot de passe. (Utilisé par le gestionnaire et par l'élève)
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+
+
 if (estConnecte()) {?>
     <div class="modal fade" id="modifierMotDePasse">
         <div class="modal-dialog">

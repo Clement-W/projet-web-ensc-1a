@@ -1,3 +1,13 @@
+/* MODULE DE PROGRAMMATION WEB
+ * Rôle du fichier : 
+ * Permet de créer les tables de la bdd
+ *
+ *
+ * Copyright 2021, MARQUETON Emma & WEINREICH Clément
+ * https://ensc.bordeaux-inp.fr/fr
+ *
+ */
+
 drop table if exists ExperiencePro;
 drop table if exists InfosPerso;
 drop table if exists Parametres;

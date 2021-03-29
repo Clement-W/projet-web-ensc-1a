@@ -18,6 +18,10 @@ if (!empty($_POST["inscription"])) {
     inscription();
 }
 
+if (!empty($_POST["modifierMotDePasse"])) {
+    mettreAJourMotDePasse();
+}
+
 if(!empty($_POST["search"])){
     recupererResultatsRecherche();
 }

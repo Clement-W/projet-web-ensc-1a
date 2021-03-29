@@ -1,17 +1,30 @@
+
 <?php
+/* MODULE DE PROGRAMMATION WEB
+* Rôle du fichier :
+* Permet à un gestionnaire de créer un compte élève, un compte gestionnaire, ou plusieurs comptes élève d'un coup grâce à un fichier csv
+*
+*
+* Copyright 2021, MARQUETON Emma & WEINREICH Clément
+* https://ensc.bordeaux-inp.fr/fr
+*
+*/
+
 require_once "../includes/functions.php";
 session_start();
 if (!estGestionnaire()) {
     // Si ce n'est pas un gestionnaire qui est connecté, on redirige vers 404 error
     redirect("404.php");
 } else {
+    // Si on clique sur le submit Créer un gestionnaire
     if (!empty($_POST["creerCompteGestionnaire"])) {
         creerCompteGestionnaire();
     }
+    // Si on clique sur le submit Créer un élève
     if (!empty($_POST["creerCompteEleve"])) {
         creerCompteEleveParGestionnaire();
     }
-
+    // Si on clique sur le submit Valider pour créer plusieurs comptes élèves
     if (!empty($_POST["validerFileUpload"])) {
         creerComptesElevesDepuisCSV();
     }
@@ -28,13 +41,11 @@ if (!estGestionnaire()) {
     <body class="background">
         <?php require_once "../includes/fragments/header.php"; ?>
 
-
-
         <div class="container">
 
             <?php require_once('../includes/fragments/alert.php');
-            if (isset($_SESSION["alert"])) {
-                unset($_SESSION["alert"]);
+            if (isset($_SESSION["alert"])) { // Si une alerte a été émise, alors elle sera affichée car on require_once alert.php. 
+                unset($_SESSION["alert"]); // Pour ne plus l'afficher, on l'enlève de la variable de session. 
             }
 
             ?>
@@ -61,7 +72,7 @@ if (!estGestionnaire()) {
                             <div class="carousel-inner divCarousel">
                                 <div class="carousel-item active">
 
-                                    <!-- form pour créer un compte élève -->
+                                    <!-- Formulaire pour créer un compte élève -->
                                     <form method="POST" action="creerComptes.php" class="register-form" id="register-form">
 
                                         <div class="form-group">
@@ -94,7 +105,7 @@ if (!estGestionnaire()) {
 
 
                                 <div class="carousel-item">
-                                    <!-- form pour créer un compte gestionnaire -->
+                                    <!-- Formulaire pour créer un compte gestionnaire -->
                                     <form method="POST" action="creerComptes.php" class="register-form" id="register-form">
                                         <div class="form-group">
                                             <label for="nom"><i class="zmdi zmdi-account material-icons-name "></i></label>
@@ -121,6 +132,7 @@ if (!estGestionnaire()) {
                     </div>
                 </div>
 
+                <!-- Pour créer plusieurs comptes élève -->
                 <div class="col-lg-6 ">
                     <div class="whitecontainer flex-column d-flex justify-content-center">
 
@@ -128,11 +140,12 @@ if (!estGestionnaire()) {
                         <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5 ">Télécharger le template excel (csv) permettant de créer plusieurs comptes Élève </h4>
 
                         <a href="../assets/creerComptes.csv" type="button" class="btn btn-outline-success mr-5 ml-5 mb-5 mt-2" download="creerComptes.csv">Télécharger</a>
+                            <!-- Download permet de télécharger le template creerComptes.csv à remplir avec les informations des nouveaux comptes -->
 
                         <h4 class="d-flex justify-content-center mt-3 mr-5 ml-5">Vous pouvez déposer ce même fichier une fois rempli ci-dessous afin de créer plusieurs comptes</h4>
 
                         <form method="post" action="creerComptes.php" class="" enctype="multipart/form-data">
-                            <!-- ce enctype permet l'envoi de fichier -->
+                            <!-- Ce enctype permet l'envoi de fichier -->
 
                             <div class="mt-3">
                                 <input type="file" accept=".csv" id="templateUploaded" name="templateUploaded" class="file-upload" required />

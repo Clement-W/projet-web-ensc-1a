@@ -1,3 +1,4 @@
+<?php
 /* MODULE DE PROGRAMMATION WEB
 * Rôle du fichier :
 * Signale que la demande d'inscription a été prise en compte et qu'il faut attendre la validation du compte par un gestionnaire
@@ -7,7 +8,7 @@
 * https://ensc.bordeaux-inp.fr/fr
 *
 */
-<?php
+
 require_once("../includes/functions.php");
 session_start();
 

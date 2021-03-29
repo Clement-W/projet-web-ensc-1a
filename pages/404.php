@@ -1,3 +1,4 @@
+<?php
 /* MODULE DE PROGRAMMATION WEB
 * Rôle du fichier :
 * Affichage d'un message d'erreur lorsqu'une page n'est pas disponible
@@ -8,7 +9,6 @@
 *
 */
 
-<?php
 require_once("../includes/functions.php");
 session_start();
 

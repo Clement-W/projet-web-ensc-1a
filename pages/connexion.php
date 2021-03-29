@@ -1,3 +1,4 @@
+<?php
 /* MODULE DE PROGRAMMATION WEB
 * Rôle du fichier :
 * Permet de se connecter à son compte utilisateur ou gestionnaire.
@@ -7,7 +8,7 @@
 * https://ensc.bordeaux-inp.fr/fr
 *
 */
-<?php
+
 require_once("../includes/functions.php");
 session_start();
 
@@ -37,7 +38,7 @@ if (estConnecte()) {
             <?php require_once('../includes/fragments/alert.php');
             if (isset($_SESSION["alert"]) && $_SESSION["alert"]["bootstrapClassAlert"] != "success") {
                 // S'il y a un alert de succes, on va être redirigé instantanément vers la page d'accueil, donc on ne veut pas unset l'alert dans connexion
-                unset($_SESSION["alert"]);
+                unset($_SESSION["alert"]); // Pour ne plus l'afficher, on l'enlève de la variable de session. 
             }
 
 

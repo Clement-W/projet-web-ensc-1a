@@ -1,5 +1,10 @@
 
 <?php 
+
+if (!empty($_POST["modifierMotDePasse"])) {
+    mettreAJourMotDePasse();
+}
+
 if (estConnecte()) {?>
     <div class="modal fade" id="modifierMotDePasse">
         <div class="modal-dialog">
@@ -14,7 +19,7 @@ if (estConnecte()) {?>
 
                 <!-- Modal body -->
                 <?php if (estGestionnaire()) { ?>
-                    <form method="POST" action="accueil.php" class="register-form ml-5 mr-5" id="register-form">
+                    <form method="POST" action="../includes/modals/modifierMotDePasse.php" class="register-form ml-5 mr-5" id="register-form">
 
                     <?php } else { ?>
 

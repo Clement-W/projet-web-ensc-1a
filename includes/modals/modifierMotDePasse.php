@@ -11,7 +11,7 @@
  *
  */
 
-
+require_once("../includes/fonctionsGenerales.php");
 if (estConnecte()) {?>
     <div class="modal fade" id="modifierMotDePasse">
         <div class="modal-dialog">

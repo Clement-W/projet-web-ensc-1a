@@ -17,15 +17,17 @@ require_once("../includes/fonctionsUtilitaires.php");
 
 session_start();
 
-//Lorsqu'on clique sur le bouton submit pour terminer l'inscription, on appelle la fonction inscription
+// Lorsqu'on clique sur le bouton submit pour terminer l'inscription, on appelle la fonction inscription
 if (!empty($_POST["inscription"])) {
     inscription();
 }
 
+// Lorsque le gestionnaire clique sur l'onglet "modifier mot de passe", le form de la modale qui contient ce formulaire envoie une requete http post vers accueil, on appelle donc la fonction associée
 if (!empty($_POST["modifierMotDePasse"])) {
     mettreAJourMotDePasse();
 }
 
+// Lorsqu'un utilisateur effectue une recherche, la fonction js qui est appelée envoie une requete http post vers accueil pour appeler la fonction php associée
 if(!empty($_POST["search"])){
     recupererResultatsRecherche();
 }
@@ -36,22 +38,21 @@ if(!empty($_POST["search"])){
 <html lang="fr">
 
 
-
 <?php
 $titrePage = "Accueil";
-require_once "../includes/fragments/head.php";
+require_once("../includes/fragments/head.php");
 ?>
 
 <body class="background">
-    <?php require_once "../includes/fragments/header.php"; ?>
-
+    <?php require_once("../includes/fragments/header.php"); ?>
 
 
     <div class="container">
 
         <?php require_once('../includes/fragments/alert.php');
-        if (isset($_SESSION["alert"])) { // Si une alerte a été émise, alors elle sera affichée car on require_once alert.php. 
-            unset($_SESSION["alert"]); // Pour ne plus l'afficher, on l'enlève de la variable de session. 
+        // Si une alerte a été émise, alors elle sera affichée car on require_once alert.php. 
+        if (isset($_SESSION["alert"])) { // Si une alerte est affichée dans accueil, on ne veut plus qu'elle réaparaisse plus tard donc on l'unset
+            unset($_SESSION["alert"]);  // Utiliser la variable de session pour l'alerte permet de transmettre l'alerte entre les redirections de pages
         }
         ?>
 
@@ -68,9 +69,9 @@ require_once "../includes/fragments/head.php";
                 <div class="col-lg-6 align-item-center">
                     <div class="whitecontainer flex-column d-flex justify-content-center">
 
-                        <form method="POST" action="accueil.php" class="register-form" id="register-form">
+                        <form method="POST" action="accueil.php" class="register-form" id="formInscription">
                             <h2 class="d-flex justify-content-center mt-3">Inscription</h2>
-                            <div id="carouselExampleIndicators" class="carousel slide divCarousel marge-inscription" data-interval="false">
+                            <div id="formCarousel" class="carousel slide divCarousel marge-inscription" data-interval="false">
                                 <div class="carousel-inner divCarousel">
                                     <div class="carousel-item active">
 

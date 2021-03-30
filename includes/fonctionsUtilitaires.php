@@ -1,7 +1,7 @@
 <?php
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
- * Contient toutes les foncttions utilitaires utilisées dans notre code
+ * Contient toutes les foncttions utilitaires utilisées dans notre code (n'utilise pas la BDD)
  *
  *
  * Copyright 2021, MARQUETON Emma & WEINREICH Clément

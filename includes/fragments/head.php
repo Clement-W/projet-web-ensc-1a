@@ -19,5 +19,5 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title><?= $titrePage?> </title>
 
-    <?php require_once "../includes/scripts/script.php"; ?>
+    <?php require_once "../includes/scripts/scripts.php"; ?>
 </head>

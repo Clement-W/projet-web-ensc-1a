@@ -9,7 +9,6 @@
 *
 */
 
-require_once("../includes/fonctionsUtilitaires.php");
 session_start();
 
 ?>
@@ -19,11 +18,11 @@ session_start();
 
 <?php
 $titrePage = "404";
-require_once "../includes/fragments/head.php";
+require_once("../includes/fragments/head.php");
 ?>
 
 <body class="background">
-    <?php require_once "../includes/fragments/header.php"; ?>
+    <?php require_once("../includes/fragments/header.php"); ?>
 
     <div class="text-center mt-5">
         <h1><strong>Erreur 404 : </strong> La page demandée n'est pas disponible :'(</h1>

@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
@@ -12,7 +11,9 @@
  */
 
 require_once("../includes/fonctionsGenerales.php");
-if (estConnecte()) {?>
+require_once("../includes/fonctionsEleve.php");
+
+if (estConnecte()) { ?>
     <div class="modal fade" id="modifierMotDePasse">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -33,6 +34,7 @@ if (estConnecte()) {?>
                         <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="register-form ml-5 mr-5" id="register-form">
 
                         <?php } ?>
+
                         <div class="form-group">
                             <label for="ancienMotDePasse"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" maxlength="50" name="ancienMotDePasse" id="ancienMotDePasse" placeholder="Ancien mot de passe" required />

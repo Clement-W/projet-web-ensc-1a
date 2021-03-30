@@ -1,1 +1,1 @@
-Ce répertoire contient le fichier csv qui est téléchargé pour créer plusieurs comptes.
+Ce répertoire contient le fichier csv qui est téléchargé par l'utilisateur pour créer plusieurs comptes.

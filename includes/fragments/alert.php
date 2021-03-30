@@ -24,7 +24,7 @@ if (isset($_SESSION["alert"])) {
     <script type="text/javascript">
         $("#alert").fadeTo(2000, 500).slideUp(500, function() {
             $("#alert").slideUp(500);
-        });
+        }); // pour que le message d'alert disparaisse avec un effet de glissement vers le haut
     </script> 
 
     

@@ -109,7 +109,7 @@ require_once("../includes/fragments/head.php");
                                             <input type="button" class="btn btn-outline-secondary" name="signup" id="continuer1" class="form-submit" value="Continuer" />
                                         </div>
                                         <script type="text/javascript">
-                                            $("#continuer1").click(() => $(".carousel").carousel("next"));
+                                            $("#continuer1").click(() => $(".carousel").carousel("next")); // pour faire tourner la page du carousel à l'aide du bouton connecter
                                         </script>
                                     </div>
                                     <!-- Deuxième slide du formulaire d'inscription -->

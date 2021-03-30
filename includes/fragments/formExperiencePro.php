@@ -11,7 +11,8 @@
  */
 
 
-$idChamp = (isset($idExpPro)) ? $idExpPro : ""; //on utilise l'id de l'experience pro pour rendre unique le champ pour le cas où il ya  plusieurs experiences pro sur un profil. Si idExpPro n'est pas défini on est pas dans la page de modification de profil mais dans la modal d'ajout d'experience pro 
+$idChamp = (isset($idExpPro)) ? $idExpPro : ""; //on utilise l'id de l'experience pro pour rendre unique l'id du champ pour le cas où il ya  plusieurs experiences pro sur un profil. 
+//Si idExpPro n'est pas défini, on est pas dans la page de modification de profil mais dans la modal d'ajout d'experience pro
 ?>
 
 <div class="d-flex">

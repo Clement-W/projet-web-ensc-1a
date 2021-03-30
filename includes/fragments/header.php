@@ -10,9 +10,9 @@
  */
 
 
-require_once('../includes/modals/modifierMotDePasse.php'); // pour le gestionnaire
+require_once('../includes/modals/modifierMotDePasse.php'); // Pour le gestionnaire
 
-//Si on appuie sur le bouton submit de la modal Modifier le mot de passe
+// Si on appuie sur le bouton submit de la modal Modifier le mot de passe
 if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse changer son mot de passe depuis la modal 
     mettreAJourMotDePasse();
 }
@@ -30,8 +30,9 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
         </div>
 
 
-        <!-- Seul le gestionnaire a ces menus -->
+        
         <?php if (estConnecte() && estGestionnaire()) { ?>
+            <!-- Seul le gestionnaire a ces menus -->
             <a href="creerComptes.php" class="navbar-brand text-light" href="#">Créer un compte</a>
 
             <a href="validationCompte.php" class="navbar-brand text-light" href="#">Valider un compte</a>
@@ -39,8 +40,9 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
         <?php } ?>
 
 
-        <!-- Personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
+       
         <?php if (estConnecte()) { ?>
+             <!-- Personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bonjour <?= $_SESSION["nomUtilisateur"]; ?>
@@ -58,7 +60,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
                         <a class="dropdown-item" type="button" id="modifierMotDePasseGestionnaire">Mot de passe</a>
 
                         <script type="text/javascript">
-                            //pour ouvrir la modal
+                            //pour ouvrir la modal de modification de mot de passe
                             $('#modifierMotDePasseGestionnaire').on('click', function() {
                                 $('#modifierMotDePasse').modal('show');
                             });

@@ -23,7 +23,8 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
     redirect("404.php");
 } else {
 
-    $idEleve = escape($_GET["idEleve"]);
+    //On nomme tous les paramètres qui peuvent nous servir pour modifier le profil afin de gagner en lisibilité
+    $idEleve = escape($_GET["idEleve"]); // escape pour éviter une injection depuis l'url
     $infos = getInfosCompteEleveParId($idEleve);
     $nom = $infos["Nom"];
     $prenom = $infos["Prenom"];

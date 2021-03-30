@@ -14,7 +14,7 @@ require_once("../includes/fonctionsGenerales.php");
 require_once("../includes/fonctionsGestionnaire.php");
 
 session_start();
-if (!estGestionnaire()) {
+if (!estConnecte() || !estGestionnaire()) {
     // Si ce n'est pas un gestionnaire qui est connecté, on redirige vers 404 error
     redirect("404.php");
 } else {
@@ -59,11 +59,11 @@ if (!estGestionnaire()) {
                         <div class="d-flex mt-2">
                             <input type="button" class="btn btn-outline-secondary ml-4 mr-3" name="precedent" id="precedent" value="Créer un Elève" />
                             <script type="text/javascript">
-                                $("#precedent").click(() => $(".carousel").carousel(0));
+                                $("#precedent").click(() => $(".carousel").carousel(0)); // pour revenir sur la page précédente du carousel
                             </script>
                             <input type="button" class="btn btn-outline-secondary mr-4" name="suivant" id="suivant" value="Créer un Gestionnaire" />
                             <script type="text/javascript">
-                                $("#suivant").click(() => $(".carousel").carousel(1));
+                                $("#suivant").click(() => $(".carousel").carousel(1)); // pour aller à la page suivante du carousel
                             </script>
                         </div>
 

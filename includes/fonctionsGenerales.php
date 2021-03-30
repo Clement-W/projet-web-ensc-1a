@@ -11,17 +11,20 @@
 
 require_once("../includes/fonctionsBDD.php");
 
+// Retourne true si un utilisateur est connecté, false sinon
 function estConnecte()
 {
     return isset($_SESSION['nomUtilisateur']);
 }
 
 
+// Retourne true si l'utilisateur connecté est un gestionnaire, false sinon
 function estGestionnaire()
 {
     return $_SESSION['estGestionnaire'];
 }
 
+// Permet de se connecter sur l'annuaire
 function connexion()
 {
     $BDD = getBDD();
@@ -29,7 +32,6 @@ function connexion()
     if (!empty($_POST["nomUtilisateur"]) && !empty($_POST["motDePasse"])) {
         $nomUtilisateur = escape($_POST["nomUtilisateur"]);
         $mdp = escape($_POST["motDePasse"]);
-        //echo " " . $nomUtilisateur . " " . $mdp;
 
         // On récupère l'utilisateur dans la base de données 
         $requeteUtilisateur = $BDD->prepare("SELECT * FROM Compte WHERE NomUtilisateur=? AND MotDePasse=?");
@@ -38,11 +40,11 @@ function connexion()
         // On vérifie qu'il y a bien un compte correspondant à ce nom d'utilisateur et ce mdp
         if ($requeteUtilisateur->rowCount() == 1) {
 
-            // on recupère l'id du compte
+            // On recupère l'id du compte
             $compte = $requeteUtilisateur->fetch();
             $idCompte = $compte["IdCompte"];
 
-            // on regarde s'il y a cet idcompte dans la table élève pour savoir si c'est un élève ou un gestionnaire
+            // On regarde s'il y a cet idcompte dans la table élève pour savoir si c'est un élève ou un gestionnaire
             $requeteTypeCompte =  $BDD->prepare("SELECT CompteValide FROM Eleve WHERE IdCompte = ?");
             $requeteTypeCompte->execute(array($idCompte));
 
@@ -57,15 +59,17 @@ function connexion()
                     $_SESSION["nomUtilisateur"] = $nomUtilisateur;
                     $_SESSION["estGestionnaire"] = false;
                     $_SESSION["compteValide"] = $compteValide;
-                    // feedback
+
+                    // feedback utilisateur
                     $alert["bootstrapClassAlert"] = "success";
                     $alert["messageAlert"] = "Vous êtes maintenant connecté.";
                     redirect('accueil.php');
                 } else {
+                    // Le compte existe mais n'est pas validé
                     $_SESSION["nomUtilisateurCompteNonValide"] = $nomUtilisateur; // Pour que la page attenteValidation.php lui indique son nom d'utilisateur (comme lors de l'inscription)
                     redirect("attenteValidation.php");
                 }
-            } else { // sinon c'est un gestionnaire
+            } else { // Sinon c'est un gestionnaire
                 $_SESSION["nomUtilisateur"] = $nomUtilisateur;
                 $_SESSION["estGestionnaire"] = true;
 
@@ -75,9 +79,7 @@ function connexion()
                 redirect('accueil.php');
             }
 
-            $_SESSION["alert"] = $alert;
-            unset($_POST);
-            $_POST = array();
+
         } else { // Il n'y a pas de compte correspondant à ces identifiants
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Aucun utilisateur ne correspond à ces informations.";
@@ -93,6 +95,7 @@ function connexion()
     $_POST = array();
 }
 
+// Permet de mettre à jour le mot de passe de l'utilisateur
 function mettreAJourMotDePasse()
 {
     if (!empty($_POST["ancienMotDePasse"]) && !empty($_POST["nouveauMotDePasse"]) && !empty($_POST["confirmeNouveauMotDePasse"])) {
@@ -116,7 +119,7 @@ function mettreAJourMotDePasse()
             $alert["messageAlert"] = "Le mot de passe a bien été mis à jour";
             $_SESSION["alert"] = $alert;
 
-            if (!estGestionnaire()) {
+            if (!estGestionnaire()) { // Si on est un élève, on est redirigé sur notre profil
                 redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
             }
         } else {
@@ -124,28 +127,31 @@ function mettreAJourMotDePasse()
             $alert["messageAlert"] = "Veuillez vérifier les mots de passe rentrés";
             $_SESSION["alert"] = $alert;
         }
-        unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
-        $_POST = array();
     }
 }
 
+// Permet de récuperer et de traiter une recherche d'un utilisateur sur la barre de recherche
 function recupererResultatsRecherche()
 {
     $BDD = getBDD();
 
-
-    $search_val = escape($_POST['search_term']);
-    $search_filter = escape($_POST['search_param']);
-    if ($search_val != "") {
+    $texteRecherche = escape($_POST['texteRecherche']);
+    $filtreRecherche = escape($_POST['filtreRecherche']);
+    if ($texteRecherche != "") { // Si on ne fait pas ce contrôle, tous les résultats s'affichent
 
         // Si le filtre correspond à un élement de la table ExperiencePro : 
-        if ($search_filter == "TypeExperiencePro" || $search_filter == "TypeOrganisation" || $search_filter == "LibelleOrganisation" || $search_filter == "Region" || $search_filter == "SecteursActivites" || $search_filter == "DomainesCompetences") {
-            $requeteExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro, Parametres, InfosPerso,Eleve WHERE Eleve.IdEleve = ExperiencePro.IdEleve AND ExperiencePro.IdEleve = Parametres.IdEleve AND ExperiencePro.IdEleve = InfosPerso.IdEleve AND ExperiencePro.IdExperiencePro = Parametres.LibelleInformation AND $search_filter LIKE CONCAT('%',?,'%')");  // Probleme : Si on passe $search_filter avec un ? dans le execute, ça ne fonctionne pas, donc pour l'instant on donne la variable dans le prepare (ce n'est pas une entrée utilisateur)
-            $requeteExperiencePro->execute(array($search_val));
-            //echo $search_filter . " " . $search_val;
+        if ($filtreRecherche == "TypeExperiencePro" || $filtreRecherche == "TypeOrganisation" || $filtreRecherche == "LibelleOrganisation" || $filtreRecherche == "Region" || $filtreRecherche == "SecteursActivites" || $filtreRecherche == "DomainesCompetences") {
+            $requeteExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro, Parametres, InfosPerso,Eleve WHERE Eleve.IdEleve = ExperiencePro.IdEleve AND ExperiencePro.IdEleve = Parametres.IdEleve AND ExperiencePro.IdEleve = InfosPerso.IdEleve AND ExperiencePro.IdExperiencePro = Parametres.LibelleInformation AND $filtreRecherche LIKE CONCAT('%',?,'%')");  
+            // Le traitement des paramètres par PDO (avec ? ou :nomparam) transforme l'attribut en string avec des quotes, on ne peut donc pas faire WHERE ? LIKE %cc% sinon il recherche les caracteres %cc% dans le string passé en paramètre.
+            // Pour pallier ce problème on escape la valeur de la variable au préalable avec des paramètres restrictifs sur la fonction htmlspecialchars
+            // Puis on inclu la variable dans le string de la requete préparée (sachant que c'est la valeur d'un élément du menu dropdown et non une entrée utilisateur direct)
+            $requeteExperiencePro->execute(array($texteRecherche));
+           
 
             while ($experiencePro = $requeteExperiencePro->fetch()) {
-                if (($experiencePro["Visibilite"] == true && $experiencePro["CompteValide"] == true) || estGestionnaire()) { // Si l'experiece pro est visible et que le compte est validé alors on la présente dans les résultats
+
+                // Si l'experiece pro est visible et que le compte est validé alors on la présente dans les résultats
+                if ((($experiencePro["Visibilite"] == true && $experiencePro["CompteValide"] == true)) || estGestionnaire()) { 
                     echo '<div class="whitecontainer mt-3 mb-3"> 
                     <div class="ml-4 row text-secondary">
                         <div class="col-md-6 h5">
@@ -158,14 +164,15 @@ function recupererResultatsRecherche()
                         </div>
                     </div>
                 </div>';
+                // Ce qui est affiché sera récupéré par la fonction recherche.js et sera injecté dans l'html 
                 }
             }
         }
         // Si le filtre correspond au nom ou au prenom
-        else if ($search_filter == "NomPrenom") {
+        else if ($filtreRecherche == "NomPrenom") {
 
-            $requeteNomPrenom = $BDD->prepare("SELECT Eleve.IdEleve,Nom,Prenom,Promotion,CompteValide FROM Eleve,InfosPerso WHERE Eleve.IdEleve = InfosPerso.IdEleve AND (InfosPerso.Nom LIKE CONCAT('%',?,'%') OR InfosPerso.Prenom LIKE CONCAT('%',?,'%')) ");  // Probleme : Si on passe $search_filter avec un ? dans le execute, ça ne fonctionne pas
-            $requeteNomPrenom->execute(array($search_val, $search_val));
+            $requeteNomPrenom = $BDD->prepare("SELECT Eleve.IdEleve,Nom,Prenom,Promotion,CompteValide FROM Eleve,InfosPerso WHERE Eleve.IdEleve = InfosPerso.IdEleve AND (InfosPerso.Nom LIKE CONCAT('%',?,'%') OR InfosPerso.Prenom LIKE CONCAT('%',?,'%')) ");  // Probleme : Si on passe $filtreRecherche avec un ? dans le execute, ça ne fonctionne pas
+            $requeteNomPrenom->execute(array($texteRecherche, $texteRecherche));
 
             while ($profil = $requeteNomPrenom->fetch()) {
                 if ($profil["CompteValide"] == true || estGestionnaire()) { // On vérifie que le compte est bien validé pour l'afficher
@@ -185,9 +192,9 @@ function recupererResultatsRecherche()
 
 
         // Si le filtre correspond à la promotion ou à la ville (table infos perso)
-        else if ($search_filter == "Promotion" || $search_filter == "Ville") {
-            $requeteProfil = $BDD->prepare("SELECT Eleve.IdEleve, Nom, Prenom, Promotion, Ville, CompteValide FROM InfosPerso,Eleve WHERE Eleve.IdEleve = InfosPerso.IdEleve AND InfosPerso.$search_filter LIKE CONCAT('%',?,'%') ");
-            $requeteProfil->execute(array($search_val));
+        else if ($filtreRecherche == "Promotion" || $filtreRecherche == "Ville") {
+            $requeteProfil = $BDD->prepare("SELECT Eleve.IdEleve, Nom, Prenom, Promotion, Ville, CompteValide FROM InfosPerso,Eleve WHERE Eleve.IdEleve = InfosPerso.IdEleve AND InfosPerso.$filtreRecherche LIKE CONCAT('%',?,'%') ");
+            $requeteProfil->execute(array($texteRecherche));
             while ($profil = $requeteProfil->fetch()) {
                 if ($profil["CompteValide"] == true || estGestionnaire()) {
                     echo '<div class="whitecontainer mt-3 mb-3"> 
@@ -207,5 +214,3 @@ function recupererResultatsRecherche()
     }
     exit();
 }
-
-?>

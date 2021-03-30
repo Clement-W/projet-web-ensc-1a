@@ -9,11 +9,12 @@
  *
  */
 
+// Retourne l'objet PDO qui permet d'accéder à la base
 function getBDD()
 {
     $server = "localhost";
     $username = "annuaireUser";
-    $password = "explodingkittens"; // très bon jeu de société
+    $password = "explodingkittens"; // Très bon jeu de société que nous recommandons
     $db = "annuaireEleves";
 
     try {
@@ -29,10 +30,4 @@ function getBDD()
 
     return $BDD;
 }
-
-
-
-
-
-
 ?>

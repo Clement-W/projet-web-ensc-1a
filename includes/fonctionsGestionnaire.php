@@ -10,9 +10,10 @@
  */
 
 require_once("../includes/fonctionsBDD.php");
+require_once("../includes/fonctionsEleve.php");
 
 
-//permet de créer le compte d'un gestionnaire (utilisé par un gestionnaire)
+// Permet de créer le compte d'un gestionnaire (utilisé par un gestionnaire)
 function creerCompteGestionnaire()
 {
     if (!empty($_POST["nomUtilisateur"]) && !empty($_POST["motDePasse"]) && !empty($_POST["email"])) {
@@ -51,9 +52,6 @@ function creerCompteGestionnaire()
         $alert["messageAlert"] = "Veuillez remplir toutes les informations créer un comte gestionnaire";
     }
 
-    unset($_POST);
-    $_POST = array();
-
     $_SESSION["alert"] = $alert;
 }
 
@@ -68,6 +66,7 @@ function validerCompteEleve($idEleve)
     $requeteUpdate->execute(array($idEleve));
 }
 
+// Supprime un compte élève
 function supprimerCompteEleve($idEleve)
 {
     $BDD = getBDD();
@@ -95,7 +94,7 @@ function supprimerCompteEleve($idEleve)
         $requeteDeleteEleve = $BDD->prepare("DELETE FROM Eleve WHERE IdEleve = ?");
         $requeteDeleteEleve->execute(array($idEleve));
 
-        //On supprime son compte
+        // On supprime son compte
         $requeteDeleteCompte = $BDD->prepare("DELETE FROM Compte WHERE IdCompte = ?");
         $requeteDeleteCompte->execute(array($idCompte));
     } else {
@@ -103,7 +102,7 @@ function supprimerCompteEleve($idEleve)
     }
 }
 
-
+// Permet de créer un compte élève par un gestionnaire
 function creerCompteEleveParGestionnaire()
 {
     $BDD = getBDD();
@@ -147,49 +146,51 @@ function creerCompteEleveParGestionnaire()
         $alert["messageAlert"] = "Une erreur est survenue, le compte n'a pas pu être créé.";
     }
 
-    unset($_POST);
-    $_POST = array();
-
     $_SESSION["alert"] = $alert;
 }
 
-
+// Permet de créer plusieurs comptes élèves depuis un fichier CSV
 function creerComptesElevesDepuisCSV()
 {
 
     if (!empty($_POST["validerFileUpload"])) {
 
-        $repertoire = "../temp/";
+        $repertoire = "../temp/"; // répertoire temporaire qui contient le fichier uploadé par l'utilisateur
         $chemin_fichier = $repertoire . basename($_FILES["templateUploaded"]["name"]);
 
-        if (getCSVDepuisTelechargement($chemin_fichier)) {
-            $csvTemplate = file($chemin_fichier);
+        if (getCSVDepuisTelechargement($chemin_fichier)) { // Si le fichier a bien été téléchargé
+            $csvTemplate = file($chemin_fichier); // on récupère le contenu du fichier
 
-
+            // pour chaque ligne du fichier csv
             foreach ($csvTemplate as $infosEleve) {
-                $infosEleve = explode(",", escape($infosEleve)); // on tranasforme la ligne en un tableau contenant les champs (on aurait également pu utiliser les méthodes de lecture de csv de php)
+                $infosEleve = explode(",", escape($infosEleve)); // on transforme la ligne en un tableau contenant les champs (on aurait également pu utiliser les méthodes de lecture de csv de php)
 
                 if ($infosEleve[0] == "Nom") {
-                    // Cela correspond aux intitulés du template, on analyse donc pas cette ligne
+                    // Cela correspond aux intitulés du template, on insert donc pas cette ligne
                     continue;
                 }
 
 
-                //on analyse les infos d'un élève pour verifier la validiter des inputs
-                // la csv a toujours la même forme donc on peut utiliser des indices fixes
-                $nom = ucwords(strtolower(trim($infosEleve[0]))); // on trim pour enlever les espaces au début et à la fin
-                $prenom = ucwords(strtolower(trim($infosEleve[1])));
-                $mdp = trim($infosEleve[2]);
-                $mail = trim($infosEleve[3]);
+                // On analyse les infos d'un élève pour verifier la validiter des inputs
+                // Le csv a toujours la même forme donc on peut utiliser des indices fixes
+                $nom = escape(ucwords(strtolower(trim($infosEleve[0])))); // On trim pour enlever les espaces au début et à la fin
+                $prenom = escape(ucwords(strtolower(trim($infosEleve[1])))); 
+                $mdp = escape(trim($infosEleve[2]));
+                $mail = escape(trim($infosEleve[3]));
+                // On escape bien chaque variable pouré viter les problèmes de sécurité
+
 
                 // On controle la taille pour être cohérent avec la bdd
                 if (strlen($nom) < 50 && strlen($nom) > 0 && strlen($prenom) < 50 && strlen($prenom) > 0 && strlen($mdp) < 50 && strlen($mdp) > 0 && strlen($mail) < 50 && strlen($mail) > 0) {
 
-                    //on contrôle que le mail est bien un email valide
+                    // On contrôle que le mail est bien un email valide
                     if (filter_var($mail, FILTER_VALIDATE_EMAIL) !== false) {
 
-                        //Tout est ok, on peut insérer cet élève.
+                        // Tout est ok, on peut insérer cet élève.
                         $BDD = getBDD();
+
+                        // On ne pouvait pas utiliser la méthode d'inscription précédente car les requêtes sont différentes, ici on insert que nom et prénom dans infosperso par exemple
+                        // Sinon nous aurions créé une méthode d'inscription générale utilisée à chaque fois.
 
                         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
 
@@ -213,8 +214,8 @@ function creerComptesElevesDepuisCSV()
 
                         // Visibilite des informations personnelles
                         $informationsParametrable =  array("Genre", "Adresse", "Ville", "CodePostal", "NumTelephone", "AdresseMail"); // Contient les noms des champs dont la visibilité est parametrable
-                        foreach ($informationsParametrable as $libelleInformation) { // pour chaque information du compte dont la visibilité est modifiable
-                            insererParametre($BDD, $idEleve, true, $libelleInformation); // on insert en base le parametre comme visible
+                        foreach ($informationsParametrable as $libelleInformation) { // Pour chaque information du compte dont la visibilité est modifiable
+                            insererParametre($BDD, $idEleve, true, $libelleInformation); // On insert en base le parametre comme visible
                         }
                     } else {
                         $alert["bootstrapClassAlert"] = "danger";
@@ -239,10 +240,7 @@ function creerComptesElevesDepuisCSV()
     }
 
 
-    unlink($chemin_fichier);
-
-    unset($_POST);
-    $_POST = array();
+    unlink($chemin_fichier); // On supprime le fichier uploadé par l'utilisateur
 
     $_SESSION["alert"] = $alert;
 }

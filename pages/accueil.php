@@ -71,8 +71,8 @@ require_once("../includes/fragments/head.php");
 
                         <form method="POST" action="accueil.php" class="register-form" id="formInscription">
                             <h2 class="d-flex justify-content-center mt-3">Inscription</h2>
-                            <div id="formCarousel" class="carousel slide divCarousel marge-inscription" data-interval="false">
-                                <div class="carousel-inner divCarousel">
+                            <div class="carousel slide marge-inscription" data-interval="false">
+                                <div class="carousel-inner">
                                     <div class="carousel-item active">
 
                                         <div class="form-group">
@@ -161,7 +161,7 @@ require_once("../includes/fragments/head.php");
                     <form class="row mt-5" method="post" onsubmit="return rechercher();">
                         <!-- appelle la fonction js dans js/function.js -->
                         <div class="col d-flex justify-content-center barreRecherche">
-                            <select name="search_param" id="search_param" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                            <select name="filtreRecherche" id="filtreRecherche" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
 
                                 <optgroup label="Par profil">
                                     <option value="Promotion">Promotion</option>
@@ -181,11 +181,11 @@ require_once("../includes/fragments/head.php");
 
                             </select>
 
-                            <input type="text" maxlength="200" class="form-control" id="search_term" name="search_term" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ça recherche tout seul -->
+                            <input type="text" maxlength="200" class="form-control" id="texteRecherche" name="texteRecherche" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ça recherche tout seul -->
                         </div>
                     </form>
 
-                    <div id="resultat_recherche"></div> <!-- ici s'affiche les resultats (inséré par ajax)-->
+                    <div id="resultatRecherche"></div> <!-- ici s'affiche les resultats (inséré par ajax)-->
 
                 </div>
             </div>

@@ -193,6 +193,9 @@ require_once("../includes/fragments/head.php");
 
         <?php } ?>
     </div>
+    <?php 
+    
+    ?>
 </body>
 
 </html>

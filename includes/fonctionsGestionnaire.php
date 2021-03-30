@@ -23,6 +23,7 @@ function creerCompteGestionnaire()
         $nomUtilisateur = escape($_POST["nomUtilisateur"]);
         $email = escape($_POST["email"]);
         $mdp = escape($_POST["motDePasse"]);
+        $mdpHash = hash("sha512",$mdp);
 
         // On verifie que le nom d'utilisateur n'est pas déjà pris
         $requeteUtilisateur = $BDD->prepare("SELECT NomUtilisateur FROM Compte WHERE NomUtilisateur=?");
@@ -32,7 +33,7 @@ function creerCompteGestionnaire()
         if ($requeteUtilisateur->rowCount() == 0) {
             // On créé un compte associé au mail, nom d'utilisateur et mot de passe
             $requeteInsertionCompte = $BDD->prepare("INSERT INTO Compte(NomUtilisateur, MotDePasse, AdresseMail) VALUES (?,?,?)");
-            $requeteInsertionCompte->execute(array($nomUtilisateur, $mdp, $email));
+            $requeteInsertionCompte->execute(array($nomUtilisateur, $mdpHash, $email));
 
             // On recupère l'id du compte inséré
             $idCompte = $BDD->lastInsertId();
@@ -113,12 +114,13 @@ function creerCompteEleveParGestionnaire()
         $prenom = ucwords(strtolower(escape($_POST["prenom"])));
         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
         $mdp = escape($_POST["motDePasse"]);
+        $mdpHash = hash("sha512",$mdp);
         $promo = escape($_POST["promo"]);
         $mail = escape($_POST["mail"]);
 
         // On créé un compte associé au mail, nom d'utilisateur et mot de passe
         $requeteInsertionCompte = $BDD->prepare("INSERT INTO Compte(NomUtilisateur, MotDePasse, AdresseMail) VALUES (?,?,?)");
-        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdp, $mail));
+        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdpHash, $mail));
 
         // On recupère l'id du compte inséré
         $idCompte = $BDD->lastInsertId();
@@ -176,12 +178,14 @@ function creerComptesElevesDepuisCSV()
                 $nom = escape(ucwords(strtolower(trim($infosEleve[0])))); // On trim pour enlever les espaces au début et à la fin
                 $prenom = escape(ucwords(strtolower(trim($infosEleve[1])))); 
                 $mdp = escape(trim($infosEleve[2]));
+                $mdpHash = hash("sha512",$mdp);
                 $mail = escape(trim($infosEleve[3]));
                 // On escape bien chaque variable pouré viter les problèmes de sécurité
 
 
+
                 // On controle la taille pour être cohérent avec la bdd
-                if (strlen($nom) < 50 && strlen($nom) > 0 && strlen($prenom) < 50 && strlen($prenom) > 0 && strlen($mdp) < 50 && strlen($mdp) > 0 && strlen($mail) < 50 && strlen($mail) > 0) {
+                if (strlen($nom) < 50 && strlen($nom) > 0 && strlen($prenom) < 50 && strlen($prenom) > 0 && strlen($mail) < 50 && strlen($mail) > 0) { // pas besoin de vérifier pour le mdp de toute façon il sera hashé en 126 caractères
 
                     // On contrôle que le mail est bien un email valide
                     if (filter_var($mail, FILTER_VALIDATE_EMAIL) !== false) {
@@ -196,7 +200,8 @@ function creerComptesElevesDepuisCSV()
 
                         // On créé un compte associé au mail, nom d'utilisateur et mot de passe
                         $requeteInsertionCompte = $BDD->prepare("INSERT INTO Compte(NomUtilisateur, MotDePasse, AdresseMail) VALUES (?,?,?)");
-                        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdp, $mail));
+                        
+                        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdpHash, $mail));
 
                         // On recupère l'id du compte inséré
                         $idCompte = $BDD->lastInsertId();

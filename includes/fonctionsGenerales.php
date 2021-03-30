@@ -32,10 +32,11 @@ function connexion()
     if (!empty($_POST["nomUtilisateur"]) && !empty($_POST["motDePasse"])) {
         $nomUtilisateur = escape($_POST["nomUtilisateur"]);
         $mdp = escape($_POST["motDePasse"]);
+        $mdpHash = hash("sha512",$mdp);
 
         // On récupère l'utilisateur dans la base de données 
         $requeteUtilisateur = $BDD->prepare("SELECT * FROM Compte WHERE NomUtilisateur=? AND MotDePasse=?");
-        $requeteUtilisateur->execute(array($nomUtilisateur, $mdp));
+        $requeteUtilisateur->execute(array($nomUtilisateur, $mdpHash));
 
         // On vérifie qu'il y a bien un compte correspondant à ce nom d'utilisateur et ce mdp
         if ($requeteUtilisateur->rowCount() == 1) {
@@ -100,9 +101,10 @@ function mettreAJourMotDePasse()
 {
     if (!empty($_POST["ancienMotDePasse"]) && !empty($_POST["nouveauMotDePasse"]) && !empty($_POST["confirmeNouveauMotDePasse"])) {
 
-        $ancienMotDePasse = escape($_POST["ancienMotDePasse"]);
-        $nouveauMotDePasse = escape($_POST["nouveauMotDePasse"]);
-        $confirmeNouveauMotDePasse = escape($_POST["confirmeNouveauMotDePasse"]);
+        // On les hash dès les début pour faire la comparaison avec l'ancien mdp et pour éviter de devoir hash avant l'insertion
+        $ancienMotDePasse = hash("sha512",escape($_POST["ancienMotDePasse"]));
+        $nouveauMotDePasse = hash("sha512",escape($_POST["nouveauMotDePasse"]));
+        $confirmeNouveauMotDePasse = hash("sha512",escape($_POST["confirmeNouveauMotDePasse"]));
         $nomUtilisateur = $_SESSION["nomUtilisateur"];
 
         $BDD = getBDD();

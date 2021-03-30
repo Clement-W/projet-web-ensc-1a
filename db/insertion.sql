@@ -8,5 +8,6 @@
  *
  */
 
-INSERT INTO Compte(IdCompte,NomUtilisateur, MotDePasse, AdresseMail) VALUES (1,"gestionnaire","pouet","gestion@ensc.fr");
+INSERT INTO Compte(IdCompte,NomUtilisateur, MotDePasse, AdresseMail) VALUES (1,"gestionnaire",SHA2("pouet",512),"gestion@ensc.fr");
+/* SHA2 fonctionne uniquement pour les versions supérieures ou égales à 5.5 de MySQL */
 INSERT INTO Gestionnaire(IdCompte) VALUES (1)

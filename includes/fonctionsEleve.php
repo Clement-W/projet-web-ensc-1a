@@ -58,6 +58,7 @@ function inscription()
         $prenom = ucwords(strtolower(escape($_POST["prenom"])));
         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
         $mdp = escape($_POST["motDePasse"]);
+        $mdpHash = hash("sha512",$mdp); // Pour ne pas stocker le mdp en clair dans la bdd on hash le mdp en sha512
         $promo = escape($_POST["promo"]);
         $genre = escape($_POST["genre"]);
         $adresse = escape($_POST["adresse"]);
@@ -68,7 +69,7 @@ function inscription()
 
         // On créé un compte associé au mail, nom d'utilisateur et mot de passe
         $requeteInsertionCompte = $BDD->prepare("INSERT INTO Compte(NomUtilisateur, MotDePasse, AdresseMail) VALUES (?,?,?)");
-        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdp, $email));
+        $requeteInsertionCompte->execute(array($nomUtilisateur, $mdpHash, $email));
 
         // On recupère l'id du compte inséré
         $idCompte = $BDD->lastInsertId();

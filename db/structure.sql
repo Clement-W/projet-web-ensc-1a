@@ -18,7 +18,7 @@ drop table if exists Compte;
 CREATE TABLE Compte(
    IdCompte INT AUTO_INCREMENT,
    NomUtilisateur VARCHAR(50),
-   MotDePasse VARCHAR(50),
+   MotDePasse VARCHAR(255),
    AdresseMail VARCHAR(50),
    PRIMARY KEY(IdCompte)
 );

@@ -10,7 +10,11 @@
  *
  */
 
-require_once "../includes/functions.php";
+require_once("../includes/fonctionsEleve.php");
+require_once("../includes/fonctionsGestionnaire.php");
+require_once("../includes/fonctionsGenerales.php");
+require_once("../includes/fonctionsUtilitaires.php");
+
 session_start();
 
 //Lorsqu'on clique sur le bouton submit pour terminer l'inscription, on appelle la fonction inscription
@@ -146,7 +150,7 @@ require_once "../includes/fragments/head.php";
             </div>
         <?php } else { ?>
             <!-- Si l'utilisateur est connecté, on lui affiche la page d'accueil d'un utilisateur connecte -->
-            <script src="../js/function.js"></script>
+            <script src="../includes/fonction.js"></script>
 
             <div class="container d-flex">
                 <div class="col">

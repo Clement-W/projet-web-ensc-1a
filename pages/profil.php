@@ -13,7 +13,9 @@
 ?>
 
 <?php
-require_once("../includes/functions.php");
+require_once("../includes/fonctionsUtilitaires.php");
+require_once("../includes/fonctionsGenerales.php");
+require_once("../includes/fonctionsEleve.php");
 session_start();
 
 if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["idEleve"]))) {
@@ -57,7 +59,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
             // Si le profil correspondant est celui de l'utilisateur connecté, alors c'est true, on affiche la popup, sinon c'est false.
             if (!estGestionnaire()) {
                 $estProfilDeLUtilisateurCo = (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]);
-                if (!verifierExperiencesPro() && $estProfilDeLUtilisateurCo) { // Si l'utilisateur n'a aucune experience pro alors on lui affiche un message d'alerte
+                if (!possedeExperiencePro($idEleve) && $estProfilDeLUtilisateurCo) { // Si l'utilisateur n'a aucune experience pro alors on lui affiche un message d'alerte
                     afficherPopUpExperiencePro();
                 }
             }

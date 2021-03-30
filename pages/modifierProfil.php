@@ -9,7 +9,9 @@
 *
 */
 
-require_once("../includes/functions.php");
+require_once("../includes/fonctionsUtilitaires.php");
+require_once("../includes/fonctionsGenerales.php");
+require_once("../includes/fonctionsEleve.php");
 session_start();
 
 //Si on appuie sur le bouton submit du form d'ajout d'une experience pro 

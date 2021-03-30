@@ -9,6 +9,6 @@
  *
  */
 
-require_once "includes/functions.php";
+require_once("includes/fonctionsUtilitaires.php");
 redirect("pages/accueil.php");
 ?>

@@ -9,7 +9,8 @@
 *
 */
 
-require_once("../includes/functions.php");
+require_once("../includes/fonctionsUtilitaires.php");
+require_once("../includes/fonctionsGenerales.php");
 session_start();
 
 // Si un utilisateur déjà connecté assez d'accéder à cette page ou que le nom d'utilisateur n'est pas valide, on redirige vers l'accueil du site 

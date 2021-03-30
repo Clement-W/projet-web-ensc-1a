@@ -9,7 +9,10 @@
 *
 */
 
-require_once "../includes/functions.php";
+require_once("../includes/fonctionsUtilitaires.php");
+require_once("../includes/fonctionsGenerales.php");
+require_once("../includes/fonctionsGestionnaire.php");
+
 session_start();
 if (!estGestionnaire()) {
     // Si ce n'est pas un gestionnaire qui est connecté, on redirige vers 404 error

@@ -9,7 +9,8 @@
 *
 */
 
-require_once("../includes/functions.php");
+require_once("../includes/fonctionsUtilitaires.php");
+require_once("../includes/fonctionsGenerales.php");
 session_start();
 
 if (estConnecte()) {

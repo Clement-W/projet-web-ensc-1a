@@ -1,6 +1,10 @@
 <?php
 
-require_once "../includes/functions.php";
+require_once("../includes/fonctionsUtilitaires.php");
+require_once("../includes/fonctionsGenerales.php");
+require_once("../includes/fonctionsGestionnaire.php");
+require_once("../includes/fonctionsEleve.php");
+
 session_start();
 if (!empty($_POST["validation"])) {
     validerCompteEleve(escape($_POST["IdEleve"]));
@@ -25,7 +29,7 @@ require_once "../includes/fragments/head.php";
     <?php require_once "../includes/fragments/header.php"; ?>
 
     <div class="container">
-        <script src="../js/function.js"></script>
+        <script src="../includes/fonction.js"></script>
 
         <?php
         $comptesNonValides = getCompteNonValide();

@@ -158,7 +158,7 @@ require_once("../includes/fragments/head.php");
                     <div class="row justify-content-center">
                         <h1 class="mt-5 text-center">Rechercher dans l'annuaire</h1>
                     </div>
-                    <form class="row mt-5" method="post" onsubmit="return rechercher();">
+                    <form class="row mt-5" method="post">
                         <!-- appelle la fonction js dans js/function.js -->
                         <div class="col d-flex justify-content-center barreRecherche">
                             <select name="filtreRecherche" id="filtreRecherche" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
@@ -194,7 +194,7 @@ require_once("../includes/fragments/head.php");
         <?php } ?>
     </div>
     <?php 
-    
+
     ?>
 </body>
 

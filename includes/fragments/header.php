@@ -30,7 +30,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
         </div>
 
 
-        <!-- seul le gestionnaire a des menus -->
+        <!-- Seul le gestionnaire a ces menus -->
         <?php if (estConnecte() && estGestionnaire()) { ?>
             <a href="creerComptes.php" class="navbar-brand text-light" href="#">Créer un compte</a>
 
@@ -39,7 +39,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
         <?php } ?>
 
 
-        <!-- personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
+        <!-- Personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
         <?php if (estConnecte()) { ?>
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +48,6 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                     <?php if (!estGestionnaire()) { ?>
-
 
                         <a class="dropdown-item" href="profil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">Profil</a> <!-- On récupère notre propre idEleve pour accéder à notre profil-->
                         <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
@@ -71,9 +70,6 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
             </div>
 
         <?php } ?>
-
-
-
 
         <!-- bouton de connnexion lorsqu'il n'y a pas d'utilisateur connecté -->
     <?php } else { ?>

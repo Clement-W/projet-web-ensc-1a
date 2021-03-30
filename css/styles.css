@@ -12,9 +12,10 @@
 
 
 /* ==========================================================================
-    #BACKGROUND
+    #BACKGROUND, BARRE DE NAVIGATION & CONTAINER
     ========================================================================== */
 
+/* Dégradé du background*/
 body {
     background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
     background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
@@ -26,23 +27,18 @@ body {
     background-attachment: fixed;
 }
 
+/* Couleur et opacité de la barre de navigation*/
 .navbar {
     background-color: rgb(0, 0, 0, 0.4);
 }
 
+/* Couleur, forme et marge des container */
 .whitecontainer {
     background-color: rgb(252, 252, 252);
     border-radius: 10px;
     height: auto;
     margin-top: 8%;
     margin-bottom: 8%;
-}
-
-.btn-outline-light:hover {
-    background-color: rgb(180, 180, 180);
-}
-.dropdown-menu>a:hover, .dropdown-menu>a:focus {
-    background-color: rgb(204, 204, 204);
 }
 
 /* ==========================================================================
@@ -125,6 +121,7 @@ input {
     max-width: 70%;
 }
 
+/* Dès qu'on passe à un format de type tablette, on aggrandit la largeur des expériences pour faciliter la lisibilité */
 @media (max-width: 767px) {
     .timeline {
         max-width: 98%;
@@ -138,17 +135,21 @@ input {
     position: relative;
 }
 
+/* Dès qu'on passe à un format de type tablette, on décalle le texte vers le bas pour laisser de la place aux dates */
 @media (max-width: 767px) {
     .timeline .event {
         padding-top: 30px;
     }
 }
 
+/* Raccourci le bas de la timeline */
 .timeline .event:last-of-type {
     padding-bottom: 0;
     margin-bottom: 0;
     border: none;
 }
+
+/* ======= Affichage des dates ======= */
 
 .timeline .event:before,
 .timeline .event:after {
@@ -156,7 +157,6 @@ input {
     display: block;
     top: 0;
 }
-/* Affichage des dates */
 .timeline .event:before {
     left: -207px;
     content: attr(title);
@@ -165,13 +165,16 @@ input {
     font-size: 0.9em;
     min-width: 120px;
 }
+/* ================================== */
 
+/* Dès qu'on passe à un format de type tablette, on décalle les dates à droite de la ligne verticale*/
 @media (max-width: 767px) {
     .timeline .event:before {
         left: 0px;
         text-align: left;
     }
 }
+
 /* Petit cercle sur la timeline */
 .timeline .event:after {
     -webkit-box-shadow: 0 0 0 3px #727cf5;
@@ -184,32 +187,19 @@ input {
     content: "";
     top: 5px;
 }
-
+/* Dès qu'on passe à un format de type tablette, les cercles reste sur la barre verticale */
 @media (max-width: 767px) {
     .timeline .event:after {
         left: -31.8px;
     }
 }
 
-
-.table{
-    border: none !important;
-    max-width: 100%;
-    table-layout: fixed; 
-}
-.table th { word-wrap: break-word; }
-
-.marge-modifierProfil{
-    margin-top: 5%;
-}
-
-
 /* ==========================================================================
      #BARRE DE RECHERCHE
 ========================================================================== */
 
 
-@media (max-width: 767.98px) { /* Dès qu'on passe à un format de type tablette, on supperpose barre de recherche et dropdown de filtre */
+@media (max-width: 767.98px) { /* Dès qu'on passe à un format de type tablette, on superpose barre de recherche et dropdown de filtre */
     .barreRecherche{
         flex-direction:column;
     }

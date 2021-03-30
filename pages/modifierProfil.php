@@ -136,16 +136,16 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                             </div>
                             <div class="form-group col-sm-8">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="defaultInline1" name="Genre" value="Masculin" required <?= ($genre == "Masculin") ? "checked" : "" ?>>
-                                    <label class="custom-control-label text-secondary" for="defaultInline1">Masculin</label>
+                                    <input type="radio" class="custom-control-input" id="genreMasculin" name="Genre" value="Masculin" required <?= ($genre == "Masculin") ? "checked" : "" ?>>
+                                    <label class="custom-control-label text-secondary" for="genreMasculin">Masculin</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="defaultInline2" name="Genre" value="Féminin" <?= ($genre == "Féminin") ? "checked" : "" ?>>
-                                    <label class="custom-control-label text-secondary" for="defaultInline2">Féminin</label>
+                                    <input type="radio" class="custom-control-input" id="genreFeminin" name="Genre" value="Féminin" <?= ($genre == "Féminin") ? "checked" : "" ?>>
+                                    <label class="custom-control-label text-secondary" for="genreFeminin">Féminin</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="defaultInline3" name="Genre" value="Autre" <?= ($genre == "Autre") ? "checked" : "" ?>>
-                                    <label class="custom-control-label text-secondary" for="defaultInline3">Autre</label>
+                                    <input type="radio" class="custom-control-input" id="genreAutre" name="Genre" value="Autre" <?= ($genre == "Autre") ? "checked" : "" ?>>
+                                    <label class="custom-control-label text-secondary" for="genreAutre">Autre</label>
                                 </div>
                             </div>
                         </div>

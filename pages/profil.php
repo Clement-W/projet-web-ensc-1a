@@ -133,7 +133,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                 <!-- Si l'élève possède au moins une expériences pro -->
                                 <?php if (possedeExperiencePro($idEleve)) { ?>
 
-                                    <div id="content">
+                                    <div>
                                         <ul class="timeline">
                                             <?php foreach ($experiencePro as $expPro) { // on boucle dans les experiences pro pour les afficher
                                                 $idExperiencePro = $expPro["IdExperiencePro"];

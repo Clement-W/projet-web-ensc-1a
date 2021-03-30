@@ -16,7 +16,6 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
-
             <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Ajouter une nouvelle expérience</h4>

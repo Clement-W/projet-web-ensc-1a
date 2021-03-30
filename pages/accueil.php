@@ -28,7 +28,7 @@ if (!empty($_POST["modifierMotDePasse"])) {
 }
 
 // Lorsqu'un utilisateur effectue une recherche, la fonction js qui est appelée envoie une requete http post vers accueil pour appeler la fonction php associée
-if(!empty($_POST["search"])){
+if(!empty($_POST["rechercher"])){
     recupererResultatsRecherche();
 }
 

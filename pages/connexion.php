@@ -41,9 +41,6 @@ if (estConnecte()) {
                 // S'il y a un alert de succes, on va être redirigé instantanément vers la page d'accueil, donc on ne veut pas unset l'alert dans connexion
                 unset($_SESSION["alert"]); // Pour ne plus l'afficher, on l'enlève de la variable de session. 
             }
-
-
-
             ?>
 
             <!-- Formulaire de connexion -->
@@ -54,8 +51,8 @@ if (estConnecte()) {
                     <form method="POST" action="connexion.php" class="register-form" id="register-form">
                         <h2 class="d-flex justify-content-center mt-4">Connexion</h2>
 
-                        <div id="carouselExampleIndicators" class="carousel slide divCarousel marge-connexion" data-interval="false">
-                            <div class="carousel-inner divCarousel">
+                        <div class="carousel slide marge-connexion" data-interval="false">
+                            <div class="carousel-inner">
                                 <div class="carousel-item active">
 
                                     <div class="form-group">

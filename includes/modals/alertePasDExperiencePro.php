@@ -1,8 +1,7 @@
 <?php
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
- * Ce fichier inclus les champs de formExperiencePro.php pour créer un formulaire permettant
- * d'ajouter une nouvelle expérience professionnelle.
+ * Permet de créer une popup pour alerter l'utilisateur qu'il n'a pas d'expériences professionnelle.
  *
  *
  * Copyright 2021, MARQUETON Emma & WEINREICH Clément

@@ -198,19 +198,24 @@ function recupererResultatsRecherche()
             $requeteProfil = $BDD->prepare("SELECT Eleve.IdEleve, Nom, Prenom, Promotion, Ville, CompteValide FROM InfosPerso,Eleve WHERE Eleve.IdEleve = InfosPerso.IdEleve AND InfosPerso.$filtreRecherche LIKE CONCAT('%',?,'%') ");
             $requeteProfil->execute(array($texteRecherche));
             while ($profil = $requeteProfil->fetch()) {
+                $visibilite = getVisibiliteInfosProfil($profil["IdEleve"]);
+                if($filtreRecherche == "Ville" && $visibilite["Ville"]==false && !estGestionnaire()){
+                    continue; // On affiche pas le résultat si le filtre est la ville est que la ville est rendue privée et que le compte qui cherche n'est pas un compte gestionnaire
+                }
+            
                 if ($profil["CompteValide"] == true || estGestionnaire()) {
-                    $visibilite = getVisibiliteInfosProfil($profil["IdEleve"]);
+
                     echo '<div class="whitecontainer mt-3 mb-3"> 
                               <div class="ml-4 row text-secondary">
                                   <div class="col-md-6 h3">
                                     <div class="col-md-12">
                                         <div class="affichageProfil">' . $profil["Prenom"] . " " . $profil["Nom"] . " - Promotion " . $profil["Promotion"] . '</div>' .
-                        '<div class="affichageProfil h5">' . (estGestionnaire() || $visibilite["Ville"]) ? $profil["Ville"] : "" . '</div>' . 
+                        '<div class="affichageProfil h5">' . $profil["Ville"] . '</div>' .
                         '<a href="profil.php?idEleve=' . $profil["IdEleve"] . '" class="btn btn-outline-dark mr-5" type="button">Voir le profil</a>
                                     </div>
                                 </div>
                             </div>
-                            </div>'; // On affiche la ville que si l'utilisateur l'a rendu visible ou si c'est le gestionnaire qui recherche
+                            </div>';
                 }
             }
         }

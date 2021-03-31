@@ -114,22 +114,32 @@ function mettreAJourMotDePasse()
         $motDePasseActuel = $requeteMotDePasse->fetch()[0];
 
         if (($ancienMotDePasse == $motDePasseActuel) && ($nouveauMotDePasse == $confirmeNouveauMotDePasse)) {
+        
             $requeteUpdateMotDePasse = $BDD->prepare("UPDATE Compte SET MotDePasse = ? WHERE NomUtilisateur = ?");
             $requeteUpdateMotDePasse->execute(array($nouveauMotDePasse, $nomUtilisateur));
 
             $alert["bootstrapClassAlert"] = "success";
             $alert["messageAlert"] = "Le mot de passe a bien été mis à jour";
-            $_SESSION["alert"] = $alert;
 
             if (!estGestionnaire()) { // Si on est un élève, on est redirigé sur notre profil
                 redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
             }
+            
+
         } else {
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Veuillez vérifier les mots de passe rentrés";
-            $_SESSION["alert"] = $alert;
+ 
         }
+    }else {
+        $alert["bootstrapClassAlert"] = "danger";
+        $alert["messageAlert"] = "Veuillez remplir tous les champs";
+
     }
+
+    $_SESSION["alert"] = $alert;
+    
+
 }
 
 // Permet de récuperer et de traiter une recherche d'un utilisateur sur la barre de recherche

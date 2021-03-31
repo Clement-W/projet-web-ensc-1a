@@ -11,10 +11,11 @@
 
 require_once("../includes/fonctionsUtilitaires.php");
 require_once("../includes/fonctionsGenerales.php");
+require_once("../includes/fonctionsEleve.php");
 session_start();
 
 if (estConnecte()) {
-    redirect("profil.php"); // Si on est déjà connecté et qu'on essaie d'accéder à cette page, redirect vers la page profil.
+    redirect("accueil.php"); // Si on est déjà connecté et qu'on essaie d'accéder à cette page, redirect vers la page accueil.
 } else {
     // Si on appuie sur le bouton de connexion 
     if (!empty($_POST["connexion"])) {

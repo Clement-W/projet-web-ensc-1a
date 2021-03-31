@@ -181,7 +181,7 @@ require_once("../includes/fragments/head.php");
 
                             </select>
 
-                            <input type="text" maxlength="200" class="form-control" id="texteRecherche" name="texteRecherche" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- enlever le onkeyup pour pas que ça recherche tout seul -->
+                            <input type="text" maxlength="200" class="form-control" id="texteRecherche" name="texteRecherche" placeholder="Entrez une recherche" onkeyup="rechercher();"> <!-- permet de rechercher dynamiquement -->
                         </div>
                     </form>
 

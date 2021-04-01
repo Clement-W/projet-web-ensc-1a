@@ -32,13 +32,12 @@ require_once "../includes/fragments/head.php";
         <script src="../includes/fonctions.js"></script>
 
         <?php
-        $comptesNonValides = getCompteNonValide();
+        $comptesNonValides = getComptesNonValide();
         if (count($comptesNonValides) == 0) { ?>
 
             <div class="text-center mt-5">
                 <h2>Il n'y a pas de compte en attente de validation.</h2>
             </div>
-
 
 
             <?php

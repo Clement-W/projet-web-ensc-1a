@@ -346,7 +346,7 @@ function mettreAJourProfil()
 }
 
 // Retourne la liste des comptes non validés
-function getCompteNonValide()
+function getComptesNonValide()
 {
     $BDD = getBDD();
 

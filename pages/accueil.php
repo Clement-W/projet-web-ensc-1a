@@ -106,9 +106,9 @@ require_once("../includes/fragments/head.php");
                                             <input type="number" name="promo" id="promo" placeholder="Promo" min="2000" max="9999" required />
                                         </div>
                                         <div class="form-group form-button">
-                                            <input type="button" class="btn btn-outline-secondary" name="signup" id="continuer1" class="form-submit" value="Continuer" />
+                                            <input type="button" class="btn btn-outline-secondary form-submit" name="signup" id="continuer1" value="Continuer" />
                                         </div>
-                                        <script type="text/javascript">
+                                        <script>
                                             $("#continuer1").click(() => $(".carousel").carousel("next")); // pour faire tourner la page du carousel à l'aide du bouton connecter
                                         </script>
                                     </div>
@@ -138,7 +138,7 @@ require_once("../includes/fragments/head.php");
                                             <input type="button" class="btn btn-outline-secondary mr-1" name="precedent" id="precedent" value="Précédent" />
                                             <input type="submit" class="btn btn-outline-success" name="inscription" id="inscription" value="Terminer" />
                                         </div>
-                                        <script type="text/javascript">
+                                        <script>
                                             $("#precedent").click(() => $(".carousel").carousel("prev"));
                                         </script>
                                     </div>

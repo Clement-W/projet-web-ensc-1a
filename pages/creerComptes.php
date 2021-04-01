@@ -58,11 +58,11 @@ if (!estConnecte() || !estGestionnaire()) {
                         <h2 class="d-flex justify-content-center mt-3">Créer un seul compte</h2>
                         <div class="d-flex mt-2">
                             <input type="button" class="btn btn-outline-secondary ml-4 mr-3" name="precedent" id="precedent" value="Créer un Elève" />
-                            <script type="text/javascript">
+                            <script>
                                 $("#precedent").click(() => $(".carousel").carousel(0)); // pour revenir sur la page précédente du carousel
                             </script>
                             <input type="button" class="btn btn-outline-secondary mr-4" name="suivant" id="suivant" value="Créer un Gestionnaire" />
-                            <script type="text/javascript">
+                            <script>
                                 $("#suivant").click(() => $(".carousel").carousel(1)); // pour aller à la page suivante du carousel
                             </script>
                         </div>

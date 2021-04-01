@@ -95,7 +95,7 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                         <!-- On appelle la fenêtre modale pour modifier le mot de passe -->
                         <script type="text/javascript">
                             $('#boutonModifierMotDePasse').on('click', function() {
-                                $('#modifierMotDePasse').modal('show');
+                                $('#modifierMotDePasseModal').modal('show');
                             });
                         </script>
                     </div>

@@ -14,7 +14,7 @@ require_once("../includes/fonctionsGenerales.php");
 require_once("../includes/fonctionsEleve.php");
 
 if (estConnecte()) { ?>
-    <div class="modal fade" id="modifierMotDePasse">
+    <div class="modal fade" id="modifierMotDePasseModal">
         <div class="modal-dialog">
             <div class="modal-content">
 

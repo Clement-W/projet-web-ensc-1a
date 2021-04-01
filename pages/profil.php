@@ -72,7 +72,7 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                     <h2 class="ml-5 ">Profil</h2>
                     <!-- On affiche le bouton "Modifier" seulement si c'est le profil de l'utilisateur connecté -->
                     <?php if (!estGestionnaire() && $estProfilDeLUtilisateurCo) { ?>
-                        <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-outline-dark mr-5" type="button">Modifier</a>
+                        <a href="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>" class="btn btn-outline-dark mr-5">Modifier</a>
                     <?php } ?>
                 </div>
                 <hr class="ml-5 mr-5" />
@@ -164,15 +164,15 @@ if (!estConnecte() || empty($_GET["idEleve"]) || !idEleveValide(escape($_GET["id
                                                         <h4><?= $intituleExp . " - " . $typePoste ?> </h4>
                                                         <p class="h6">
                                                             <?php echo $libelleOrganisation . " (" . $typeOrganisation . ")" . " - " . $typeExp ?>
-                                                            </br>
+                                                            <br/>
                                                             <?php echo $region . " - " . $ville ?>
-                                                            </br></br>
+                                                            <br/><br/></p>
                                                         <p><?= $description ?></p>
-                                                        Secteur(s) d'activité : <?= $secteursActivites ?></br>
-                                                        Domaine(s) de compétence : <?= $domainesCompetences ?></br>
+                                                        Secteur(s) d'activité : <?= $secteursActivites ?><br/>
+                                                        Domaine(s) de compétence : <?= $domainesCompetences ?><br/>
                                                         <?php if ($salaire != null) { ?>Salaire : <?= $salaire ?> <?php } ?>
                                                     <!-- s'il n'y a pas de salaire on affiche pas le libelle salaire -->
-                                                    </p>
+                                                    
 
                                                     </li>
                                             <?php }

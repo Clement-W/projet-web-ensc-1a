@@ -137,7 +137,8 @@ function mettreAJourMotDePasse()
 
     }
 
-    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
+    // Parfois avec firefox, si nous ne vidions pas la variable post, certains formulaires étaient envoyés plusieurs fois
     $_POST = array();
 
     $_SESSION["alert"] = $alert;

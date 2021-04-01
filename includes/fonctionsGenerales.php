@@ -137,6 +137,9 @@ function mettreAJourMotDePasse()
 
     }
 
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache
+    $_POST = array();
+
     $_SESSION["alert"] = $alert;
     
 

@@ -53,6 +53,10 @@ function creerCompteGestionnaire()
         $alert["messageAlert"] = "Veuillez remplir toutes les informations créer un comte gestionnaire";
     }
 
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
+    // Parfois avec firefox, si nous ne vidions pas la variable post, certains formulaires étaient envoyés plusieurs fois
+    $_POST = array();
+
     $_SESSION["alert"] = $alert;
 }
 
@@ -147,6 +151,10 @@ function creerCompteEleveParGestionnaire()
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Une erreur est survenue, le compte n'a pas pu être créé.";
     }
+
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
+    // Parfois avec firefox, si nous ne vidions pas la variable post, certains formulaires étaient envoyés plusieurs fois
+    $_POST = array();
 
     $_SESSION["alert"] = $alert;
 }

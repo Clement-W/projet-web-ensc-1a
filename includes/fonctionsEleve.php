@@ -58,7 +58,7 @@ function inscription()
         $prenom = ucwords(strtolower(escape($_POST["prenom"])));
         $nomUtilisateur = genererNomUtilisateur($nom, $prenom);
         $mdp = escape($_POST["motDePasse"]);
-        $mdpHash = hash("sha512",$mdp); // Pour ne pas stocker le mdp en clair dans la bdd on hash le mdp en sha512
+        $mdpHash = hash("sha512", $mdp); // Pour ne pas stocker le mdp en clair dans la bdd on hash le mdp en sha512
         $promo = escape($_POST["promo"]);
         $genre = escape($_POST["genre"]);
         $adresse = escape($_POST["adresse"]);
@@ -95,11 +95,14 @@ function inscription()
         $_SESSION["nomUtilisateurCompteNonValide"] = $nomUtilisateur; // permet de transmettre le nom d'utilisateur à la personne qui a créé le compte 
 
         redirect("attenteValidation.php");
-
     } else { // Tous les champs n'ont pas été remplis 
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Veuillez remplir toutes les informations pour vous inscrire.";
     }
+
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
+    // Parfois avec firefox, si nous ne vidions pas la variable post, certains formulaires étaient envoyés plusieurs fois
+    $_POST = array();
 
     $_SESSION["alert"] = $alert; // Si le message d'alert est levé, on le met dans la variable de session pour qu'il soit affiché sur la page d'accueil
 }
@@ -219,6 +222,10 @@ function ajouterExperiencePro()
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Des informations sont manquantes.";
     }
+
+    unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
+    // Parfois avec firefox, si nous ne vidions pas la variable post, certains formulaires étaient envoyés plusieurs fois
+    $_POST = array();
 
     $_SESSION["alert"] = $alert;
 
@@ -340,6 +347,9 @@ function mettreAJourProfil()
             $_SESSION["alert"] = $alert;
         } // Feedback à l'utilisateur pour confirmer la modification de son profil
 
+        unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
+        // Parfois avec firefox, si nous ne vidions pas la variable post, certains formulaires étaient envoyés plusieurs fois
+        $_POST = array();
 
         redirect("profil.php?idEleve=" . $idEleve);
     }
@@ -370,4 +380,3 @@ function possedeExperiencePro($id)
         return true;
     }
 }
-?>

@@ -32,7 +32,7 @@ function connexion()
     if (!empty($_POST["nomUtilisateur"]) && !empty($_POST["motDePasse"])) {
         $nomUtilisateur = escape($_POST["nomUtilisateur"]);
         $mdp = escape($_POST["motDePasse"]);
-        $mdpHash = hash("sha512",$mdp);
+        $mdpHash = hash("sha512", $mdp);
 
         // On récupère l'utilisateur dans la base de données 
         $requeteUtilisateur = $BDD->prepare("SELECT * FROM Compte WHERE NomUtilisateur=? AND MotDePasse=?");
@@ -79,8 +79,6 @@ function connexion()
 
                 redirect('accueil.php');
             }
-
-
         } else { // Il n'y a pas de compte correspondant à ces identifiants
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Aucun utilisateur ne correspond à ces informations.";
@@ -102,9 +100,9 @@ function mettreAJourMotDePasse()
     if (!empty($_POST["ancienMotDePasse"]) && !empty($_POST["nouveauMotDePasse"]) && !empty($_POST["confirmeNouveauMotDePasse"])) {
 
         // On les hash dès les début pour faire la comparaison avec l'ancien mdp et pour éviter de devoir hash avant l'insertion
-        $ancienMotDePasse = hash("sha512",escape($_POST["ancienMotDePasse"]));
-        $nouveauMotDePasse = hash("sha512",escape($_POST["nouveauMotDePasse"]));
-        $confirmeNouveauMotDePasse = hash("sha512",escape($_POST["confirmeNouveauMotDePasse"]));
+        $ancienMotDePasse = hash("sha512", escape($_POST["ancienMotDePasse"]));
+        $nouveauMotDePasse = hash("sha512", escape($_POST["nouveauMotDePasse"]));
+        $confirmeNouveauMotDePasse = hash("sha512", escape($_POST["confirmeNouveauMotDePasse"]));
         $nomUtilisateur = $_SESSION["nomUtilisateur"];
 
         $BDD = getBDD();
@@ -114,7 +112,7 @@ function mettreAJourMotDePasse()
         $motDePasseActuel = $requeteMotDePasse->fetch()[0];
 
         if (($ancienMotDePasse == $motDePasseActuel) && ($nouveauMotDePasse == $confirmeNouveauMotDePasse)) {
-        
+
             $requeteUpdateMotDePasse = $BDD->prepare("UPDATE Compte SET MotDePasse = ? WHERE NomUtilisateur = ?");
             $requeteUpdateMotDePasse->execute(array($nouveauMotDePasse, $nomUtilisateur));
 
@@ -124,17 +122,13 @@ function mettreAJourMotDePasse()
             if (!estGestionnaire()) { // Si on est un élève, on est redirigé sur notre profil
                 redirect("profil.php?idEleve=" . getIdEleveParNomUtilisateur($nomUtilisateur));
             }
-            
-
         } else {
             $alert["bootstrapClassAlert"] = "danger";
             $alert["messageAlert"] = "Veuillez vérifier les mots de passe rentrés";
- 
         }
-    }else {
+    } else {
         $alert["bootstrapClassAlert"] = "danger";
         $alert["messageAlert"] = "Veuillez remplir tous les champs";
-
     }
 
     unset($_POST); // On vide la variable post pour eviter d'avoir des problèmes avec certains navigateurs qui gardent cette information en cache 
@@ -142,8 +136,6 @@ function mettreAJourMotDePasse()
     $_POST = array();
 
     $_SESSION["alert"] = $alert;
-    
-
 }
 
 // Permet de récuperer et de traiter une recherche d'un utilisateur sur la barre de recherche
@@ -157,17 +149,17 @@ function recupererResultatsRecherche()
 
         // Si le filtre correspond à un élement de la table ExperiencePro : 
         if ($filtreRecherche == "TypeExperiencePro" || $filtreRecherche == "TypeOrganisation" || $filtreRecherche == "LibelleOrganisation" || $filtreRecherche == "Region" || $filtreRecherche == "SecteursActivites" || $filtreRecherche == "DomainesCompetences") {
-            $requeteExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro, Parametres, InfosPerso,Eleve WHERE Eleve.IdEleve = ExperiencePro.IdEleve AND ExperiencePro.IdEleve = Parametres.IdEleve AND ExperiencePro.IdEleve = InfosPerso.IdEleve AND ExperiencePro.IdExperiencePro = Parametres.LibelleInformation AND $filtreRecherche LIKE CONCAT('%',?,'%')");  
+            $requeteExperiencePro = $BDD->prepare("SELECT * FROM ExperiencePro, Parametres, InfosPerso,Eleve WHERE Eleve.IdEleve = ExperiencePro.IdEleve AND ExperiencePro.IdEleve = Parametres.IdEleve AND ExperiencePro.IdEleve = InfosPerso.IdEleve AND ExperiencePro.IdExperiencePro = Parametres.LibelleInformation AND $filtreRecherche LIKE CONCAT('%',?,'%')");
             // Le traitement des paramètres par PDO (avec ? ou :nomparam) transforme l'attribut en string avec des quotes, on ne peut donc pas faire WHERE ? LIKE %cc% sinon il recherche les caracteres %cc% dans le string passé en paramètre.
             // Pour pallier ce problème on escape la valeur de la variable au préalable avec des paramètres restrictifs sur la fonction htmlspecialchars
             // Puis on inclu la variable dans le string de la requete préparée (sachant que c'est la valeur d'un élément du menu dropdown et non une entrée utilisateur direct)
             $requeteExperiencePro->execute(array($texteRecherche));
-           
+
 
             while ($experiencePro = $requeteExperiencePro->fetch()) {
 
                 // Si l'experiece pro est visible et que le compte est validé alors on la présente dans les résultats
-                if ((($experiencePro["Visibilite"] == true && $experiencePro["CompteValide"] == true)) || estGestionnaire()) { 
+                if ((($experiencePro["Visibilite"] == true && $experiencePro["CompteValide"] == true)) || estGestionnaire()) {
                     echo '<div class="whitecontainer mt-3 mb-3"> 
                     <div class="ml-4 row text-secondary">
                         <div class="col-md-6 h5">
@@ -180,7 +172,7 @@ function recupererResultatsRecherche()
                         </div>
                     </div>
                 </div>';
-                // Ce qui est affiché sera récupéré par la fonction recherche.js et sera injecté dans l'html 
+                    // Ce qui est affiché sera récupéré par la fonction recherche.js et sera injecté dans l'html 
                 }
             }
         }
@@ -213,10 +205,10 @@ function recupererResultatsRecherche()
             $requeteProfil->execute(array($texteRecherche));
             while ($profil = $requeteProfil->fetch()) {
                 $visibilite = getVisibiliteInfosProfil($profil["IdEleve"]);
-                if($filtreRecherche == "Ville" && $visibilite["Ville"]==false && !estGestionnaire()){
+                if ($filtreRecherche == "Ville" && $visibilite["Ville"] == false && !estGestionnaire()) {
                     continue; // On affiche pas le résultat si le filtre est la ville est que la ville est rendue privée et que le compte qui cherche n'est pas un compte gestionnaire
                 }
-            
+
                 if ($profil["CompteValide"] == true || estGestionnaire()) {
 
                     echo '<div class="whitecontainer mt-3 mb-3"> 
@@ -236,3 +228,4 @@ function recupererResultatsRecherche()
     }
     exit();
 }
+?>

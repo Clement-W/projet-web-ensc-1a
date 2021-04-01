@@ -246,6 +246,6 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
         </div>
     </body>
 
-<?php }else{
+<?php } else {
     redirect("404.php");
 } ?>

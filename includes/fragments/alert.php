@@ -18,21 +18,21 @@ if (isset($_SESSION["alert"])) {
 ?>
 
     <div class="alert alert-<?= $bootstrapClassAlert ?>" id="alert">
-        <button type="button" class="close" data-dismiss="alert" >x</button>
+        <button type="button" class="close" data-dismiss="alert">x</button>
         <strong><?= $messageAlert ?></strong>
     </div>
     <script type="text/javascript">
         $("#alert").fadeTo(2000, 500).slideUp(500, function() {
             $("#alert").slideUp(500);
         }); // pour que le message d'alert disparaisse avec un effet de glissement vers le haut
-    </script> 
+    </script>
 
-    
+
 
 
 
 <?php
-} 
+}
 
 
 ?>

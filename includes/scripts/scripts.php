@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
  * Contient les scripts javascript à inclure dans le head de nos pages web

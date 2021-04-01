@@ -257,5 +257,4 @@ function creerComptesElevesDepuisCSV()
 
     $_SESSION["alert"] = $alert;
 }
-
 ?>

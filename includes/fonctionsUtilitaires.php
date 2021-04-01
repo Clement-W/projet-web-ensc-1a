@@ -26,7 +26,7 @@ function escape($value)
 function formaterDateExperiencePro($date)
 {
     if ($date == null) { // Pour gérer le cas de la date de fin qui est facultative
-        return ""; 
+        return "";
     } else {
         $mois = substr($date, 5, 2);
         $annee = substr($date, 0, 4);

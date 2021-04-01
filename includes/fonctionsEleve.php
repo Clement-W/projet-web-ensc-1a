@@ -380,3 +380,4 @@ function possedeExperiencePro($id)
         return true;
     }
 }
+?>

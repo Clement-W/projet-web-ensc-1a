@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
  * Ce fichier inclus les champs de formExperiencePro.php pour créer un formulaire permettant
@@ -10,7 +10,7 @@
  *
  */
 
- ?>
+?>
 
 <div class="modal fade" id="ajouterExperience">
     <div class="modal-dialog modal-lg">
@@ -28,7 +28,8 @@
                     </br>
                     <p class="h5 text-secondary"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Les champs avec des astérisques (*) sont obligatoires. Vous pouvez cocher la case pour rendre visible cette expérience professionelle auprès des autres utilisateurs. </p>
                     </br>
-                    <?php require_once("../includes/fragments/formExperiencePro.php"); // On entoure les champs de formExperiencePro.php par un formulaire pour pouvoir créer une experience pro?>
+                    <?php require_once("../includes/fragments/formExperiencePro.php"); // On entoure les champs de formExperiencePro.php par un formulaire pour pouvoir créer une experience pro
+                    ?>
                     <div class="d-flex justify-content-end ">
                         <input type="submit" class="btn btn-outline-success" name="ajouterExperiencePro" id="ajouterExperiencePro" value="Ajouter" />
                     </div>

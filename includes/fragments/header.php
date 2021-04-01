@@ -30,7 +30,7 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
         </div>
 
 
-        
+
         <?php if (estConnecte() && estGestionnaire()) { ?>
             <!-- Seul le gestionnaire a ces menus -->
             <a href="creerComptes.php" class="navbar-brand text-light" href="#">Créer un compte</a>
@@ -40,9 +40,9 @@ if (!empty($_POST["modifierMotDePasse"])) { // pour que le gestionnaire puisse c
         <?php } ?>
 
 
-       
+
         <?php if (estConnecte()) { ?>
-             <!-- Personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
+            <!-- Personnalisation du menu dropdown en fonction du type d'utilisateur connecté -->
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle text-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bonjour <?= $_SESSION["nomUtilisateur"]; ?>

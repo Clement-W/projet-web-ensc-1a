@@ -46,23 +46,23 @@ if (estConnecte()) {
 
             <!-- Formulaire de connexion -->
 
-                <div class="whitecontainer flex-column d-flex justify-content-center">
-                    <form method="POST" action="connexion.php" class="register-form" id="register-form">
-                        <h2 class="d-flex justify-content-center mt-4">Connexion</h2>
-                        <div class="marge-connexion">
-                            <div class="form-group">
-                                <label for="nomUtilisateur"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" maxlength="50" name="nomUtilisateur" id="nomUtilisateur" placeholder="Nom d'utilisateur" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" maxlength="50" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required />
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" class="btn btn-outline-success" name="connexion" id="connexion" value="Terminer" />
-                            </div>
+            <div class="whitecontainer flex-column d-flex justify-content-center">
+                <form method="POST" action="connexion.php" class="register-form" id="register-form">
+                    <h2 class="d-flex justify-content-center mt-4">Connexion</h2>
+                    <div class="marge-connexion">
+                        <div class="form-group">
+                            <label for="nomUtilisateur"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" maxlength="50" name="nomUtilisateur" id="nomUtilisateur" placeholder="Nom d'utilisateur" required />
                         </div>
-                    </form>
-                </div>
+                        <div class="form-group">
+                            <label for="motDePasse"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" maxlength="50" name="motDePasse" id="motDePasse" placeholder="Mot de passe" required />
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" class="btn btn-outline-success" name="connexion" id="connexion" value="Terminer" />
+                        </div>
+                    </div>
+                </form>
+            </div>
     </body>
 <?php } ?>

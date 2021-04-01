@@ -29,7 +29,7 @@ require_once "../includes/fragments/head.php";
     <?php require_once "../includes/fragments/header.php"; ?>
 
     <div class="container">
-        <script src="../includes/fonction.js"></script>
+        <script src="../includes/fonctions.js"></script>
 
         <?php
         $comptesNonValides = getCompteNonValide();
@@ -54,7 +54,7 @@ require_once "../includes/fragments/head.php";
                         <div class="h3">
                             <div class="affichageProfil"><?= $compte["Prenom"] ?> <?= $compte["Nom"] ?> - Promotion <?= $compte["Promotion"] ?></div>
 
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex">
                                 <button class="btn btn-outline-success mr-5" onclick='validerCompte("<?= $compte["IdEleve"] ?>")'>Valider</button>
                                 <button class="btn btn-outline-danger mr-5" onclick='invaliderCompte("<?= $compte["IdEleve"] ?>")'>Refuser</button>
                                 <a href="profil.php?idEleve=<?= $compte["IdEleve"] ?>" class="btn btn-outline-dark mr-5" type="button">Voir le profil</a>

@@ -1,7 +1,7 @@
 <?php
 /* MODULE DE PROGRAMMATION WEB
  * Rôle du fichier : 
- * Ce fichier contient les champs d'un formulaire permettant d'afficher une expérience professionnelle déjà définie
+ * Ce fichier contient les champs d'un formulaire permettant de modifier une expérience professionnelle déjà définie
  * ou d'en ajouter une nouvelle.
  *
  *

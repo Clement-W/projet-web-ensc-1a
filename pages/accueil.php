@@ -151,7 +151,7 @@ require_once("../includes/fragments/head.php");
             </div>
         <?php } else { ?>
             <!-- Si l'utilisateur est connecté, on lui affiche la page d'accueil d'un utilisateur connecte -->
-            <script src="../includes/fonction.js"></script>
+            <script src="../includes/fonctions.js"></script>
 
             <div class="container d-flex">
                 <div class="col">
@@ -193,9 +193,6 @@ require_once("../includes/fragments/head.php");
 
         <?php } ?>
     </div>
-    <?php 
-
-    ?>
 </body>
 
 </html>

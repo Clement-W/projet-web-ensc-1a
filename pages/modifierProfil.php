@@ -81,7 +81,7 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                             <button type="button" id="boutonAjouterExperience" class="btn btn-outline-primary mr-5">Ajouter une expérience</button>
                         </div>
                         <!-- On appelle la fenêtre modale pour ajouter une expérience pro -->
-                        <script type="text/javascript">
+                        <script>
                             $('#boutonAjouterExperience').on('click', function() {
                                 $('#ajouterExperience').modal('show');
                             });
@@ -93,7 +93,7 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                             <button type="button" id="boutonModifierMotDePasse" class="btn btn-outline-danger mr-5">Modifier le mot de passe</button>
                         </div>
                         <!-- On appelle la fenêtre modale pour modifier le mot de passe -->
-                        <script type="text/javascript">
+                        <script>
                             $('#boutonModifierMotDePasse').on('click', function() {
                                 $('#modifierMotDePasseModal').modal('show');
                             });
@@ -104,16 +104,16 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                 <hr class="ml-5 mr-5" />
 
                 <p class="ml-5 h5 text-secondary mr-3"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Il est possible de rendre invisible aux yeux des autres utilisateurs certaines de vos informations. Pour cela, décochez celles que vous ne souhaitez pas montrer dans votre profil.</p>
-                </br>
+                <br/>
 
                 <!-- Formulaire de modification des infos perso et de leur visibilité, et affichage des expérience pro -->
                 <div class="d-flex flex-wrap flex-column ml-5">
                     <form method="POST" action="modifierProfil.php?idEleve=<?= getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]); ?>">
                         <p class="h3 text-secondary"><u>Informations personnelles</u></p>
-                        </br>
+                        <br/>
                         <div class="d-flex">
                             <div class="mt-2 col-sm-3">
-                                <p for="nom">Nom</p>
+                                <p>Nom</p>
                             </div>
                             <div class="form-group col-sm-8">
                                 <input type="text" name="Nom" maxlength="50" value="<?= $nom ?>" class="form-control" id="nom" required>
@@ -121,7 +121,7 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                         </div>
                         <div class="d-flex">
                             <div class="mt-2 col-sm-3">
-                                <p for="prenom">Prénom</p>
+                                <p>Prénom</p>
                             </div>
                             <div class="form-group col-sm-8">
                                 <input type="text" name="Prenom" maxlength="50" value="<?= $prenom ?>" class="form-control" id="prenom" required>
@@ -149,7 +149,7 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                         </div>
                         <div class="d-flex">
                             <div class="mt-2 col-sm-3">
-                                <p for="promotion">Promotion</p>
+                                <p>Promotion</p>
                             </div>
                             <div class="form-group col-sm-8">
                                 <input type="number" name="Promotion" min="2000" max="9999" value="<?= $promo ?>" class="form-control" id="promotion" required>
@@ -170,7 +170,7 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                                 <label class="custom-control-label" for="villeVisibilite">Ville</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="Ville" maxlength="50" value="<?= $ville ?>" class="form-control" id="ville" required>
+                                <input type="text" name="Ville" maxlength="50" value="<?= $ville ?>" class="form-control" id="villePerso" required>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -199,11 +199,11 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                                 <label class="custom-control-label" for="numTelephoneVisibilite">Téléphone</label>
                             </div>
                             <div class="form-group col-sm-8">
-                                <input type="text" name="NumTelephone" max="9999999999" value="<?= $tel ?>" class="form-control" id="telephone" required>
+                                <input type="text" name="NumTelephone" maxlength="12" value="<?= $tel ?>" class="form-control" id="telephone" required>
                             </div>
                         </div>
 
-                        </br>
+                        <br/>
 
                         <!-- Affichage des expérience pro -->
                         <hr class="mr-5" />
@@ -211,9 +211,9 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
                             <p class="h3 text-secondary"><u>Expériences professionnelles</u></p>
                         </div>
 
-                        </br>
+                        <br/>
                         <p class="h5 text-secondary"><i class="fa fa-exclamation-triangle fa-sm" style="color:black" aria-hidden="true"></i> Les champs avec des astérisques (*) sont obligatoires. </p>
-                        </br>
+                        <br/>
 
                         <!-- On boucle sur les expériences pro stockées dans la variable $experiencePro -->
                         <?php foreach ($experiencePro as $expPro) {

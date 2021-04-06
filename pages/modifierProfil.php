@@ -28,7 +28,7 @@ if (!empty($_POST["modifierMotDePasse"])) {
     mettreAJourMotDePasse();
 }
 
-if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idEleve"]) && (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"]))) {
+if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idEleve"])) && (getIdEleveParNomUtilisateur($_SESSION["nomUtilisateur"]) == $_GET["idEleve"])) {
     // Si un utilisateur n'est pas connecté, ou que l'id eleve n'est pas valide ou pas donné en get, alors on redirige vers 404 error
 
     //On nomme tous les paramètres qui peuvent nous servir pour modifier le profil afin de gagner en lisibilité
@@ -247,5 +247,5 @@ if (estConnecte() && !empty($_GET["idEleve"]) && idEleveValide(escape($_GET["idE
     </body>
 
 <?php } else {
-    redirect("404.php");
+    //redirect("404.php");
 } ?>
